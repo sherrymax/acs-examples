@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.alfresco.org/model/dictionary/1.0" name="sch:sch">
+    <description>Scheduled Actions Marker Aspect</description>
+    <author>Mike Farman</author>
+    <imports>
+        <import uri="http://www.alfresco.org/model/system/1.0" prefix="sys"/>
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+    </imports>
+    <namespaces>
+        <namespace uri="http://www.alfresco.com/dyn" prefix="sch"/>
+    </namespaces>
+    <data-types/>   
+    
+    <aspects>
+        <aspect name="sch:notify">
+            <title>Scheduled Action Notify Markers</title>
+            <properties>
+                <property name="sch:notifyOwner">
+                    <type>d:boolean</type>
+                </property>
+                <property name="sch:declareRecord">
+                    <type>d:boolean</type>
+                </property>                
+            </properties>
+        </aspect>
+    </aspects>
+</model>
