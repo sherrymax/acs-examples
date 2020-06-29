@@ -13,6 +13,13 @@ Contents stored in ACS can have an `Effective Date` property. Once the current d
 ## Configuration Steps
 
 ### ACS : Custom Script Development
+1. Import `Existing Maven Project` in Eclipse.
+![import-maven-image](assets/import-maven-image.png)
+2. Project is successfully imported.
+![project-image](assets/project-image.png)
+3. Make source code changes and build jar file 
+4. Run `mvn clean package` and view the `target` folder.
+![jar-file-image](assets/jar-file-image.png)
 
 
 
@@ -30,6 +37,10 @@ custom-scheduled-script.expire.notification.days=5
 ```
 
 [A sample alfresco-global.properties file updated with scheduler is available here.](assets/alfresco-global.properties)
+
+3. If you are using Orca, deploy the `alfresco-scheduled-script-action-1.0.1.jar` file to `/home/ec2-user/orca/data/services/content/custom`
+
+4. Restart Content (ACS Server).
 
 ### ACS : Setup Email Template
 1. A sample email template is available [here.](assets/custom_notify_user_email.html.ftl)
