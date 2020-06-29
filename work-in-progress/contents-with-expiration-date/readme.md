@@ -18,7 +18,7 @@ Contents stored in ACS can have an `Effective Date` property. Once the current d
 
 ### ACS : Custom Script Deployment
 1. Browse to the `classpathRoot` directory.
-For example, for Tomcat 6, browse to the `$TOMCAT_HOME/shared/classes/ directory`.
+For example, for Tomcat 6, browse to the `$TOMCAT_HOME/shared/classes/` directory.
 
 2. Update `alfresco-global.properties` as follows:
 ```
@@ -37,7 +37,10 @@ custom-scheduled-script.expire.notification.days=5
 ![Email Template](assets/email-template-image.png)
 
 ### ACS : Setup FOLDER RULES
-
+1. Folder rule to add an aspect named `Effectivity`.
+![Effectivity](assets/add-effectivity-aspect-folder-rule.png)
+1. Folder rule to declare the expired content as record.
+![Declare As Record](assets/declare-as-record-folder-rule.png)
 
 ### ACS : DEBUG the changes
 
