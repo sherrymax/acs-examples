@@ -13,8 +13,9 @@ Contents stored in ACS can have an `Effective Date` property. Once the current d
 ## Configuration Steps
 
 ### ACS : Custom Script Development
-1. Import `Existing Maven Project` in Eclipse.
+1. Select `File >> Import >> Existing Maven Project` in Eclipse.
 ![import-maven-image](assets/import-maven-image.png)
+A Maven project for scheduler job is [available here](source-code/alfresco-scheduled-script-action).
 2. Project is successfully imported.
 ![project-image](assets/project-image.png)
 3. Make source code changes and build jar file 
@@ -48,9 +49,9 @@ custom-scheduled-script.expire.notification.days=5
 ![Email Template](assets/email-template-image.png)
 
 ### ACS : Setup FOLDER RULES
-1. Folder rule to add an aspect named `Effectivity`.
+1. Create a `Folder Rule` to add an aspect named `Effectivity`.
 ![Effectivity](assets/add-effectivity-aspect-folder-rule.png)
-1. Folder rule to declare the expired content as record.
+1. Create a `Folder Rule` to declare the expired content as record.
 ![Declare As Record](assets/declare-as-record-folder-rule.png)
 
 ### ACS : DEBUG the changes
