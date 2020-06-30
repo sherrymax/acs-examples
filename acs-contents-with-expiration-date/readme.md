@@ -38,7 +38,7 @@ custom-scheduled-script.expire.notification.days=5
 
 [A sample alfresco-global.properties file updated with scheduler is available here.](assets/alfresco-global.properties)
 
-3. If you are using Orca, deploy the `alfresco-scheduled-script-action-1.0.1.jar` file to `/home/ec2-user/orca/data/services/content/custom`
+3. If you are using Orca, deploy the `alfresco-scheduled-script-action-1.0.jar` file to `/home/ec2-user/orca/data/services/content/custom`
 
 4. Restart Content (ACS Server).
 
