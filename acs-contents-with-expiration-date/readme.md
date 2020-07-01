@@ -1,7 +1,7 @@
 #### This article details the steps required to deal with contents that has an expiry date which is past current date.
 
 ### Use-Case / Requirement
-Contents stored in ACS can have an `Effective Date` property. Once the current date is past the `Document Effective Date`, that document can be cosidered as expired. Alfresco can perform the following actions on such expired contents.
+Contents stored in ACS can have an `Effective Date` property. Once the current date is past the `Document Effective Date`, that document can be cosidered as expired. Alfresco can perform the following actions on such expired contents using its scheduled jobs.
 
 1. Trigger an email to creator/owner when a document is about to expire in the next 5 days.
 2. Upon expiry, a document should be declared as a record.
