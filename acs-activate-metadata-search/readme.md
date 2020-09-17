@@ -74,6 +74,15 @@ For example: If you wanted to add `sys:node-dbid` property
 
 ### ACS : RUN the DEMO
 
+Metadata Of A Document
+![document-metadata-image](assets/1.png)
+
+Live Searching A Document using Metadata
+![live-search-image](assets/2.png)
+
+Simple Searching A Document using Metadata
+![simple-search-image](assets/3.png)
+
 
 ### References
 1. https://alfresco.my.salesforce.com/articles/en_US/Technical_Article/Can-we-add-custom-properties-into-the-properties-list-which-Share-Simple-Search-searches-against?popup=true
