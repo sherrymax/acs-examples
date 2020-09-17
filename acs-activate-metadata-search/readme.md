@@ -1,4 +1,4 @@
-#### This article details the steps required to deal with contents that has an expiry date which is past current date.
+#### This article details the steps required to search a document using its metadata.
 
 ### Use-Case / Requirement
 Neither the Regular Search nor the Live Search fom within Alfresco Share does search against custom fields/properties by default.  How can I search against my custom properties?
