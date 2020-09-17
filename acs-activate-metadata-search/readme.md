@@ -35,32 +35,40 @@ Step 1: Edit the configuration files and add your additional custom properties.
     
 Example : 
 If you have properties `my:product` and `my:version`
-    For Simple Search : Change `search.get.config.xml` from
-    ```
-    <search>
-    <default-query-template>%(cm:name cm:title cm:description ia:whatEvent ia:descriptionEvent lnk:title lnk:description TEXT TAG)</default-query-template>
-    </search>
-    ```
-    to
-    ```
-    <search>
-    <default-query-template>%(cm:name cm:title cm:description my:product my:version ia:whatEvent ia:descriptionEvent lnk:title lnk:description TEXT TAG)</default-query-template>
-    </search>
-    ```
-    For Live Search : Change `live-search-docs.get.config.xml` from
-    ```
-    <search>
-    <default-operator>AND</default-operator>
-    <default-query-template>%(cm:name cm:title cm:description TEXT TAG)</default-query-template>
-    </search>
-    ```
-    to
-    ```
-    <search>
-    <default-operator>AND</default-operator>
-    <default-query-template>%(cm:name cm:title cm:description  my:product my:version TEXT TAG)</default-query-template>
-    </search>
-    ```
+For Simple Search : Change `search.get.config.xml` from
+```
+<search>
+<default-query-template>%(cm:name cm:title cm:description ia:whatEvent ia:descriptionEvent lnk:title lnk:description TEXT TAG)</default-query-template>
+</search>
+```
+to
+```
+<search>
+<default-query-template>%(cm:name cm:title cm:description my:product my:version ia:whatEvent ia:descriptionEvent lnk:title lnk:description TEXT TAG)</default-query-template>
+</search>
+```
+For Live Search : Change `live-search-docs.get.config.xml` from
+```
+<search>
+<default-operator>AND</default-operator>
+<default-query-template>%(cm:name cm:title cm:description TEXT TAG)</default-query-template>
+</search>
+```
+to
+```
+<search>
+<default-operator>AND</default-operator>
+<default-query-template>%(cm:name cm:title cm:description  my:product my:version TEXT TAG)</default-query-template>
+</search>
+```
+
+Note: If your property has a hyphen in the naming you will need to escape the hyphen character with \ .  
+For example: If you wanted to add `sys:node-dbid` property
+```
+<search>
+   <default-query-template>%(cm:name cm:title cm:description sys:node\-dbid ia:whatEvent ia:descriptionEvent lnk:title lnk:description TEXT TAG)</default-query-template>
+</search>
+```
 
 Step 2: Save the files and restart Alfresco
 
