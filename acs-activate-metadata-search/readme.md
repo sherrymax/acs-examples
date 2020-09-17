@@ -74,13 +74,12 @@ For example: If you wanted to add `sys:node-dbid` property
 
 ### ACS : RUN the DEMO
 
-Metadata Of A Document
+<b>Metadata Of a Document</b>
 ![document-metadata-image](assets/1.png)
-
-Live Searching A Document using Metadata
+<b>Live Searching a Document using Metadata</b>
 ![live-search-image](assets/2.png)
 
-Simple Searching A Document using Metadata
+<b>Simple Searching a Document using Metadata</b>
 ![simple-search-image](assets/3.png)
 
 
