@@ -11,8 +11,7 @@ An already modelled and deployed APS workflow/process has to be triggered from A
 
 
 ## Configuration Steps
-1. Deploy the [http_js.amp](assets/http_js.amp) file to ACS. 
-   Full credits and thanks to [Rui Fernandes](https://github.com/rjmfernandes).
+1. Deploy the [http_js.amp](assets/http_js.amp) file to ACS. Full credits and thanks to [Rui Fernandes](https://github.com/rjmfernandes).
 2. Update the `alfresco-global.properties` file.
 3. Restart ACS Server/Container.
 4. Import and Deploy the [aps-app.zip](assets/aps-app.zip) file to APS.
