@@ -13,14 +13,24 @@ An already modelled and deployed APS workflow/process has to be triggered from A
 ## Configuration Steps
 1. Deploy the [http_js.amp](assets/http_js.amp) file to ACS. 
    Full credits and thanks to [Rui Fernandes](https://github.com/rjmfernandes).
-2. Restart ACS Server/Container.
-3. Import and Deploy the [aps-app.zip](assets/aps-app.zip) file to APS.
+2. Update the `alfresco-global.properties` file.
+3. Restart ACS Server/Container.
+4. Import and Deploy the [aps-app.zip](assets/aps-app.zip) file to APS.
 
+## Update the alfresco-global.properties
+Uncomment or update the alfresco-global.properties file.
+```
+### alfresco_http_activiti_client - https://github.com/rjmfernandes/alfresco_http_activiti_client
+activiti.client.extension.endpoint=http://process:8080/activiti-app
+activiti.client.extension.user=demo
+activiti.client.extension.password=demo
+```
 
 ## Configuration Step in ADP/Orca (if needed)
 ```
-Location to deploy http_js.amp in ADP/Orca will be: 
+Location to deploy http_js.amp and alfresco-global.properties in ADP/Orca will be: 
 adp/data/services/content/http_js.amp
+adp/data/services/content/alfresco-global.properties
 ```
 
 
