@@ -7,7 +7,7 @@ An already modelled and deployed APS workflow/process has to be triggerd from AC
 
 * Alfresco Content Services (Version 6.1 and above)
 * Alfresco Process Services (Version 1.11 and above)
-* [HTTP Activiti Client](../alfresco-http-activiti-client) (amp or jar)
+* [HTTP Activiti Client](../alfresco-http-activiti-client) (.amp or .jar)
 
 
 ## Configuration Steps
