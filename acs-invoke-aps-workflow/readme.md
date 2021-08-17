@@ -1,7 +1,7 @@
 #### This article details the steps required to invoke an APS workflow/process from ACS.
 
 ### Use-Case / Requirement
-An already modelled and deployed APS workflow/process has to be triggerd from ACS.
+An already modelled and deployed APS workflow/process has to be triggered from ACS.
 
 ### Prerequisites to run this demo end-2-end
 
@@ -11,10 +11,10 @@ An already modelled and deployed APS workflow/process has to be triggerd from AC
 
 
 ## Configuration Steps
-1. Deploy the [http_js.amp](assets/http_js.amp) file in ACS. 
+1. Deploy the [http_js.amp](assets/http_js.amp) file to ACS. 
    Full credits and thanks to [Rui Fernandes](https://github.com/rjmfernandes).
-2. Restart ACS Container.
-3. Import and Deploy the `aps-app.zip` file in APS.
+2. Restart ACS Server/Container.
+3. Import and Deploy the [aps-app.zip](assets/aps-app.zip) file to APS.
 
 
 ## Configuration Step in ADP/Orca (if needed)
