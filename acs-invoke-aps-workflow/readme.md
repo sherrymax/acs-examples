@@ -36,7 +36,7 @@ adp/data/services/content/alfresco-global.properties
 
 ## Custom Javascript to Invoke APS Workflow/Process
 
-```
+```javascript
 // Code to invoke an APS Workflow from ACS along with passing the document.
 // The variables meant to receive the ACS document has to be FORM UI elements in the START FORM.
 
