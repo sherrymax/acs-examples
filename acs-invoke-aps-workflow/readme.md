@@ -65,3 +65,6 @@ logger.info('*** Ending APS Workflow ***');
 
 ## Define Folder Rules in ACS to trigger this workflow
 The process flow.  ![folder-rules](assets/folder-rules.png)
+
+
+## Run the DEMO
