@@ -19,7 +19,7 @@ An already modelled and deployed APS workflow/process has to be triggered from A
 ## Update the alfresco-global.properties
 Set the following properties in the `<TOMCAT\_HOME\>/shared/classes/alfresco-global.properties` file:
 
-```
+```properties
 ### alfresco_http_activiti_client - https://github.com/rjmfernandes/alfresco_http_activiti_client
 activiti.client.extension.endpoint=http://process:8080/activiti-app
 activiti.client.extension.user=demo

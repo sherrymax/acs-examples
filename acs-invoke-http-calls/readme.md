@@ -17,7 +17,7 @@ An HTTP call (GET, POST, PUT etc) has to be triggered from ACS.
 ## Update the alfresco-global.properties (Optional)
 Set the following properties in the `<TOMCAT\_HOME\>/shared/classes/alfresco-global.properties` file:
 
-```
+```properties
 ### alfresco_http_activiti_client - https://github.com/rjmfernandes/alfresco_http_activiti_client
 activiti.client.extension.endpoint=http://process:8080/activiti-app
 activiti.client.extension.user=demo
