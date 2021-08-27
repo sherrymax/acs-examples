@@ -7,8 +7,8 @@ An HTTP call (GET, POST, PUT etc) has to be triggered from ACS.
 
 * Alfresco Content Services (Version 6.1 and above)
 * [HTTP Activiti Client](../alfresco-http-activiti-client) (.amp or .jar)
-* [JS Console - Repo](../javascript-console-repo-0.7-SNAPSHOT.amp)
-* [JS Console - Share](../javascript-console-share-0.7-SNAPSHOT.amp)
+* [JS Console - Repo](../javascript-console-repo-0.7-SNAPSHOT.amp)  (if running on ACS v7.x)
+* [JS Console - Share](../javascript-console-share-0.7-SNAPSHOT.amp)  (if running on ACS v7.x)
 
 
 ## Configuration Steps
@@ -30,8 +30,8 @@ activiti.client.extension.password=demo
 ```
 Location to deploy http_js.amp and alfresco-global.properties in ADP/Orca will be: 
 adp/data/services/content/http_js.amp
-adp/data/services/content/javascript-console-repo-0.7-SNAPSHOT.amp
-adp/data/services/content/javascript-console-share-0.7-SNAPSHOT.amp
+adp/data/services/content/javascript-console-repo-0.7-SNAPSHOT.amp (if running on ACS v7.x)
+adp/data/services/content/javascript-console-share-0.7-SNAPSHOT.amp (if running on ACS v7.x)
 adp/data/services/content/alfresco-global.properties
 ```
 
