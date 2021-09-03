@@ -6,25 +6,15 @@ An HTTP call (GET, POST, PUT etc) has to be triggered from ACS.
 ### Prerequisites to run this demo end-2-end
 
 * Alfresco Content Services (Version 6.1 and above)
-* [HTTP Activiti Client](../alfresco-http-activiti-client) (.amp or .jar)
+* [HTTP Activiti Client](../alfresco-http-activiti-client) ([.amp](assets/http_js.amp) or .jar)
 * [JS Console - Repo](../javascript-console-repo-0.7-SNAPSHOT.amp)  (if running on ACS v7.x)
 * [JS Console - Share](../javascript-console-share-0.7-SNAPSHOT.amp)  (if running on ACS v7.x)
 
 
 ## Configuration Steps
 1. Deploy the [http_js.amp](assets/http_js.amp) file to ACS. Full credits and thanks to [Rui Fernandes](https://github.com/rjmfernandes).
-2. Update the `alfresco-global.properties` file.
-3. Restart ACS Server/Container.
+2. Restart ACS Server/Container.
 
-## Update the alfresco-global.properties (Optional)
-Set the following properties in the `<TOMCAT\_HOME\>/shared/classes/alfresco-global.properties` file:
-
-```properties
-### alfresco_http_activiti_client - https://github.com/rjmfernandes/alfresco_http_activiti_client
-activiti.client.extension.endpoint=http://process:8080/activiti-app
-activiti.client.extension.user=demo
-activiti.client.extension.password=demo
-```
 
 ## Configuration Step in ADP/Orca (Only for Orca/ADP users)
 ```
@@ -32,7 +22,6 @@ Location to deploy http_js.amp and alfresco-global.properties in ADP/Orca will b
 adp/data/services/content/http_js.amp
 adp/data/services/content/javascript-console-repo-0.7-SNAPSHOT.amp (if running on ACS v7.x)
 adp/data/services/content/javascript-console-share-0.7-SNAPSHOT.amp (if running on ACS v7.x)
-adp/data/services/content/alfresco-global.properties
 ```
 
 
