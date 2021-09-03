@@ -57,7 +57,8 @@ var receivingDocumentList = ["apsdocument"];  // apsdocument is the id of an 'At
 logger.info(formvariables);
 
 try{
-	activiti.startDocumentProcess(processToInvoke, instanceToCreate, dataObj, receivingDocumentList, [document]);
+	res = activiti.startDocumentProcess(processToInvoke, instanceToCreate, dataObj, receivingDocumentList, [document]);
+	logger.system.out (res.id);
 }
 catch(ex){
 	logger.error('*** Exception >>> ***'+ex.message);
