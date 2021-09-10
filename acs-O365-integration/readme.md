@@ -82,3 +82,7 @@ Start mapping the details from EC2 Instance.
 
 
 ### ACS : RUN the DEMO
+
+### References
+https://docs.alfresco.com/officeonline/tasks/office-online-register-spa.html
+https://docs.alfresco.com/microsoft-365/latest/install/#register-a-single-page-application-spa
