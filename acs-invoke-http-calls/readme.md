@@ -7,8 +7,8 @@ An HTTP call (GET, POST, PUT etc) has to be triggered from ACS.
 
 * Alfresco Content Services (Version 6.1 and above)
 * [HTTP Activiti Client](../alfresco-http-activiti-client) ([.amp](assets/http_js.amp) or .jar)
-* [JS Console - Repo](../javascript-console-repo-0.7-SNAPSHOT.amp)  (if running on ACS v7.x)
-* [JS Console - Share](../javascript-console-share-0.7-SNAPSHOT.amp)  (if running on ACS v7.x)
+* [JS Console - Repo](assets/javascript-console-repo-0.7-SNAPSHOT.amp)  (if running on ACS v7.x)
+* [JS Console - Share](assets/javascript-console-share-0.7-SNAPSHOT.amp)  (if running on ACS v7.x)
 
 
 ## Configuration Steps
