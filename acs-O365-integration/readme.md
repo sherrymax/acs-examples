@@ -84,7 +84,7 @@ Once authenticated, start mapping the details from EC2 Instance.
     }
    ```
    An example is as below:
-   ```
+   ``` properties
     "msOnline": 
     {
         "msHost": "https://mantech.alfdemo.com/ooi-service/api/-default-/private/office-integration/versions/1/edit-sessions/",
