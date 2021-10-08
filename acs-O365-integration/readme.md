@@ -39,7 +39,7 @@ Once authenticated, start mapping the details from EC2 Instance.
 * Please specify the `elb_purpose` for this instance: `<demo>`
 * Please specify the `customer` for this instance: `<mycustomername>`
 
-Note: The Redirect URI will be `https://<subdomain>.alfdemo.com`
+> **Note**: The Redirect URI will be `https://<subdomain>.alfdemo.com`
 
 ### Configure O365 SPA
 
@@ -47,7 +47,7 @@ Note: The Redirect URI will be `https://<subdomain>.alfdemo.com`
 2. Navigate to `App Registrations` within `Azure Services`.
    ![app-home](assets/spa-home.png)
 3. Register your SPA application. ![app-regn-1](assets/spa-regn-1.png)
-   The Redirect URI will be `https://<subdomain>.alfdemo.com`
+> **Note**: The Redirect URI will be `https://<subdomain>.alfdemo.com`
 4. Click Register button. ![spa-regn](assets/spa-regn.png)
 5. Click the SPA that just got created.
 6. Note the :
