@@ -28,17 +28,19 @@ Run command:
 ```
 Once authenticated, start mapping the details from EC2 Instance.
 
-* Please provide `region` you wish to use: `<region-of-your-ec2-instance>`
-* Please specify the `elb_name` for this instance: `<myname-mycustomername>`
+* Please provide `region` you wish to use: `<region-of-your-ec2-instance> eg: us-east-1`
+* Please specify the `elb_name` for this instance: `<myname-mycustomername> eg: sherry-mantech`
 * Please specify the `ec2_public_dns` for this instance: `<Public-IPv4-DNS from AWS Instance Details Page>`
 * Please specify the `instance_id` for this instance: `<Instance ID from AWS Instance Details Page>`
-* Please specify the `subdomain` for this instance: `<mycustomername>`
-* Please specify the `owner` for this instance: `<myname>`
-* Please specify the `is_poc` for this instance: `<false>`
-* Please specify the `target_end_date` for this instance: `<target_end_date>`
-* Please specify the `elb_purpose` for this instance: `<demo>`
-* Please specify the `customer` for this instance: `<mycustomername>`
+* Please specify the `subdomain` for this instance: `<mycustomername> eg: mantech`
+* Please specify the `owner` for this instance: `<myname> eg: Sherry Mathews`
+* Please specify the `is_poc` for this instance: `<true/false> eg: false`
+* Please specify the `target_end_date` for this instance: `<target_end_date> eg: 12/31/2021`
+* Please specify the `elb_purpose` for this instance: `<mention_your_purpose> eg: Demo`
+* Please specify the `customer` for this instance: `<mycustomername> eg: ManTech` 
 
+> **Note**: Please wait for a few minutes as the Elastic Load Balancer (ELB) will be starting up. The status can be verified from `AWS Services > Load Balancers`.
+> **Note**: Once the ELB is available, navigate to the `Redirect URI`
 > **Note**: The Redirect URI will be `https://<subdomain>.alfdemo.com`
 
 ### Configure O365 SPA
@@ -73,12 +75,22 @@ Once authenticated, start mapping the details from EC2 Instance.
 3. Search for property `msOnline`.
 4. Update its value as follows.
    ``` properties
-   "msOnline": 
+    "msOnline": 
     {
         "msHost": "https://<elb-host-name>/ooi-service/api/-default-/private/office-integration/versions/1/edit-sessions/",
         "msClientId": "<spa-client-id>",
         "msAuthority": "https://login.microsoftonline.com/<spa-tenant-id>",
         "msRedirectUri": "https://<elb-host-name>"
+    }
+   ```
+   An example is as below:
+   ```
+    "msOnline": 
+    {
+        "msHost": "https://mantech.alfdemo.com/ooi-service/api/-default-/private/office-integration/versions/1/edit-sessions/",
+        "msClientId": "d9960191-5844-4b34-bda4-563794bf3aca",
+        "msAuthority": "https://login.microsoftonline.com/a92a627e-e9ce-48ba-8edb-6c64a4dbcf34",
+        "msRedirectUri": "https://mantech.alfdemo.com"
     }
    ```
 5. Save the file. (First press `Escape`. Then press `:wq! + Enter`)
@@ -97,5 +109,5 @@ Once authenticated, start mapping the details from EC2 Instance.
 ### ACS : RUN the DEMO
 
 ### References
-https://docs.alfresco.com/officeonline/tasks/office-online-register-spa.html
-https://docs.alfresco.com/microsoft-365/latest/install/#register-a-single-page-application-spa
+* https://docs.alfresco.com/officeonline/tasks/office-online-register-spa.html
+* https://docs.alfresco.com/microsoft-365/latest/install/#register-a-single-page-application-spa
