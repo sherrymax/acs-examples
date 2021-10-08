@@ -40,7 +40,9 @@ Once authenticated, start mapping the details from EC2 Instance.
 * Please specify the `customer` for this instance: `<mycustomername> eg: ManTech` 
 
 > **Note**: Please wait for a few minutes as the Elastic Load Balancer (ELB) will be starting up. The status can be verified from `AWS Services > Load Balancers`.
+
 > **Note**: Once the ELB is available, navigate to the `Redirect URI`
+
 > **Note**: The Redirect URI will be `https://<subdomain>.alfdemo.com`
 
 ### Configure O365 SPA
