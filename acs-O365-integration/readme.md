@@ -29,15 +29,15 @@ Run command:
 Once authenticated, start mapping the details from EC2 Instance.
 
 * Please provide `region` you wish to use: `<region-of-your-ec2-instance>`
-* Please specify the `elb_name` for this instance: <myname-mycustomername>
-* Please specify the `ec2_public_dns` for this instance: <Public-IPv4-DNS from AWS Instance Details Page>
-* Please specify the `instance_id` for this instance: <Instance ID from AWS Instance Details Page>
-* Please specify the `subdomain` for this instance: <mycustomername>
-* Please specify the `owner` for this instance: <myname>
-* Please specify the `is_poc` for this instance: <false>
-* Please specify the `target_end_date` for this instance: <target_end_date>
-* Please specify the `elb_purpose` for this instance: <demo>
-* Please specify the `customer` for this instance: <mycustomername>
+* Please specify the `elb_name` for this instance: `<myname-mycustomername>`
+* Please specify the `ec2_public_dns` for this instance: `<Public-IPv4-DNS from AWS Instance Details Page>`
+* Please specify the `instance_id` for this instance: `<Instance ID from AWS Instance Details Page>`
+* Please specify the `subdomain` for this instance: `<mycustomername>`
+* Please specify the `owner` for this instance: `<myname>`
+* Please specify the `is_poc` for this instance: `<false>`
+* Please specify the `target_end_date` for this instance: `<target_end_date>`
+* Please specify the `elb_purpose` for this instance: `<demo>`
+* Please specify the `customer` for this instance: `<mycustomername>`
 
 Note: The Redirect URI will be `https://<subdomain>.alfdemo.com`
 
