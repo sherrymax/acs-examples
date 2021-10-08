@@ -52,6 +52,9 @@ Once authenticated, start mapping the details from EC2 Instance.
    ![app-home](assets/spa-home.png)
 3. Register your SPA application. ![app-regn-1](assets/spa-regn-1.png)
 > **Note**: The Redirect URI will be `https://<subdomain>.alfdemo.com`
+
+> **Note**: More than one Redirect URIs can be added to the list.
+
 4. Click Register button. ![spa-regn](assets/spa-regn.png)
 5. Click the SPA that just got created.
 6. Note the :
