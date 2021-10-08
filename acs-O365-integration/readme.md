@@ -1,6 +1,6 @@
 #### This article details the steps required to integrate Microsoft O365 with Alfresco Digital Workspace (ADW).
 
-Note : The integration is between Microsoft O365 and Alfresco Digital Workspace (ADW)
+> **Note**: The integration is between Microsoft O365 and Alfresco Digital Workspace (ADW)
 
 ### Use-Case / Requirement
 Users should be able to contribute and collaborate MS-Office Contents in Alfresco Digital Workspace (ADW) via O365.
