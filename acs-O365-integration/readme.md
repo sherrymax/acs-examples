@@ -78,7 +78,7 @@ Once authenticated, start mapping the details from EC2 Instance.
     vim /home/ec2-user/adp/data/services/nginx/html/digital-workspace/app.config.json
     ```
 3. Search for property `msOnline`.
-4. Update its value as follows.
+4. Go to `INSERT` mode by pressing the i. Update its value as follows.
    ``` properties
     "msOnline": 
     {
@@ -101,7 +101,7 @@ Once authenticated, start mapping the details from EC2 Instance.
 5. Save the file. (First press `Escape`. Then press `:wq! + Enter`)
 6. Navigate to level of `adp` by running following command.
    ```
-    cd ../../../../../
+    cd /home/ec2-user/adp
     ```
 7.  Restart `nginx` by running following command.
     ```
