@@ -108,3 +108,4 @@ For example: If you wanted to add `sys:node-dbid` property, it should be added a
 
 ### References
 1. https://alfresco.my.salesforce.com/articles/en_US/Technical_Article/Can-we-add-custom-properties-into-the-properties-list-which-Share-Simple-Search-searches-against?popup=true
+2. https://hub.alfresco.com/t5/alfresco-content-services-hub/share-advanced-search/ba-p/291116#Search_Forms
