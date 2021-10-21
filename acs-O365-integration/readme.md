@@ -16,9 +16,9 @@ Users should be able to contribute and collaborate MS-Office Contents in Alfresc
 
 ## Configuration Steps
 
-* Configure AWS Elastic Load Balancer
-* Configure O365 SPA
-* Configure Alfresco Digital Workspace (ADW)
+* [Configure AWS Elastic Load Balancer](https://github.com/sherrymax/acs-examples/tree/master/acs-O365-integration#configure-aws-elastic-load-balancer)
+* [Configure O365 SPA](https://github.com/sherrymax/acs-examples/tree/master/acs-O365-integration#configure-o365-spa)
+* [Configure Alfresco Digital Workspace (ADW)](https://github.com/sherrymax/acs-examples/tree/master/acs-O365-integration#configure-alfresco-digital-workspace-adw-for-adporca-users)
   
 ### Configure AWS Elastic Load Balancer
 
