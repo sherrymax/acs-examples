@@ -11,22 +11,20 @@ Transform images (.jpg, .jpeg, .png etc.) to PDF file.
 
 ## Javascript 
 
-A simple script to transform and move file:
+### Solution : Using a javascript to transform and move file:
 
 ```javascript
 transformDoc = document.transformDocument('application/pdf');
-
-
-
 dest = companyhome.childByNamePath("Sites/sandbox/documentLibrary/Converted Documents");
 logger.error(dest);
 transformDoc.move(dest);
+
 //Removal of original ingested image
 //document.remove();
 ```
+> Note : The above script has to be executed when contents are created in a folder as Folder Rules
 
-More examples:
-
+### Another javascript:
 ```javascript
 
 var fileName = ""+document.name;
@@ -45,18 +43,6 @@ if(fileFormats.indexOf(extension) > -1){
 logger.info('*** After Renaming - File Name >> '+document.name);
 document.remove();
 ```
-
-
-
-## Folder Rule 
-* Document has to be uploaded to `Ingested Documents` folder.
-![folders](assets/folders.png)
-* Folder Rules that changes extension to .tiff.
-![folder-rules](assets/folder-rules-1.png)
-* Folder Rules that transform from TIFF to PDF.
-![folder-rules](assets/folder-rules-2.png)
-* The converted document is available in the `Converted Documents` folder.
-![folders](assets/folders-2.png)
 
 
 ## Run the DEMO.
