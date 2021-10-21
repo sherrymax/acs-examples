@@ -79,8 +79,10 @@ to
 </search>
 ```
 
-<b>Note: </b> If your property has a hyphen in the naming you will need to escape the hyphen character with \ .  
-For example: If you wanted to add `sys:node-dbid` property
+> **Note**: If your property has a hyphen in the naming you will need to escape the hyphen character with a back-slash.
+
+For example: If you wanted to add `sys:node-dbid` property, it should be added as `sys:node\-dbid`
+
 ```xml
 <search>
    <default-query-template>
@@ -90,6 +92,8 @@ For example: If you wanted to add `sys:node-dbid` property
 ```
 
 <b>Step 2: </b> Save the files and restart Alfresco
+> **Note**: ADP Users should save the files followed by STOP and START of containers.
+
 
 ### ACS : RUN the DEMO
 
