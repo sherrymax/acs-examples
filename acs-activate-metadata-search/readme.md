@@ -39,31 +39,43 @@ You can override these files and add to the fields listing that are searched aga
 <b>Step 1: </b>Edit the configuration files and add your additional custom properties.  
     
 Example : 
-If you have properties `my:product` and `my:version`
+If you have properties `lm:ContractNumber` and `lm:ContractStatus`
 For Simple Search : Change `search.get.config.xml` from
 ```xml
 <search>
-    <default-query-template>%(cm:name cm:title cm:description ia:whatEvent ia:descriptionEvent lnk:title lnk:description TEXT TAG)</default-query-template>
+    <default-query-template>
+        %(cm:name cm:title cm:description ia:whatEvent ia:descriptionEvent lnk:title lnk:description TEXT TAG)
+    </default-query-template>
 </search>
 ```
 to
 ```xml
 <search>
-    <default-query-template>%(cm:name cm:title cm:description my:product my:version ia:whatEvent ia:descriptionEvent lnk:title lnk:description TEXT TAG)</default-query-template>
+    <default-query-template>
+        %(cm:name cm:title cm:description lm:ContractNumber lm:ContractStatus lnk:title lnk:description TEXT TAG)
+    </default-query-template>
 </search>
 ```
 For Live Search : Change `live-search-docs.get.config.xml` from
 ```xml
 <search>
-    <default-operator>AND</default-operator>
-    <default-query-template>%(cm:name cm:title cm:description TEXT TAG)</default-query-template>
+    <default-operator>
+        AND
+    </default-operator>
+    <default-query-template>
+        %(cm:name cm:title cm:description TEXT TAG)
+    </default-query-template>
 </search>
 ```
 to
 ```xml
 <search>
-    <default-operator>AND</default-operator>
-    <default-query-template>%(cm:name cm:title cm:description my:product my:version TEXT TAG)</default-query-template>
+    <default-operator>
+        AND
+    </default-operator>
+    <default-query-template>
+        %(cm:name cm:title cm:description lm:ContractNumber lm:ContractStatus TEXT TAG)
+    </default-query-template>
 </search>
 ```
 
@@ -71,7 +83,9 @@ to
 For example: If you wanted to add `sys:node-dbid` property
 ```xml
 <search>
-   <default-query-template>%(cm:name cm:title cm:description sys:node\-dbid ia:whatEvent ia:descriptionEvent lnk:title lnk:description TEXT TAG)</default-query-template>
+   <default-query-template>
+        %(cm:name cm:title cm:description sys:node\-dbid ia:whatEvent ia:descriptionEvent lnk:title lnk:description TEXT TAG)
+    </default-query-template>
 </search>
 ```
 
