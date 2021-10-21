@@ -15,15 +15,20 @@ Neither the Regular Search nor the Live Search fom within Alfresco Share does se
 In both cases, the search against documents with the text entered into the search field is limited to what is pre-configured in the out-of-the-box configuration.
 
 ## Configuration Steps
+Download and Import a model to apply.
+* [Contracts](assets/CLM.zip)
+
+![model-manager](assets/1.png)
+
 The default list of what is searched against for documents can be found in the following locations:
 
 * /alfresco/templates/webscripts/org/alfresco/slingshot/search/live-search-docs.get.config.xml
 * /alfresco/templates/webscripts/org/alfresco/slingshot/search/search.get.config.xml
 
 ```
-Locations in Orca will be: 
-1. orca/data/services/content/live-search-docs.get.config.xml
-2. orca/data/services/content/search.get.config.xml
+Locations in ADP will be: 
+1. adp/data/services/content/live-search-docs.get.config.xml
+2. adp/data/services/content/search.get.config.xml
 ```
 
 You can override these files and add to the fields listing that are searched against for finding documents in simple/live search.
@@ -58,7 +63,7 @@ to
 ```xml
 <search>
     <default-operator>AND</default-operator>
-    <default-query-template>%(cm:name cm:title cm:description  my:product my:version TEXT TAG)</default-query-template>
+    <default-query-template>%(cm:name cm:title cm:description my:product my:version TEXT TAG)</default-query-template>
 </search>
 ```
 
@@ -75,7 +80,7 @@ For example: If you wanted to add `sys:node-dbid` property
 ### ACS : RUN the DEMO
 
 <b>Metadata Of a Document</b>
-![document-metadata-image](assets/1.png)
+![document-metadata-image](assets/1m.png)
 <b>Live Searching a Document using Metadata</b>
 ![live-search-image](assets/2.png)
 
