@@ -93,8 +93,8 @@ Once authenticated, start mapping the details from EC2 Instance.
     "msOnline": 
     {
         "msHost": "https://mantech.alfdemo.com/ooi-service/api/-default-/private/office-integration/versions/1/edit-sessions/",
-        "msClientId": "d9960191-5844-4b34-bda4-563794bf3aca",
-        "msAuthority": "https://login.microsoftonline.com/a92a627e-e9ce-48ba-8edb-6c64a4dbcf34",
+        "msClientId": "b6518197-9edd-4fc3-8ce0-e5ebd452b428",
+        "msAuthority": "https://login.microsoftonline.com/8ca5db88-a5ab-48f7-a5e0-4ce50935f807",
         "msRedirectUri": "https://mantech.alfdemo.com"
     }
    ```
