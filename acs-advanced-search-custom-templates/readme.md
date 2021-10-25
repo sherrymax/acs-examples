@@ -16,19 +16,21 @@ The admin user should be able to create a customised Advanced Search template fo
 2. The default list of what is searched against for documents can be found in the following locations:
 
 * share-config.xml - This file lists the document type to be searched.
-* share-form-config.xml - This files has the search-form where the users enter the search criteria.
+* share-form-config.xml - This file has the `search-form` where the user enters the search criteria.
+
+
+> In ADP the location of files in SHARE container will be: 
 
 ```
-In ADP the location of files in SHARE container will be: 
 1. /usr/local/tomcat/webapps/share/WEB-INF/classes/alfresco/share-config.xml
 2. /usr/local/tomcat/webapps/share/WEB-INF/classes/alfresco/share-form-config.xml
 ```
 
-You can update these files to add a custom Advanced Search on a document type.
+These files have to be updated for a custom Advanced Search on a certain document type.
 
 
-## Update in share-config.xml
-```
+## Step 1: Update in share-config.xml
+``` xml
 <config evaluator="string-compare" condition="AdvancedSearch">
     <advanced-search>
         <!-- Forms for the advanced search type list -->
@@ -42,8 +44,8 @@ You can update these files to add a custom Advanced Search on a document type.
 ```
 ![search-by-doc-type](assets/2.png)
 
-## Update in share-form-config.xml
-```
+## Step 2 : Update in share-form-config.xml
+``` xml
 <!-- lm:Contracts type (new nodes) -->
 <config evaluator="model-type" condition="lm:contractDocument">
     <forms>
