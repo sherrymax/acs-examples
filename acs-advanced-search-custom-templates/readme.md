@@ -6,6 +6,7 @@ The admin user should be able to create a customised Advanced Search template fo
 ### Prerequisites to run this demo end-2-end
 
 * Alfresco Content Services (Version 6.1 and above)
+* Alfresco Demo Platform (ADP) : Only for ADP Users
 
 ## Configuration Steps
 1. Download and Import a model to apply.
@@ -19,17 +20,18 @@ The admin user should be able to create a customised Advanced Search template fo
 * share-form-config.xml - This file has the `search-form` where the user enters the search criteria.
 
 
-> In ADP the location of files in SHARE container will be: 
+In Alfresco Demo Platform (ADP), the location of files in SHARE container will be: 
 
 ```
 1. /usr/local/tomcat/webapps/share/WEB-INF/classes/alfresco/share-config.xml
 2. /usr/local/tomcat/webapps/share/WEB-INF/classes/alfresco/share-form-config.xml
 ```
+> Note for ADP Users : These files will be in the SHARE container. Hence you've to shell into container by running `./adp.py shell share` followed by `cd /usr/local/tomcat/webapps/share/WEB-INF/classes/alfresco/` and `vim share-config.xml`
 
 These files have to be updated for a custom Advanced Search on a certain document type.
 
 
-## Step 1: Update in share-config.xml
+## Step 1: Update the share-config.xml
 ``` xml
 <config evaluator="string-compare" condition="AdvancedSearch">
     <advanced-search>
@@ -44,7 +46,7 @@ These files have to be updated for a custom Advanced Search on a certain documen
 ```
 ![search-by-doc-type](assets/2.png)
 
-## Step 2 : Update in share-form-config.xml
+## Step 2 : Update the share-form-config.xml
 ``` xml
 <!-- lm:Contracts type (new nodes) -->
 <config evaluator="model-type" condition="lm:contractDocument">
