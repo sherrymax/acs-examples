@@ -26,7 +26,7 @@ In Alfresco Demo Platform (ADP), the location of files in SHARE container will b
 1. /usr/local/tomcat/webapps/share/WEB-INF/classes/alfresco/share-config.xml
 2. /usr/local/tomcat/webapps/share/WEB-INF/classes/alfresco/share-form-config.xml
 ```
-> Note for ADP Users : These files will be in the SHARE container. Hence you've to shell into container by running `./adp.py shell share` followed by `cd /usr/local/tomcat/webapps/share/WEB-INF/classes/alfresco/` and `vim share-config.xml`
+> <b>Note for ADP Users :</b> These files will be in the SHARE container. Hence you've to shell into container by running following commands <li>`./adp.py shell share`  <li>`cd /usr/local/tomcat/webapps/share/WEB-INF/classes/alfresco/` <li>`vim share-config.xml` <li>`vim share-form-config.xml`
 
 These files have to be updated for a custom Advanced Search on a certain document type.
 
