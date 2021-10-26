@@ -15,7 +15,7 @@ The Alfresco system should perform OCR on ingested documents and the extracted v
 ![model-manager](assets/1.png)
 
 2. Install/Deploy `Alfresco Intelligence Services`.
-> Note: ADP Users should deploy AIS using `./adp.py deploy ais` followed by STOP and START of all containers.
+> Note: ADP Users should deploy AIS using `./adp.py deploy ai` followed by STOP and START of all containers.
 
 3. Develop the Javascript for OCR extraction and updating the metadata.
 
@@ -196,7 +196,9 @@ function performDataExtraction() {
 
 ```
 </details>
+<br/>
 
+4. Javascript Images
 ![develop-javascript-1](assets/2.png)
 ![develop-javascript-2](assets/3.png)
 
