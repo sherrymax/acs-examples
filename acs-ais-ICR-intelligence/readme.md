@@ -1,7 +1,7 @@
-#### This article details the steps required to configure Alfresco Intelligence Service (AIS) to perform OCR usecases.
+#### This article details the steps required to configure Alfresco Intelligence Service (AIS) to perform ICR ([Intelligent Character Recognition](https://en.wikipedia.org/wiki/Intelligent_character_recognition)) usecases.
 
 ### Use-Case / Requirement
-The Alfresco system should perform OCR on ingested documents and the extracted values should be available as metadata of ingested document.
+The Alfresco system should perform ICR on ingested handwritten documents and the extracted values should be available as metadata of ingested document.
 
 ### Prerequisites to run this demo end-2-end
 
@@ -17,10 +17,10 @@ The Alfresco system should perform OCR on ingested documents and the extracted v
 2. Install/Deploy `Alfresco Intelligence Services`.
 > Note: ADP Users should deploy AIS using `./adp.py deploy ai` followed by STOP and START of all containers.
 
-3. Develop the Javascript for OCR extraction and updating the metadata.
+3. Develop the Javascript for ICR extraction and updating the metadata.
 
 <details>
-    <summary>Expand this section for the javascript.</summary>
+  <summary>Expand this section for the javascript.</summary>
 
 ``` javascript
 var doc = document;
@@ -54,7 +54,8 @@ function getValue(id, map, type) {
 function invokeUntilAvailable(renditionName) {
     var _rendition = getAISRendition();
 
-    for (var i = 0;(_rendition == undefined || _rendition == null); i++) {
+//    for (var i = 0;(_rendition == undefined || _rendition == null); i++) {
+    for (var i = 0;(i < 2); i++) {
         _rendition = getAISRendition(renditionName);
         logger.info("COUNTER - " + i + " - IS RENDITION UNDEFINED ???  - " + (_rendition == undefined || _rendition == null));
     }
@@ -63,6 +64,7 @@ function invokeUntilAvailable(renditionName) {
 }
 
 function getAISRendition(renditionName) {
+	logger.info("renditionName --> "+doc.name);
     return renditionService.getRenditionByName(doc, renditionName);
 }
 
@@ -139,28 +141,53 @@ function performDataExtraction() {
 
                 logger.info("\nKey: " + ktext + "\nValue: " + value + "\n");
 
-                if (ktext.match(/^Profile/i)) {
-                    doc.properties["lm:number"] = value;
+                if (ktext.match(/^Today's quote/gi)) {
+                    doc.properties["lm:quote"] = value;
                 }
 
                 if (ktext.match(/^Date/gi)) {
-                    doc.properties["lm:invoiceDate"] = value;
+					doc.properties["lm:dateofshiftchange"] = "";
+					doc.save();
+
+					var n = 0, N = 2;
+					var dateofshiftchange = value.replace(/\s+/g, match => n++ < N ? "-" : match);
+
+					//logger.info('>>> '+dateofshiftchange);
+                    doc.properties["lm:dateofshiftchange"] = dateofshiftchange;
                 }
 
-                if (ktext.match(/^Bill To/gi)) {
-                    doc.properties["lm:address"] = value;
+                if (ktext.match(/^Catches & Saves/gi)) {
+                    doc.properties["lm:catchesnsaves"] = value;
                 }
 
-				        if (ktext.match(/^Total/gi)) {
-                    doc.properties["lm:amount"] = value;
-                }
-
-				        if (ktext.match(/^FEIN/gi)) {
-                    doc.properties["lm:FEIN"] = value;
+				if (ktext.match(/^What can we do better/gi)) {
+                    doc.properties["lm:whattodobetter"] = value;
                 }
 
 
+				logger.info(doc.properties["schema:textLines"]);
+				var textLines = doc.properties["schema:textLines"].toString();
+				var itemList = textLines.split(',');
 
+				for(var i=0; i<itemList.length; i++){
+					if(itemList[i] == 'Charge Nurse')
+					 doc.properties["lm:nurse"] = itemList[i+1];
+					if(itemList[i] == 'Unit Clerk')
+					 doc.properties["lm:unitclerk"] = itemList[i+1];
+					if(itemList[i].indexOf('Pending Admissions') != -1)
+					 doc.properties["lm:pendingadmissioncount"] = itemList[i+1];
+					if(itemList[i].indexOf('Announcements') != -1)
+					 doc.properties["lm:announcement"] = itemList[i+1];
+					if(itemList[i] == 'AM'){
+					 doc.properties["lm:ismorningshift"] = (itemList[i-1] == 'X')?'Yes':'No';
+					}
+					if(itemList[i] == 'PM'){
+					 doc.properties["lm:iseveningshift"] = (itemList[i-1] == 'X')?'Yes':'No';
+					}
+
+					 //doc.properties["lm:ismorningshift"] = ((doc.properties["lm:ismorningshift"] != 'No') && (itemList[i] == 'AM') && (itemList[i-1] == 'X'))?'Yes':'No';
+					 //doc.properties["lm:iseveningshift"] = ((doc.properties["lm:iseveningshift"] != 'No') && (itemList[i] == 'PM') && (itemList[i-1] == 'X'))?'Yes':'No';
+				}
 
 
                 doc.save();
@@ -193,6 +220,7 @@ function performDataExtraction() {
 	Example-Code-End
 */
 
+
 ```
 </details>
 <br/>
@@ -216,7 +244,7 @@ function performDataExtraction() {
 
 
 ### ACS : RUN the DEMO
-Upload a [sample-invoice-document](assets/Invoice-Investment.pdf). <br/>
+Upload a [sample-handwritten-document](assets/Handwritten-Document.pdf). <br/>
 The resulting view :
 ![result](assets/6.png)
 
