@@ -221,5 +221,6 @@ function performDataExtraction() {
 
 
 ### References
-1. https://ecmarchitect.com/alfresco-developer-series-tutorials/content/tutorial/tutorial.html#configuring-advanced-search-in-alfresco-share
-2. https://hub.alfresco.com/t5/alfresco-content-services-hub/share-advanced-search/ba-p/291116#Search_Forms
+1. https://docs.alfresco.com/intelligence-services/latest/
+2. https://docs.alfresco.com/intelligence-services/latest/config/textract/
+3. https://docs.alfresco.com/intelligence-services/latest/admin/
