@@ -217,6 +217,8 @@ function performDataExtraction() {
 
 
 ### ACS : RUN the DEMO
+Upload a [sample-invoice-document](assets/Invoice-Investment.pdf). <br/>
+The resulting view :
 ![result](assets/6.png)
 
 
