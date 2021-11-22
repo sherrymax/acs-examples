@@ -55,9 +55,13 @@ adp/data/services/content/seedim-docusign-share-1.0-SNAPSHOT.amp
 2. You should see a folder called `Docusign-Config`. 
 ![add-app](assets/9.png)
 
-3. Hover over it and click on `Edit Properties > All Properties`. The following form should be available.
+3. Hover over it and click on `Edit Properties > All Properties`. 
+![result](assets/16.png)
+
+4. The following form should be available.
 ![docusign-props-form](assets/10.png)
-4. Fill in the JWT Authentication details for your Docusign Account
+
+5. Fill in the JWT Authentication details for your Docusign Account
 
 
     ```
@@ -67,7 +71,7 @@ adp/data/services/content/seedim-docusign-share-1.0-SNAPSHOT.amp
     4. Docusign Auth Server URL: `account.docusign.com`
     5. Docusign Private Key : The Private Key at the time of App creation must have been noted down.
     ```
-5. An example of the filled form is as below:
+6. An example of the filled form is as below:
 ![docusign-filled-props-form](assets/11.png)
 
 > Note : Docusign Auth Server URL can be set to `account-d.docusign.com` for testing purposes.
