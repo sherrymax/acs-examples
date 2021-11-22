@@ -16,7 +16,7 @@ The Alfresco system should perform eSignature on ingested documents using DocuSi
 
 1. Copy the .amp files.
 ```
-ADP/Orca users have to copy .amp in the following location:
+ADP/Orca users have to copy .amp to the following location:
 
 adp/data/services/content/seedim-docusign-platform-1.0-SNAPSHOT.amp
 
@@ -83,9 +83,11 @@ adp/data/services/content/seedim-docusign-share-1.0-SNAPSHOT.amp
 
 ### Troubleshooting
 
-If the integration is still not working, your app needs Consent.
+If the integration is still not working, your newly created DocuSign App needs Consent.
 
-Perform the step, [mentioned in this document](https://developers.docusign.com/platform/auth/jwt/jwt-get-token/), if Consent is required.
+Perform the step, [mentioned in this document](https://developers.docusign.com/platform/auth/jwt/jwt-get-token/), for Consent Approval.
+
+Open a browser URL with the following syntax.
 
 ```
 https://account-d.docusign.com/oauth/auth?
@@ -94,7 +96,8 @@ https://account-d.docusign.com/oauth/auth?
     &client_id=YOUR_APP_INTEGRATION_KEY
     &redirect_uri=YOUR_APP_REDIRECT_URI
 ```
-An example is as follows:
+
+An example of the URL is as follows:
 ```
 https://account-d.docusign.com/oauth/auth?
     response_type=code
@@ -105,6 +108,7 @@ https://account-d.docusign.com/oauth/auth?
 The browser will provide a content box. Press `Accept` button.
 ![result](assets/15.png)
 
+The DocuSign integrations should start working now.
 
 ### References
 1. https://github.com/boneill/alfresco-community-docusign
