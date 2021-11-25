@@ -68,7 +68,7 @@ adp/data/services/content/seedim-docusign-share-1.0-SNAPSHOT.amp
     1. Docusign Client Id (API ID): <Integration-ID-of-your-App-from-Docusign>
     2. Docusign User Id: <YOUR Docusign USER ID>
     3. Target Account:FALSE
-    4. Docusign Auth Server URL: `account.docusign.com`
+    4. Docusign Auth Server URL: `account-d.docusign.com`
     5. Docusign Private Key : The Private Key at the time of App creation must have been noted down.
     ```
 6. An example of the filled form is as below:
