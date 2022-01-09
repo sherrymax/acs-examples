@@ -16,7 +16,7 @@ In both cases, the search against documents with the text entered into the searc
 
 ## Configuration Steps
 Download and Import a model to apply.
-* [Contracts](assets/CLM.zip)
+* [Contracts](../acs-model-examples/CLM.zip)
 
 ![model-manager](assets/1.png)
 

@@ -10,7 +10,7 @@ The admin user should be able to create a customised Advanced Search template fo
 
 ## Configuration Steps
 1. Download and Import a model to apply.
-* [Contracts](assets/CLM.zip)
+* [Contracts](../acs-model-examples/CLM.zip)
 
 ![model-manager](assets/1.png)
 

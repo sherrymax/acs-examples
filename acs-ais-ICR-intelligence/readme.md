@@ -10,7 +10,7 @@ The Alfresco system should perform ICR on ingested handwritten documents and the
 
 ## Configuration Steps
 1. Download and Import a model to apply.
-* [Contracts](assets/CLM.zip)
+* [Contracts](../acs-model-examples/CLM.zip)
 
 ![model-manager](assets/1.png)
 
