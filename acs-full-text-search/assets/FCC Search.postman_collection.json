@@ -1,0 +1,51 @@
+{
+	"info": {
+		"_postman_id": "091b2cff-5362-491c-8eb8-15573d950efa",
+		"name": "FCC Search",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Term Frequency",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://18.212.145.6:8983/solr/alfresco/select?fl=*,termfreq(content@s___t@%7Bhttp://www.alfresco.org/model/content/1.0%7Dcontent,%27Thomas%27),%5Bcached%5D&indent=on&q=TEXT:Thomas&wt=json",
+					"protocol": "http",
+					"host": [
+						"18",
+						"212",
+						"145",
+						"6"
+					],
+					"port": "8983",
+					"path": [
+						"solr",
+						"alfresco",
+						"select"
+					],
+					"query": [
+						{
+							"key": "fl",
+							"value": "*,termfreq(content@s___t@%7Bhttp://www.alfresco.org/model/content/1.0%7Dcontent,%27Thomas%27),%5Bcached%5D"
+						},
+						{
+							"key": "indent",
+							"value": "on"
+						},
+						{
+							"key": "q",
+							"value": "TEXT:Thomas"
+						},
+						{
+							"key": "wt",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
