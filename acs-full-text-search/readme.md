@@ -59,8 +59,8 @@ Official Documentation: https://docs.alfresco.com/insight-engine/latest/using/sq
 
 <b>Term Frequency :</b> 
 
-![term-freq-image-1](assets/9a.png)
-![term-freq-image-2](assets/10a.png)
+![term-freq-image-1](assets/9a.jpg)
+![term-freq-image-2](assets/10a.jpg)
 
 
 ### References
