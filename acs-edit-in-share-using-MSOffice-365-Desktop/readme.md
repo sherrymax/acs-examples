@@ -23,7 +23,7 @@ Considering the need of these environments to be quickly setup, as an alternativ
 ```
 
 
-#### Configuration Steps
+### Configuration Steps
 
 1. Download and Import a [Policy Document](assets/Policy-Document.docx).
 2. For <b>PROD, Staging, Dev and POC environments</b>:
