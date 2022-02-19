@@ -37,6 +37,7 @@ Considering the need of these environments to be quickly setup, as an alternativ
    
     > REG DELETE HKCU\Software\Microsoft\Office\16.0\Common\Internet /v BasicAuthLevel /f
 
+    * Please find the [documentation from Microsoft about this registry edit.](<https://docs.microsoft.com/en-us/office/troubleshoot/powerpoint/office-opens-blank-from-sharepoint>)
 
 ### ACS : RUN the DEMO
 Alfresco Office Services (AOS) [supports following MS Office versions](https://docs.alfresco.com/microsoft-office/latest/install/#prerequisites-for-using-alfresco-office-services).
@@ -80,4 +81,5 @@ Step 10 : Files stored in Alfresco can have lots of properties to help identify 
 3. https://docs.alfresco.com/microsoft-office/latest/install/#prerequisites-for-using-alfresco-office-services
 4. https://www.algoworks.com/blog/integrate-alfresco-with-microsoft-office/>
 5. https://docs.alfresco.com/content-services/latest/admin/auth-sync/
-6. <https://docs.alfresco.com/microsoft-office/latest/using/#alfresco-file-properties-in-microsoft-office>
+6. https://docs.alfresco.com/microsoft-office/latest/using/#alfresco-file-properties-in-microsoft-office
+7. https://docs.microsoft.com/en-us/office/troubleshoot/powerpoint/office-opens-blank-from-sharepoint
