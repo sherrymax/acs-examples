@@ -36,7 +36,7 @@ Considering the need of these environments to be quickly setup, as an alternativ
 
         > REG ADD HKCU\Software\Microsoft\Office\16.0\Common\Internet /v BasicAuthLevel /t REG_DWORD /d 2
 
-   * When needed, run [disable-basic-auth.bat](assets/disable-basic-auth.bat) file to revert the changes and disable Basic Authentication.
+   * Once testing is completed, if desired, run [disable-basic-auth.bat](assets/disable-basic-auth.bat) file to revert the changes and disable Basic Authentication.
    
         > REG DELETE HKCU\Software\Microsoft\Office\16.0\Common\Internet /v BasicAuthLevel /f
 
