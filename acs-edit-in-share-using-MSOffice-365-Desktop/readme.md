@@ -78,8 +78,8 @@ Step 10 : Files stored in Alfresco can have lots of properties to help identify 
 ### References
 1. Alfresco Office Services (AOS) : https://docs.alfresco.com/microsoft-office/latest/
 2. Using AOS : https://docs.alfresco.com/microsoft-office/latest/using/
-3. Pre-requisites : https://docs.alfresco.com/microsoft-office/latest/install/#prerequisites-for-using-alfresco-office-services
+3. Pre-requisites of AOS : https://docs.alfresco.com/microsoft-office/latest/install/#prerequisites-for-using-alfresco-office-services
 4. Setting up SSL for AOS : https://docs.alfresco.com/content-services/latest/admin/auth-sync/
 5. Mapping File Properties in AOS : https://docs.alfresco.com/microsoft-office/latest/using/#alfresco-file-properties-in-microsoft-office
-6. Registry Update for AOS : https://docs.microsoft.com/en-us/office/troubleshoot/powerpoint/office-opens-blank-from-sharepoint
+6. Windows Registry Update for AOS : https://docs.microsoft.com/en-us/office/troubleshoot/powerpoint/office-opens-blank-from-sharepoint
 7. Thoughts from Implementors : <https://www.algoworks.com/blog/integrate-alfresco-with-microsoft-office/>
