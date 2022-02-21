@@ -1,7 +1,7 @@
-#### This article details the steps required to configure Edit in Microsoft Office 365 for Alfesco Share
+#### This article details the steps required to configure Edit in Microsoft Office 365 (Desktop Version) for Alfesco Share
 
 ### Use-Case / Requirement
-The Alfresco system should let users edit Office documents in Share using MS Office 365.
+The Alfresco system should let users edit Office documents in Share using MS Office 365 (Desktop Version).
 
 ### Prerequisites to run this demo end-2-end
 
