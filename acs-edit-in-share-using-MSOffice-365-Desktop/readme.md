@@ -29,7 +29,7 @@ Considering the need of these environments to be quickly setup, as an alternativ
 2. For <b>PROD, Staging, Dev and POC environments</b>:
    * Establish SSL. More details at [Alfresco Documentation](https://docs.alfresco.com/microsoft-office/latest/#considerations-when-using-alfresco-office-services).
 3. For <b>Sandbox/Demo environments</b>: 
-   * Download [basic-auth-bat-files.zip](assets/basic-auth-bat-files.zip) zip file.
+   * Download [basic-auth-bat-files.zip](assets/basic-auth-bat-files.zip) file.
    * Run [enable-basic-auth.bat](assets/enable-basic-auth.bat) file to enable Basic Authentication via registry edits. 
 
     > REG ADD HKCU\Software\Microsoft\Office\16.0\Common\Internet /v BasicAuthLevel /t REG_DWORD /d 2
