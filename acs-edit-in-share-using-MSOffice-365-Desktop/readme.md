@@ -32,11 +32,11 @@ Considering the need of these environments to be quickly setup, as an alternativ
   
 3. For <b>Sandbox/Demo environments</b>: 
    * Download [basic-auth-bat-files.zip](assets/basic-auth-bat-files.zip) file.
-   * Run [enable-basic-auth.bat](assets/enable-basic-auth.bat) file to enable Basic Authentication via registry edits. 
+   * Run [enable-basic-auth.bat](assets/enable-basic-auth.bat) file (as an Administrator) to enable Basic Authentication via registry edits. 
 
         > REG ADD HKCU\Software\Microsoft\Office\16.0\Common\Internet /v BasicAuthLevel /t REG_DWORD /d 2
 
-   * Once testing is completed, if desired, run [disable-basic-auth.bat](assets/disable-basic-auth.bat) file to revert the changes and disable Basic Authentication.
+   * Once testing is completed, if desired, run [disable-basic-auth.bat](assets/disable-basic-auth.bat) file (as an Administrator) to revert the changes and disable Basic Authentication.
    
         > REG DELETE HKCU\Software\Microsoft\Office\16.0\Common\Internet /v BasicAuthLevel /f
 
