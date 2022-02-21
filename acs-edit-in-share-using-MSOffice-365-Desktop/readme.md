@@ -32,11 +32,11 @@ Considering the need of these environments to be quickly setup, as an alternativ
    * Download [basic-auth-bat-files.zip](assets/basic-auth-bat-files.zip) file.
    * Run [enable-basic-auth.bat](assets/enable-basic-auth.bat) file to enable Basic Authentication via registry edits. 
 
-    > REG ADD HKCU\Software\Microsoft\Office\16.0\Common\Internet /v BasicAuthLevel /t REG_DWORD /d 2
+        > REG ADD HKCU\Software\Microsoft\Office\16.0\Common\Internet /v BasicAuthLevel /t REG_DWORD /d 2
 
    * When needed, run [disable-basic-auth.bat](assets/disable-basic-auth.bat) file to revert the changes and disable Basic Authentication.
    
-    > REG DELETE HKCU\Software\Microsoft\Office\16.0\Common\Internet /v BasicAuthLevel /f
+        > REG DELETE HKCU\Software\Microsoft\Office\16.0\Common\Internet /v BasicAuthLevel /f
 
     * Please find the [documentation from Microsoft about this registry edit.](<https://docs.microsoft.com/en-us/office/troubleshoot/powerpoint/office-opens-blank-from-sharepoint>)
 
