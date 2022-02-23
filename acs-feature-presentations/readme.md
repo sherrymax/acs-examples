@@ -12,41 +12,41 @@ Alfresco Content Services 7.1 (or ACS) offers full-featured Enterprise Content M
 
 ### Alfresco - User Experience
 
-   [![](https://github.com/sherrymax/acs-examples/blob/master/acs-feature-presentations/assets/images/7.png)](https://vimeo.com/303599816 "User Experience")
+   [![](https://github.com/sherrymax/acs-examples/blob/master/acs-feature-presentations/assets/images/7.png)](https://vimeo.com/manage/videos/680679729 "User Experience")
 
    <br/><hr/><br/>
 
 ### Alfresco - Upload Documents
 
-   [![](https://github.com/sherrymax/acs-examples/blob/master/acs-feature-presentations/assets/images/2.png)](https://vimeo.com/270476647 "Upload Documents")
+   [![](https://github.com/sherrymax/acs-examples/blob/master/acs-feature-presentations/assets/images/2.png)](https://vimeo.com/manage/videos/680679969 "Upload Documents")
 
    <br/><hr/><br/>
 
 ### Alfresco - Edit and Save using MS Office
 
-   [![](https://github.com/sherrymax/acs-examples/blob/master/acs-feature-presentations/assets/images/3.png)](https://vimeo.com/267817537 "ABC")
+   [![](https://github.com/sherrymax/acs-examples/blob/master/acs-feature-presentations/assets/images/3.png)](https://vimeo.com/manage/videos/680680102 "ABC")
 
    <br/><hr/><br/>
 
 ### Alfresco - Upload documents from MS Outlook
 
-   [![](https://github.com/sherrymax/acs-examples/blob/master/acs-feature-presentations/assets/images/4.png)](https://vimeo.com/267633899 "ABC")
+   [![](https://github.com/sherrymax/acs-examples/blob/master/acs-feature-presentations/assets/images/4.png)](https://vimeo.com/manage/videos/680679677 "ABC")
 
    <br/><hr/><br/>
 
 ### Alfresco - Annotations
 
-   [![](https://github.com/sherrymax/acs-examples/blob/master/acs-feature-presentations/assets/images/5.png)](https://vimeo.com/265673433 "ABC")
+   [![](https://github.com/sherrymax/acs-examples/blob/master/acs-feature-presentations/assets/images/5.png)](https://vimeo.com/manage/videos/680679303 "ABC")
 
    <br/><hr/><br/>
 
 ### Alfresco - Search
 
    Demo around how Alfresco uses Image Classification with AWS Rekognition service
-   [![](https://github.com/sherrymax/acs-examples/blob/master/acs-feature-presentations/assets/images/6.png)](https://vimeo.com/265370254 "ABC")
+   [![](https://github.com/sherrymax/acs-examples/blob/master/acs-feature-presentations/assets/images/6.png)](https://vimeo.com/manage/videos/680679896 "ABC")
 
    <br/><hr/><br/>
 
 ### Alfresco - Upload and Unzip
 
-   [![](https://github.com/sherrymax/acs-examples/blob/master/acs-feature-presentations/assets/images/8.png)](https://vimeo.com/254684532 "ABC")
+   [![](https://github.com/sherrymax/acs-examples/blob/master/acs-feature-presentations/assets/images/8.png)](https://vimeo.com/manage/videos/680679640 "ABC")
