@@ -42,7 +42,6 @@ Alfresco Content Services 7.1 (or ACS) offers full-featured Enterprise Content M
 
 ### Alfresco - Search
 
-   Demo around how Alfresco uses Image Classification with AWS Rekognition service
    [![](https://github.com/sherrymax/acs-examples/blob/master/acs-feature-presentations/assets/images/6.png)](https://vimeo.com/manage/videos/680679896 "ABC")
 
    <br/><hr/><br/>
