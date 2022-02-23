@@ -6,7 +6,7 @@ Alfresco Content Services 7.1 (or ACS) offers full-featured Enterprise Content M
 
 ### Alfresco - Overview
 
-   [![](https://github.com/sherrymax/alfresco-demo-videos/blob/main/assets/images/Accelerating%20Time%20to%20Value%20with%20Alfresco%20%26%20Microsoft%20Hololens.jpg)](https://vimeo.com/340062990 "ABC")
+   [![](https://github.com/sherrymax/acs-examples/blob/master/acs-feature-presentations/assets/images/1.png)](https://vimeo.com/340062990 "ABC")
 
    <br/><hr/><br/>
 
