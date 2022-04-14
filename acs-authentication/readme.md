@@ -85,3 +85,4 @@ A postman collection with the above steps is [available here](https://github.com
 ## References
 
 1. Base64 Encoding : <https://developer.genesys.cloud/authorization/platform-auth/base-64-encoding>
+2. Alfresco Documentation on Install and Authentication : <https://docs.alfresco.com/content-services/latest/develop/rest-api-guide/install/>
