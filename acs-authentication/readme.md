@@ -85,13 +85,13 @@ A postman collection with the above steps is [available here](https://github.com
 ### Run the Demo from POSTMAN
 
 Step 1 : Invoke API to Authenticate.
-![1](1.png)
+![1](assets/1.png)
 
 Step 2 : Base64 encode the ticket.
-![2](2.png)
+![2](assets/2.png)
 
 Step 3 : Execute any API using the encoded ticket.
-![3](3.png)
+![3](assets/3.png)
 
 ## References
 
