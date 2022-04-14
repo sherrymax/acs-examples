@@ -80,7 +80,7 @@ This ReST API Guide contains hundreds of examples of how to use a ticket with GE
 
 ### POSTMAN Collection
 
-A postman collection with the above steps is available (here)[].
+A postman collection with the above steps is [available here](https://github.com/sherrymax/acs-examples/blob/master/acs-authentication/assets/ACS%20-%20Authentication.postman_collection.json).
 
 ## References
 
