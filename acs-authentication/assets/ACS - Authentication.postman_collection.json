@@ -63,12 +63,12 @@
 						"exec": [
 							"var CryptoJS = require(\"crypto-js\");",
 							"",
-							"//Encrypt",
+							"//When we have the ticket we need to base64 encode it before we can use it in subsequent calls",
 							"var rawTicket = CryptoJS.enc.Utf8.parse(pm.globals.get('ticket'))",
-							"var encryptedTicket = CryptoJS.enc.Base64.stringify(rawTicket)",
-							"console.log(`Encrypted Ticket: ${encryptedTicket}`)",
+							"var encodedTicket = CryptoJS.enc.Base64.stringify(rawTicket)",
+							"console.log(`Encrypted Ticket: ${encodedTicket}`)",
 							"",
-							"pm.environment.set(\"authorizationHeader\", \"Basic \"+encryptedTicket);"
+							"pm.environment.set(\"authorizationHeader\", \"Basic \"+encodedTicket);"
 						],
 						"type": "text/javascript"
 					}
