@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "fa8ee623-9b5f-44ee-8660-fffc15e17363",
+		"name": "ACS - Authentication",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authenticate for Ticket",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userId\":\"demo\",\"password\":\"demo\"}"
+				},
+				"url": {
+					"raw": "http://ec2-3-89-68-73.compute-1.amazonaws.com/alfresco/api/-default-/public/authentication/versions/1/tickets",
+					"protocol": "http",
+					"host": [
+						"ec2-3-89-68-73",
+						"compute-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"authentication",
+						"versions",
+						"1",
+						"tickets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create public site",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var CryptoJS = require(\"crypto-js\");",
+							"",
+							"//Encrypt",
+							"var rawTicket = CryptoJS.enc.Utf8.parse(pm.globals.get('ticket'))",
+							"var encryptedTicket = CryptoJS.enc.Base64.stringify(rawTicket)",
+							"console.log(`Encrypted Ticket: ${encryptedTicket}`)",
+							"",
+							"pm.environment.set(\"authorizationHeader\", \"Basic \"+encryptedTicket);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorizationHeader}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": \"mediadocs\",\n  \"title\": \"Media Docs\",\n  \"description\": \"Site created for media documents\",\n  \"visibility\": \"PUBLIC\"\n}"
+				},
+				"url": {
+					"raw": "http://ec2-3-89-68-73.compute-1.amazonaws.com/alfresco/api/-default-/public/alfresco/versions/1/sites",
+					"protocol": "http",
+					"host": [
+						"ec2-3-89-68-73",
+						"compute-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"sites"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "demo",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "demo",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
