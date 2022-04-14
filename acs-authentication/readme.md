@@ -82,6 +82,17 @@ This ReST API Guide contains hundreds of examples of how to use a ticket with GE
 
 A postman collection with the above steps is [available here](https://github.com/sherrymax/acs-examples/blob/master/acs-authentication/assets/ACS%20-%20Authentication.postman_collection.json).
 
+### Run the Demo from POSTMAN
+
+Step 1 : Invoke API to Authenticate.
+![1](1.png)
+
+Step 2 : Base64 encode the ticket.
+![2](2.png)
+
+Step 3 : Execute any API using the encoded ticket.
+![3](3.png)
+
 ## References
 
 1. Base64 Encoding : <https://developer.genesys.cloud/authorization/platform-auth/base-64-encoding>
