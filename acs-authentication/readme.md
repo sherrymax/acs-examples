@@ -6,13 +6,13 @@ Before you can call any of the API endpoints, except a few that don’t require 
 
 To authenticate with the Repository the following URL is used, and it is part of the Authentication API:
 
-```
+```properties
 <http://localhost:8080/alfresco/api/-default-/public/authentication/versions/1/tickets>
 ```
 
 When calling this URL a `HTTP POST` should be used with the username and password as data:
 
-```
+```powershell
 $ curl --header "Content-Type: application/json" --request POST --data '{"userId":"admin","password":"admin"}' <http://localhost:8080/alfresco/api/-default-/public/authentication/versions/1/tickets>
 {"entry":
   {"id":  "TICKET_08eb7e2e2c17964ca51f0f33186cc2fc9d56d593",
@@ -25,7 +25,7 @@ Here I’m logging in as admin with password admin, which is common for local de
 
 We can make the POST call a bit shorter as `-H` is short for `--header` and `-d` for `--data`. The `-request POST` part is optional if you use `-d`, as the `-d` flag implies a POST request. So the call can also be executed as follows:
 
-```
+```powershell
 $ curl -H "Content-Type: application/json" -d '{"userId":"admin","password":"admin"}' <http://localhost:8080/alfresco/api/-default-/public/authentication/versions/1/tickets> | jq
 {  
   "entry": {
@@ -41,7 +41,7 @@ You get the same ticket back if you call the API multiple times.
 
 Single quotes around JSON does not work on Windows, use double quotes instead:
 
-```
+```powershell
 curl -H "Content-Type: application/json" -d "{\"userId\":\"admin\",\"password\":\"admin\"}" http://localhost:8080/alfresco/api/-default-/public/authentication/versions/1/tickets
 ```
 
@@ -51,14 +51,14 @@ When we have the ticket we need to base64 encode it before we can use it in subs
 
 ### On Mac and Linux
 
-```
+```powershell
 $ echo -n 'TICKET_08eb7e2e2c17964ca51f0f33186cc2fc9d56d593' | openssl base64
 VElDS0VUXzA4ZWI3ZTJlMmMxNzk2NGNhNTFmMGYzMzE4NmNjMmZjOWQ1NmQ1OTM=
 ```
 
 ### On Windows
 
-```
+```powershell
 powershell "[convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes(\"TICKET_08eb7e2e2c17964ca51f0f33186cc2fc9d56d593\"))"
 ```
 
@@ -66,13 +66,13 @@ powershell "[convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes(\"TICKET_08
 
 Now when we got a base64 encoded ticket, such as `VElDS0VUXzA4ZWI3ZTJlMmMxNzk2NGNhNTFmMGYzMzE4NmNjMmZjOWQ1NmQ1OTM=`, we can start using it in an API call. The way we use the ticket in a Curl call is to add it with the Authorization header as follows:
 
-```
+```powershell
 curl -X GET -H 'Accept: application/json' -H 'Authorization: Basic {ticket}' '{API endpoint URL}' | jq
 ```
 
 With an example ticket and an example API endpoint it will look like this:
 
-```
+```powershell
 curl -X GET -H 'Accept: application/json' -H 'Authorization: Basic VElDS0VUXzA4ZWI3ZTJlMmMxNzk2NGNhNTFmMGYzMzE4NmNjMmZjOWQ1NmQ1OTM=' 'http://localhost:8080/alfresco/api/discovery' | jq
 ```
 
