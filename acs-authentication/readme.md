@@ -93,14 +93,16 @@ Step 2 : Base64 encode the ticket.
 var CryptoJS = require("crypto-js");
 
 //When we have the ticket we need to base64 encode it before we can use it in subsequent calls
-var rawTicket = CryptoJS.enc.Utf8.parse(pm.globals.get('ticket'))
-var encodedTicket = CryptoJS.enc.Base64.stringify(rawTicket)
-console.log(`Encrypted Ticket: ${encodedTicket}`)
+var responseTicket = pm.globals.get('ticket'); // 'TICKET_58a4c33131837c9453fb705230208a6d430cf974'
+var rawTicket = CryptoJS.enc.Utf8.parse(responseTicket);
+var encodedTicket = CryptoJS.enc.Base64.stringify(rawTicket);
+console.log(`Encrypted Ticket: ${encodedTicket}`);
 
 pm.environment.set("authorizationHeader", "Basic "+encodedTicket);
 ```
 
 ![2](assets/2.png)
+![4](assets/4.jpg)
 
 Step 3 : Execute any API using the encoded ticket.
 ![3](assets/3.png)
