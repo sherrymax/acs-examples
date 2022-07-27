@@ -88,6 +88,18 @@ Step 1 : Invoke API to Authenticate.
 ![1](assets/1.png)
 
 Step 2 : Base64 encode the ticket.
+
+```javascript
+var CryptoJS = require("crypto-js");
+
+//When we have the ticket we need to base64 encode it before we can use it in subsequent calls
+var rawTicket = CryptoJS.enc.Utf8.parse(pm.globals.get('ticket'))
+var encodedTicket = CryptoJS.enc.Base64.stringify(rawTicket)
+console.log(`Encrypted Ticket: ${encodedTicket}`)
+
+pm.environment.set("authorizationHeader", "Basic "+encodedTicket);
+```
+
 ![2](assets/2.png)
 
 Step 3 : Execute any API using the encoded ticket.
