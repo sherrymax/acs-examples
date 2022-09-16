@@ -6,7 +6,7 @@ When an email with attachments is send to Alfresco, both the email and its attac
 ### Prerequisites to run this demo end-2-end
 
 * Alfresco Content Services (Version 6.1 and above)
-* Email Client [Thunderbird](https://www.thunderbird.net/en-GB/)
+* Email Client : e.g. [Thunderbird](https://www.thunderbird.net/en-GB/)
 
 ## Configuration Steps for ADP Users
 1. Setup an ADP environment with ACS.
