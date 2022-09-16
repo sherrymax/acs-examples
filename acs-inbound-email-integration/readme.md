@@ -58,10 +58,10 @@ email.server.allowed.senders=.*
 Add the user to `EMAIL_CONTRIBUTORS` group. 
 ![add-user-to-group](assets/1.jpg)
 
-## 4. Configuration Step in ADP (if needed)
+## 4. Configuration Step in ADP (Only for ADP Users)
 ```
 Location to deploy alfresco-global.properties in ADP will be: 
-adp/data/services/content/alfresco-global.properties
+* adp/data/services/content/alfresco-global.properties
 ```
 ## 5. Configure a Folder to be Email Inbox
   * Create a Folder. eg: `Email Inbox`
@@ -77,4 +77,4 @@ adp/data/services/content/alfresco-global.properties
 
 ## References
 * [http://keytocontent.blogspot.com/2010/05/upload-files-to-alfresco-via-email.html](http://keytocontent.blogspot.com/2010/05/upload-files-to-alfresco-via-email.html)
-* []()
+* [https://www.youtube.com/watch?v=p17GkHsLdmc](https://www.youtube.com/watch?v=p17GkHsLdmc)
