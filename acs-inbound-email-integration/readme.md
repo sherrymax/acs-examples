@@ -66,7 +66,10 @@ Location to deploy alfresco-global.properties in ADP will be:
 ## 5. Configure a Folder to be Email Inbox
   * Create a Folder. eg: `Email Inbox`
   * Manage Aspects![2](assets/2.png)
-  * Add `Email Alias` Aspect ![3](assets/3.png)
+  * Add `Email Alias` Aspect 
+  ![12](assets/12.png)
+  Click `Apply Changes` button.
+  ![3](assets/3.png)
   * Edit Folder Properties ![4](assets/4.png)
   ![5](assets/5.png)
   * Provide an email alias name. eg: `servicerequestdocs`![6](assets/6.png)
