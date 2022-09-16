@@ -79,5 +79,6 @@ Location to deploy alfresco-global.properties in ADP will be:
 ## Run the DEMO
 
 ## References
+* [https://docs.alfresco.com/content-services/latest/config/email/](https://docs.alfresco.com/content-services/latest/config/email/)
 * [http://keytocontent.blogspot.com/2010/05/upload-files-to-alfresco-via-email.html](http://keytocontent.blogspot.com/2010/05/upload-files-to-alfresco-via-email.html)
 * [https://www.youtube.com/watch?v=p17GkHsLdmc](https://www.youtube.com/watch?v=p17GkHsLdmc)
