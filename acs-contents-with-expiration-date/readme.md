@@ -54,6 +54,12 @@ custom-scheduled-script.expire.notification.days=5
 1. Create a `Folder Rule` to declare the expired content as record.
 ![Declare As Record](assets/declare-as-record-folder-rule.png)
 
+
+### ACS : Be aware of :
+* The current example will send email notifications only for the documents that will be expired on the upcoming 5th day.
+* Hence keep the `Effectivity End Date` property as that 5th day. eg: If today is 01-Jan, keep the `Effectivity End Date` property as 05-Jan. The query in the example will look for documents that expire from `05-Jan: 12:00 AM` to `05-Jan 11:59 PM` and your document will be picked.
+* The notification-triggering factor (e.g: upcoming 5th day) can be updated in `alfresco-global.properties` file.
+
 ### ACS : DEBUG the changes
 
 1. Navigate to Alfresco Admin console.
