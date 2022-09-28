@@ -14,7 +14,9 @@ When an email with attachments is send to Alfresco, both the email and its attac
 3. Configure `Account Settings` in Thunderbird
   ![Account Settings](assets/8.png)
   ![Account Settings](assets/9.png)
-  ![Account Settings](assets/10.png)
+   > Note : Please use port # 143, in case of any issues with port # 110.
+
+   ![Account Settings](assets/10.png)
   ![Account Settings](assets/11.png)
 
 ## 1. Update the alfresco-global.properties
