@@ -18,6 +18,7 @@
 					"type": "noauth"
 				},
 				"method": "POST",
+				"header": [
 					{
 						"key": "Authorization",
 						"value": "Basic dGVzdDp0ZXN0"
