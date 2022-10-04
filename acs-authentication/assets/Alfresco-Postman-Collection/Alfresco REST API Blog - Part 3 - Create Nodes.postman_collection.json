@@ -1,0 +1,419 @@
+{
+	"info": {
+		"_postman_id": "5058b95e-554a-4ec8-91e0-1969283f516c",
+		"name": "Alfresco REST API Blog - Part 3 - Create Nodes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2755505"
+	},
+	"item": [
+		{
+			"name": "Create folder",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "demo",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "demo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\":\"My Folder\",\n  \"nodeType\":\"cm:folder\"\n}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/-my-/children",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"-my-",
+						"children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create empty file",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"my-file.txt\",\n    \"nodeType\": \"cm:content\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/-my-/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"-my-",
+						"children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create content",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "filedata",
+							"type": "file",
+							"src": "test-lorem-ipsum.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/-my-/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"-my-",
+						"children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create content with name",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "filedata",
+							"type": "file",
+							"src": "test.txt"
+						},
+						{
+							"key": "name",
+							"value": "my-name.txt",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/-my-/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"-my-",
+						"children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create content with auto rename",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "filedata",
+							"type": "file",
+							"src": "test.txt"
+						},
+						{
+							"key": "name",
+							"value": "my-file.txt",
+							"type": "text"
+						},
+						{
+							"key": "autoRename",
+							"value": "true",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/-my-/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"-my-",
+						"children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create content in relative path",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "filedata",
+							"type": "file",
+							"src": "test.txt"
+						},
+						{
+							"key": "name",
+							"value": "my-file.txt",
+							"type": "text"
+						},
+						{
+							"key": "relativePath",
+							"value": "/My Folder",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/-my-/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"-my-",
+						"children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create content with rendition",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "filedata",
+							"type": "file",
+							"src": "test-one-character.txt"
+						},
+						{
+							"key": "renditions",
+							"value": "doclib",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/-my-/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"-my-",
+						"children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create content with properties",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "filedata",
+							"type": "file",
+							"src": "test-1024.txt"
+						},
+						{
+							"key": "name",
+							"value": "my-file.txt",
+							"type": "text"
+						},
+						{
+							"key": "autoRename",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "cm:title",
+							"value": "The Title",
+							"type": "text"
+						},
+						{
+							"key": "cm:description",
+							"value": "The Description",
+							"type": "text"
+						},
+						{
+							"key": "exif:manufacturer",
+							"value": "Canon",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/-my-/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"-my-",
+						"children"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

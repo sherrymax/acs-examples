@@ -1,0 +1,390 @@
+{
+	"info": {
+		"_postman_id": "c5f2f865-0462-4bd4-b757-37c7fe69f624",
+		"name": "Alfresco REST API Blog - Part 5 - Versioning & Locking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2755505"
+	},
+	"item": [
+		{
+			"name": "Create empty file",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"postman.setGlobalVariable('fileId', JSON.parse(responseBody).entry.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"version.txt\",\n    \"nodeType\": \"cm:content\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/-my-/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"-my-",
+						"children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update content as major version",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/plain"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "This is the initial content for the file."
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{fileId}}/content?majorVersion=true&comment=First version",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{fileId}}",
+						"content"
+					],
+					"query": [
+						{
+							"key": "majorVersion",
+							"value": "true"
+						},
+						{
+							"key": "comment",
+							"value": "First version"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve version history",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{fileId}}/versions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{fileId}}",
+						"versions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update content as minor version",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/plain"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "This is the second version of the content, v1.1."
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{fileId}}/content?minorVersion=true&comment=Second version",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{fileId}}",
+						"content"
+					],
+					"query": [
+						{
+							"key": "minorVersion",
+							"value": "true"
+						},
+						{
+							"key": "comment",
+							"value": "Second version"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get content",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{fileId}}/content",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{fileId}}",
+						"content"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve version content",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{fileId}}/versions/1.0/content",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{fileId}}",
+						"versions",
+						"1.0",
+						"content"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Revert version",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"majorVersion\": true,\n   \"comment\": \"Reverted to original\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{fileId}}/versions/1.0/revert",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{fileId}}",
+						"versions",
+						"1.0",
+						"revert"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lock file",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{fileId}}/lock",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{fileId}}",
+						"lock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unlock file",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{fileId}}/unlock",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{fileId}}",
+						"unlock"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

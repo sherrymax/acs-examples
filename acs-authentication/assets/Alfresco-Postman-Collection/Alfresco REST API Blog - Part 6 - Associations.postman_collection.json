@@ -1,0 +1,951 @@
+{
+	"info": {
+		"_postman_id": "d79a9574-13d8-4835-b142-491912ff84b9",
+		"name": "Alfresco REST API Blog - Part 6 - Associations",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2755505"
+	},
+	"item": [
+		{
+			"name": "Attempt creation of fdk:gadget node",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"fdk.txt\",\n    \"nodeType\": \"fdk:gadget\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/-my-/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"-my-",
+						"children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Images folder",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"postman.setGlobalVariable('imagesFolderId', JSON.parse(responseBody).entry.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Images\",\n    \"nodeType\": \"cm:folder\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/-my-/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"-my-",
+						"children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload first image",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"postman.setGlobalVariable('firstImageId', JSON.parse(responseBody).entry.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "filedata",
+							"type": "file",
+							"src": "alexa.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{imagesFolderId}}/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{imagesFolderId}}",
+						"children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload second image",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"postman.setGlobalVariable('secondImageId', JSON.parse(responseBody).entry.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "filedata",
+							"type": "file",
+							"src": "alexa.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{imagesFolderId}}/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{imagesFolderId}}",
+						"children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload review text",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"postman.setGlobalVariable('reviewTextId', JSON.parse(responseBody).entry.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "filedata",
+							"type": "file",
+							"src": "test-lorem-ipsum.txt"
+						},
+						{
+							"key": "name",
+							"value": "review-text.txt",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/-my-/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"-my-",
+						"children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Amazon company node",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"postman.setGlobalVariable('companyId', JSON.parse(responseBody).entry.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Amazon\",\n    \"nodeType\": \"fdk:company\",\n    \"properties\": {\n    \t\"fdk:email\": \"info@amazon.com\",\n    \t\"fdk:url\": \"http://www.amazon.com\",\n    \t\"fdk:city\": \"Seattle\"\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/-my-/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"-my-",
+						"children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create fdk:gadget node",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"postman.setGlobalVariable('gadgetId', JSON.parse(responseBody).entry.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Amazon Echo\",\n    \"nodeType\": \"fdk:gadget\",\n    \"secondaryChildren\": [\n    \t{\n    \t\t\"childId\": \"{{firstImageId}}\",\n    \t\t\"assocType\": \"fdk:images\"\n    \t},\n    \t{\n    \t\t\"childId\": \"{{secondImageId}}\",\n    \t\t\"assocType\": \"fdk:images\"\n    \t}\n    ],\n    \"targets\": [\n    \t{\n    \t\t\"targetId\": \"{{reviewTextId}}\",\n    \t\t\"assocType\": \"fdk:reviews\"\n    \t},\n    \t{\n    \t\t\"targetId\": \"{{companyId}}\",\n    \t\t\"assocType\": \"fdk:company\"\n    \t}\n    ]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/-my-/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"-my-",
+						"children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get fdk:gadget peer associations",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{gadgetId}}/targets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{gadgetId}}",
+						"targets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get fdk:reviews association with path and properties",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{gadgetId}}/targets?include=properties,path&where=(assocType='fdk:reviews')",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{gadgetId}}",
+						"targets"
+					],
+					"query": [
+						{
+							"key": "include",
+							"value": "properties,path"
+						},
+						{
+							"key": "where",
+							"value": "(assocType='fdk:reviews')"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get fdk:gadget secondary child associations",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{gadgetId}}/secondary-children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{gadgetId}}",
+						"secondary-children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get review text sources",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{reviewTextId}}/sources",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{reviewTextId}}",
+						"sources"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get first image parents",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{firstImageId}}/parents",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{firstImageId}}",
+						"parents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload third image",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"postman.setGlobalVariable('thirdImageId', JSON.parse(responseBody).entry.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "filedata",
+							"type": "file",
+							"src": "echo-dot.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{imagesFolderId}}/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{imagesFolderId}}",
+						"children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload second review text",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"postman.setGlobalVariable('secondReviewTextId', JSON.parse(responseBody).entry.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "filedata",
+							"type": "file",
+							"src": "test-lorem-ipsum.txt"
+						},
+						{
+							"key": "name",
+							"value": "2nd-review-text.txt",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/-my-/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"-my-",
+						"children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create fdk:images child association",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"childId\": \"{{thirdImageId}}\",\n  \"assocType\": \"fdk:images\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{gadgetId}}/secondary-children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{gadgetId}}",
+						"secondary-children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create fdk:reviews peer association",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"targetId\": \"{{secondReviewTextId}}\",\n  \"assocType\": \"fdk:reviews\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{gadgetId}}/targets",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{gadgetId}}",
+						"targets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Multi-file review text",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"childId\": \"{{reviewTextId}}\",\n  \"assocType\": \"cm:contains\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{imagesFolderId}}/secondary-children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{imagesFolderId}}",
+						"secondary-children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get images folder children",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{imagesFolderId}}/children?include=association",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{imagesFolderId}}",
+						"children"
+					],
+					"query": [
+						{
+							"key": "include",
+							"value": "association"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get images folder primary children only",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{imagesFolderId}}/children?where=(isPrimary=true)",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{imagesFolderId}}",
+						"children"
+					],
+					"query": [
+						{
+							"key": "where",
+							"value": "(isPrimary=true)"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete second review text peer association",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{gadgetId}}/targets/{{secondReviewTextId}}?assocType=fdk:reviews",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{gadgetId}}",
+						"targets",
+						"{{secondReviewTextId}}"
+					],
+					"query": [
+						{
+							"key": "assocType",
+							"value": "fdk:reviews"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete third image child association",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{gadgetId}}/secondary-children/{{thirdImageId}}?assocType=fdk:images",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{gadgetId}}",
+						"secondary-children",
+						"{{thirdImageId}}"
+					],
+					"query": [
+						{
+							"key": "assocType",
+							"value": "fdk:images"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,573 @@
+{
+	"info": {
+		"_postman_id": "f78914c4-8117-498c-a6f1-a2896f12a6e2",
+		"name": "Alfresco REST API Blog - Part 9 - Queries & Search",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2755505"
+	},
+	"item": [
+		{
+			"name": "Create public site",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "demo",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "demo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": \"fiduciarydocuments\",\n  \"title\": \"Fiduciary Trust Documents\",\n  \"description\": \"Site created for contents of Fiduciary Trust\",\n  \"visibility\": \"PUBLIC\"\n}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/sites",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"sites"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve document library container",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"postman.setGlobalVariable('siteContainerId', JSON.parse(responseBody).entry.id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/sites/queriesSearchSite/containers/documentLibrary",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"sites",
+						"queriesSearchSite",
+						"containers",
+						"documentLibrary"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload file",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "filedata",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{siteContainerId}}/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{siteContainerId}}",
+						"children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Nodes query",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/queries/nodes?term=lorem",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"queries",
+						"nodes"
+					],
+					"query": [
+						{
+							"key": "term",
+							"value": "lorem"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sites query",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/queries/sites?term=queries",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"queries",
+						"sites"
+					],
+					"query": [
+						{
+							"key": "term",
+							"value": "queries"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "People query",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/alfresco/versions/1/queries/people?term=jackson",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"queries",
+						"people"
+					],
+					"query": [
+						{
+							"key": "term",
+							"value": "jackson"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Basic search",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": {\n    \"query\": \"lorem\"\n  }\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/search/versions/1/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"search",
+						"versions",
+						"1",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Basic CMIS search",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "demo",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "demo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": {\n    \"query\": \"select * from cmis:document WHERE cmis:name LIKE '%Inflation%'\",\n    \"language\": \"cmis\"\n  }\n}\n"
+				},
+				"url": {
+					"raw": "http://ec2-3-89-68-73.compute-1.amazonaws.com/alfresco/api/-default-/public/search/versions/1/search",
+					"protocol": "http",
+					"host": [
+						"ec2-3-89-68-73",
+						"compute-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"search",
+						"versions",
+						"1",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Basic Lucene search",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": {\n    \"query\": \"+@cm\\\\:modified:[NOW/DAY-7DAYS TO NOW/DAY+1DAY] +TYPE:\\\"cm:content\\\"\",\n    \"language\": \"lucene\"\n  }\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/search/versions/1/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"search",
+						"versions",
+						"1",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search with paging and sorting",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": {\n    \"query\": \"+TYPE:\\\"cm:content\\\"\",\n    \"language\": \"afts\"\n  },\n  \"paging\": {\n    \"maxItems\": \"25\",\n    \"skipCount\": \"10\"\n  },\n  \"sort\": [{\"type\":\"FIELD\", \"field\":\"cm:name\", \"ascending\":\"false\"}]\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/search/versions/1/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"search",
+						"versions",
+						"1",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search with facets",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": {\n    \"query\": \"(name:\\\"test*\\\" OR title:\\\"test*\\\") AND TYPE:\\\"cm:content\\\"\"\n  },\n  \"facetQueries\": [\n    {\"query\": \"content.size:[0 TO 10240]\", \"label\": \"Small Files\"},\n    {\"query\": \"content.mimetype:'text/plain'\", \"label\": \"Plain Text\"},\n    {\"query\": \"content.mimetype:'image/jpeg' OR content.mimetype:'image/png' OR content.mimetype:'image/gif'\", \"label\": \"Images\"},\n    {\"query\": \"content.mimetype:'application/msword' OR content.mimetype:'application/vnd.ms-excel'\", \"label\": \"Office\"}\n  ], \n  \"facetFields\": {\"facets\": [{\"field\": \"creator\"}]}\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/search/versions/1/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"search",
+						"versions",
+						"1",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search with term highlighting",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": {\n    \"query\": \"(name:\\\"test*\\\" OR title:\\\"test*\\\") AND TYPE:\\\"cm:content\\\"\"\n  },\n  \"highlight\": {\n    \"fields\": [\n      {\n        \"field\": \"cm:name\",\n        \"prefix\": \"(\",\n        \"postfix\": \")\"\n      },\n      {\n        \"field\": \"{http://www.alfresco.org/model/content/1.0}title\"\n      }\n    ]\n  }\n}\n"
+				},
+				"url": {
+					"raw": "http://localhost:8080/alfresco/api/-default-/public/search/versions/1/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"search",
+						"versions",
+						"1",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Basic Lucene search V2",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "demo",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "demo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": {\n    \"query\": \"+@cm\\\\:modified:[NOW/DAY-7DAYS TO NOW/DAY+1DAY] +TYPE:\\\"cm:content\\\"\",\n    \"language\": \"lucene\"\n  }\n}\n"
+				},
+				"url": {
+					"raw": "http://ec2-34-210-97-26.us-west-2.compute.amazonaws.com/alfresco/api/-default-/public/search/versions/1/search",
+					"protocol": "http",
+					"host": [
+						"ec2-34-210-97-26",
+						"us-west-2",
+						"compute",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"search",
+						"versions",
+						"1",
+						"search"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,569 @@
+{
+	"info": {
+		"_postman_id": "c8aa37df-3489-42c5-bc33-244742fb461a",
+		"name": "a.Fiduciary - ACS REST APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2755505"
+	},
+	"item": [
+		{
+			"name": "Authenticate for Ticket",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userId\":\"demo\",\"password\":\"demo\"}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}/alfresco/api/-default-/public/authentication/versions/1/tickets",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"authentication",
+						"versions",
+						"1",
+						"tickets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create public site",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var CryptoJS = require(\"crypto-js\");",
+							"",
+							"// When we have the ticket we need to base64 encode it before we can use it in subsequent calls",
+							"var rawTicket = CryptoJS.enc.Utf8.parse(pm.globals.get('ticket'))",
+							"",
+							"// var rawTicket = 'TICKET_58a4c33131837c9453fb705230208a6d430cf974';",
+							"var encodedTicket = CryptoJS.enc.Base64.stringify(rawTicket)",
+							"console.log(`Encrypted Ticket: ${encodedTicket}`)",
+							"",
+							"pm.environment.set(\"authorizationHeader\", \"Basic \"+encodedTicket);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorizationHeader}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "*",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": \"mediadocuments\",\n  \"title\": \"Media Documents\",\n  \"description\": \"Site created for my media documents\",\n  \"visibility\": \"PUBLIC\"\n}"
+				},
+				"url": {
+					"raw": "https://sse.dev.alfrescocloud.com/alfresco/api/-default-/public/alfresco/versions/1/sites",
+					"protocol": "https",
+					"host": [
+						"sse",
+						"dev",
+						"alfrescocloud",
+						"com"
+					],
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"sites"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieve document library container",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"postman.setGlobalVariable('siteContainerId', JSON.parse(responseBody).entry.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "demo",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "demo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"url": {
+					"raw": "http://{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/sites/{{site-id}}/containers/documentLibrary",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"sites",
+						"{{site-id}}",
+						"containers",
+						"documentLibrary"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload file in the Site",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "demo",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "demo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "filedata",
+							"type": "file",
+							"src": "/Users/sherrymathews/Documents/Sample Attachments/IRA Agreement.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/022cc439-f29f-4545-af5c-8cbe16317eeb/children",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"022cc439-f29f-4545-af5c-8cbe16317eeb",
+						"children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create empty file",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"postman.setGlobalVariable('fileId', JSON.parse(responseBody).entry.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "demo",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "demo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"my-file.txt\",\n    \"nodeType\": \"cm:content\",\n  \t\"properties\": {\n    \t\"cm:title\": \"The Title\"\n  \t}\n}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{site-container-id}}/children",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{site-container-id}}",
+						"children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update File Properties",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "demo",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "demo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"properties\":\n   {\n       \"cm:description\": \"Today is the day for M&T Alfresco Demo\"\n   }\n}"
+				},
+				"url": {
+					"raw": "http://{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{node-id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update File Content",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "demo",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "demo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/plain"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "What is Lorem Ipsum?\n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+				},
+				"url": {
+					"raw": "http://{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}/content",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"alfresco",
+						"versions",
+						"1",
+						"nodes",
+						"{{node-id}}",
+						"content"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "demo",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "demo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic dGVzdDp0ZXN0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"query\": {\n    \"query\": \"Silver\"\n  }\n}\n"
+				},
+				"url": {
+					"raw": "http://{{hostname}}/alfresco/api/-default-/public/search/versions/1/search",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"search",
+						"versions",
+						"1",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cleanup Trashcan",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Alfresco01",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{authorizationHeader}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://{{hostname}}/alfresco/s/api/archive/workspace/SpacesStore",
+					"protocol": "http",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"alfresco",
+						"s",
+						"api",
+						"archive",
+						"workspace",
+						"SpacesStore"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "demo",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "demo",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"/*",
+					"More APIs : ",
+					"1. http://<hostname>/alfresco/s/index/package/",
+					"2. https://api-explorer.alfresco.com/api-explorer/",
+					"*/"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

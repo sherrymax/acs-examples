@@ -111,3 +111,4 @@ Step 3 : Execute any API using the encoded ticket.
 
 1. Base64 Encoding : <https://developer.genesys.cloud/authorization/platform-auth/base-64-encoding>
 2. Alfresco Documentation on Install and Authentication : <https://docs.alfresco.com/content-services/latest/develop/rest-api-guide/install/>
+3. Alfresco REST API - Postman Collection : <https://hub.alfresco.com/t5/alfresco-content-services-blog/v1-rest-api-10-things-you-should-know/ba-p/287692>
