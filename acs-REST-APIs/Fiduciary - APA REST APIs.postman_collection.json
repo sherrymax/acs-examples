@@ -1,0 +1,652 @@
+{
+	"info": {
+		"_postman_id": "f03a91b8-2870-4508-8535-7a0804f26aad",
+		"name": "Fiduciary - APA REST APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2755505"
+	},
+	"item": [
+		{
+			"name": "APA",
+			"item": [
+				{
+					"name": "Get Tasks_bearer token from Swagger",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJKQTl2Zk56ZWhRcU1GRnduMzNGaFJrU0xlTzhGNm1lb3E1amNiYzhwQmU0In0.eyJleHAiOjE2NjAwNTg4MDksImlhdCI6MTY2MDA1NzkwOSwiYXV0aF90aW1lIjoxNjYwMDUyODg2LCJqdGkiOiI3MjBiM2U3Ni0yN2IwLTQ3ZjktYTQ0NC1hOTQ1MmMyYWVlY2UiLCJpc3MiOiJodHRwczovL3NzZS5kZXYuYWxmcmVzY29jbG91ZC5jb20vYXV0aC9yZWFsbXMvYWxmcmVzY28iLCJhdWQiOlsicmVhbG0tbWFuYWdlbWVudCIsImZpZHVjaWFyeS1yZXZpZXciLCJ0ZXN0IiwiY3VzdG9tZXItb25ib2FyZGluZy1uby1kYiIsImFjY291bnQiXSwic3ViIjoiOGU0MGEyZjUtNmM1Ny00ODhlLThkYjktNWNhZjJhMmI0OTZjIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYWxmcmVzY28iLCJzZXNzaW9uX3N0YXRlIjoiNGU0MmY4ZDktOTJlNy00ZmJkLWFlMjgtNDVjMmY4NjIyOGI0IiwiYWNyIjoiMCIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwczovL3NzZS1pbmdlc3Rpb24uZGV2LmFsZnJlc2NvY2xvdWQuY29tIiwiaHR0cDovLzEyNy4wLjAuMSIsImh0dHA6Ly9sb2NhbGhvc3QiLCJodHRwczovL3NzZS5kZXYuYWxmcmVzY29jbG91ZC5jb20iLCJodHRwczovL3NzZS1hcGEuZGV2LmFsZnJlc2NvY2xvdWQuY29tIiwiaHR0cHM6Ly9zc2UtYXBwLmRldi5hbGZyZXNjb2Nsb3VkLmNvbSIsImh0dHBzOi8vZ3JlZW4tc3NlLmRldi5hbGZyZXNjb2Nsb3VkLmNvbSJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZGVmYXVsdC1yb2xlcy1hbGZyZXNjbyIsIkFDVElWSVRJX01PREVMRVIiLCJvZmZsaW5lX2FjY2VzcyIsIkFDVElWSVRJX0RFVk9QUyIsIkFDVElWSVRJX0lERU5USVRZIiwiQVBQTElDQVRJT05fTUFOQUdFUiIsImFkbWluIiwiQUNUSVZJVElfQURNSU4iLCJBQ1RJVklUSV9VU0VSIiwiQUNUSVZJVElfQU5BTFlUSUNTIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJyZWFsbS1tYW5hZ2VtZW50Ijp7InJvbGVzIjpbIm1hbmFnZS1yZWFsbSIsIm1hbmFnZS11c2VycyIsInF1ZXJ5LXJlYWxtcyIsInZpZXctdXNlcnMiLCJ2aWV3LWNsaWVudHMiLCJtYW5hZ2UtYXV0aG9yaXphdGlvbiIsInF1ZXJ5LWNsaWVudHMiLCJtYW5hZ2UtY2xpZW50cyIsInF1ZXJ5LWdyb3VwcyIsInF1ZXJ5LXVzZXJzIl19LCJmaWR1Y2lhcnktcmV2aWV3Ijp7InJvbGVzIjpbIkFDVElWSVRJX1VTRVIiLCJBQ1RJVklUSV9BRE1JTiJdfSwidGVzdCI6eyJyb2xlcyI6WyJBQ1RJVklUSV9VU0VSIiwiQUNUSVZJVElfQURNSU4iXX0sImN1c3RvbWVyLW9uYm9hcmRpbmctbm8tZGIiOnsicm9sZXMiOlsiQUNUSVZJVElfQURNSU4iXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIGVtYWlsIHByb2ZpbGUiLCJzaWQiOiI0ZTQyZjhkOS05MmU3LTRmYmQtYWUyOC00NWMyZjg2MjI4YjQiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJGaWR1Y2lhcnkgQWRtaW4iLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJmdGljX2FkbWluIiwiZ2l2ZW5fbmFtZSI6IkZpZHVjaWFyeSIsImZhbWlseV9uYW1lIjoiQWRtaW4iLCJlbWFpbCI6ImZ0aWNfYWRtaW5AZXhhbXBsZS5jb20ifQ.DUgAC83gE0oO_F5AQeICchXf3WgYKnlp4gIaLyow1rO59Bi5mI55xfG3KrhM1QJA9Jtl-SjgY_yK6z5Z5sNNlKdiguBxlgkqgERsu8XOLsH7ca8flyRM-8ZO-AWfE7tLijxSgPnpIZQZVSYHs9jdd0HrrPkxlvU3uqLp-GqDVj-uUceSl2u6zjxL0tMTcsKGiVWgj0PlMC9hfd1k8YMyWcLhrdR1u9h85d8RmA_Irjm1Yr_mSR6bJDLPrz4S3Hkofc1HBMlmipntdO_vLlfPFRPQNgm1YasHEzZCM_WLE64upHPBK5c11ZuDX4uJSZeyeV5LDTK3ZWoLvun2X7MIkg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sse-apa.dev.alfrescocloud.com/{{process-name}}/rb/v1/tasks",
+							"protocol": "https",
+							"host": [
+								"sse-apa",
+								"dev",
+								"alfrescocloud",
+								"com"
+							],
+							"path": [
+								"{{process-name}}",
+								"rb",
+								"v1",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tasks_bearer token from Swagger Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJKQTl2Zk56ZWhRcU1GRnduMzNGaFJrU0xlTzhGNm1lb3E1amNiYzhwQmU0In0.eyJleHAiOjE2NjA5MzM1NjgsImlhdCI6MTY2MDkzMjY2OCwiYXV0aF90aW1lIjoxNjYwOTI3MjE5LCJqdGkiOiI5YmE4MzdhYy1mZmQwLTQ5ODgtOWY4NS1hYjgwZGNjZTJlYzEiLCJpc3MiOiJodHRwczovL3NzZS5kZXYuYWxmcmVzY29jbG91ZC5jb20vYXV0aC9yZWFsbXMvYWxmcmVzY28iLCJhdWQiOlsicmVhbG0tbWFuYWdlbWVudCIsImZpZHVjaWFyeS1yZXZpZXciLCJ0ZXN0IiwiZnRjaS1jYXNoLWRpcy1mb3JtIiwiY3VzdG9tZXItb25ib2FyZGluZy1uby1kYiIsImFjY291bnQiXSwic3ViIjoiOGU0MGEyZjUtNmM1Ny00ODhlLThkYjktNWNhZjJhMmI0OTZjIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiZmlkdWNpYXJ5LXRydXN0LXBvYy1hcGEiLCJzZXNzaW9uX3N0YXRlIjoiNTFjNjIxMTQtY2UxYS00YzUzLThjN2YtM2IxZGRhOGIwYTY2IiwiYWNyIjoiMCIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwczovL3NzZS1pbmdlc3Rpb24uZGV2LmFsZnJlc2NvY2xvdWQuY29tIiwiaHR0cDovLzEyNy4wLjAuMSIsImh0dHA6Ly9sb2NhbGhvc3QiLCJodHRwczovL3NzZS5kZXYuYWxmcmVzY29jbG91ZC5jb20iLCJodHRwczovL3NzZS1hcGEuZGV2LmFsZnJlc2NvY2xvdWQuY29tIiwiaHR0cHM6Ly9zc2UtYXBwLmRldi5hbGZyZXNjb2Nsb3VkLmNvbSIsImh0dHBzOi8vZ3JlZW4tc3NlLmRldi5hbGZyZXNjb2Nsb3VkLmNvbSJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZGVmYXVsdC1yb2xlcy1hbGZyZXNjbyIsIkFDVElWSVRJX01PREVMRVIiLCJvZmZsaW5lX2FjY2VzcyIsIkFDVElWSVRJX0RFVk9QUyIsIkFDVElWSVRJX0lERU5USVRZIiwiQVBQTElDQVRJT05fTUFOQUdFUiIsImFkbWluIiwiQUNUSVZJVElfQURNSU4iLCJBQ1RJVklUSV9VU0VSIiwiQUNUSVZJVElfQU5BTFlUSUNTIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJyZWFsbS1tYW5hZ2VtZW50Ijp7InJvbGVzIjpbIm1hbmFnZS1yZWFsbSIsIm1hbmFnZS11c2VycyIsInF1ZXJ5LXJlYWxtcyIsInZpZXctdXNlcnMiLCJ2aWV3LWNsaWVudHMiLCJtYW5hZ2UtYXV0aG9yaXphdGlvbiIsInF1ZXJ5LWNsaWVudHMiLCJtYW5hZ2UtY2xpZW50cyIsInF1ZXJ5LWdyb3VwcyIsInF1ZXJ5LXVzZXJzIl19LCJmaWR1Y2lhcnktcmV2aWV3Ijp7InJvbGVzIjpbIkFDVElWSVRJX1VTRVIiLCJBQ1RJVklUSV9BRE1JTiJdfSwidGVzdCI6eyJyb2xlcyI6WyJBQ1RJVklUSV9VU0VSIiwiQUNUSVZJVElfQURNSU4iXX0sImZ0Y2ktY2FzaC1kaXMtZm9ybSI6eyJyb2xlcyI6WyJBQ1RJVklUSV9VU0VSIiwiQUNUSVZJVElfQURNSU4iXX0sImN1c3RvbWVyLW9uYm9hcmRpbmctbm8tZGIiOnsicm9sZXMiOlsiQUNUSVZJVElfQURNSU4iXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6IjUxYzYyMTE0LWNlMWEtNGM1My04YzdmLTNiMWRkYThiMGE2NiIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6IkZpZHVjaWFyeSBBZG1pbiIsInByZWZlcnJlZF91c2VybmFtZSI6ImZ0aWNfYWRtaW4iLCJnaXZlbl9uYW1lIjoiRmlkdWNpYXJ5IiwiZmFtaWx5X25hbWUiOiJBZG1pbiIsImVtYWlsIjoiZnRpY19hZG1pbkBleGFtcGxlLmNvbSJ9.M1VAt44mrl7dJ1YmyEuQf95N-YWbdfuJ-IquB5-143E5NLEVsdgI3yWYoP4TFRUHcR6FnxrYdIjuyPJqtkJZO7Vfb7YAfwCe6d6F4ofRM0eByjD00tOllMxRdhkn_6cfln-l79V7JQ36VmDpqCxQx8yAYACJ3YYuCwNwc-QT-wbUqn0bnEMWBkFwanBnoKzuZNaem_PLhvptGvuoE8cFSVBaa213u2ojIYhuPLSuVrVvKHb6Xa_pyV1hg8lkEnwvODmNdt2thEHQCgVxaA6mjOvX2HvpRSBT_eYU0KD1pXDAM4IqhTYopaNrg2FKXpC3f2r_RfncuHdMvJ33BCLCTQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sse-apa.dev.alfrescocloud.com/fiduciary-review/rb/v1/tasks",
+							"protocol": "https",
+							"host": [
+								"sse-apa",
+								"dev",
+								"alfrescocloud",
+								"com"
+							],
+							"path": [
+								"fiduciary-review",
+								"rb",
+								"v1",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tasks_bearer token from Swagger OAuth",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sse-apa.dev.alfrescocloud.com/fiduciary-review/rb/v1/tasks",
+							"protocol": "https",
+							"host": [
+								"sse-apa",
+								"dev",
+								"alfrescocloud",
+								"com"
+							],
+							"path": [
+								"fiduciary-review",
+								"rb",
+								"v1",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tasks_bearer token from Swagger OAuth Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJKQTl2Zk56ZWhRcU1GRnduMzNGaFJrU0xlTzhGNm1lb3E1amNiYzhwQmU0In0.eyJleHAiOjE2NjA5MzM1NjgsImlhdCI6MTY2MDkzMjY2OCwiYXV0aF90aW1lIjoxNjYwOTI3MjE5LCJqdGkiOiI5YmE4MzdhYy1mZmQwLTQ5ODgtOWY4NS1hYjgwZGNjZTJlYzEiLCJpc3MiOiJodHRwczovL3NzZS5kZXYuYWxmcmVzY29jbG91ZC5jb20vYXV0aC9yZWFsbXMvYWxmcmVzY28iLCJhdWQiOlsicmVhbG0tbWFuYWdlbWVudCIsImZpZHVjaWFyeS1yZXZpZXciLCJ0ZXN0IiwiZnRjaS1jYXNoLWRpcy1mb3JtIiwiY3VzdG9tZXItb25ib2FyZGluZy1uby1kYiIsImFjY291bnQiXSwic3ViIjoiOGU0MGEyZjUtNmM1Ny00ODhlLThkYjktNWNhZjJhMmI0OTZjIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiZmlkdWNpYXJ5LXRydXN0LXBvYy1hcGEiLCJzZXNzaW9uX3N0YXRlIjoiNTFjNjIxMTQtY2UxYS00YzUzLThjN2YtM2IxZGRhOGIwYTY2IiwiYWNyIjoiMCIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwczovL3NzZS1pbmdlc3Rpb24uZGV2LmFsZnJlc2NvY2xvdWQuY29tIiwiaHR0cDovLzEyNy4wLjAuMSIsImh0dHA6Ly9sb2NhbGhvc3QiLCJodHRwczovL3NzZS5kZXYuYWxmcmVzY29jbG91ZC5jb20iLCJodHRwczovL3NzZS1hcGEuZGV2LmFsZnJlc2NvY2xvdWQuY29tIiwiaHR0cHM6Ly9zc2UtYXBwLmRldi5hbGZyZXNjb2Nsb3VkLmNvbSIsImh0dHBzOi8vZ3JlZW4tc3NlLmRldi5hbGZyZXNjb2Nsb3VkLmNvbSJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZGVmYXVsdC1yb2xlcy1hbGZyZXNjbyIsIkFDVElWSVRJX01PREVMRVIiLCJvZmZsaW5lX2FjY2VzcyIsIkFDVElWSVRJX0RFVk9QUyIsIkFDVElWSVRJX0lERU5USVRZIiwiQVBQTElDQVRJT05fTUFOQUdFUiIsImFkbWluIiwiQUNUSVZJVElfQURNSU4iLCJBQ1RJVklUSV9VU0VSIiwiQUNUSVZJVElfQU5BTFlUSUNTIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJyZWFsbS1tYW5hZ2VtZW50Ijp7InJvbGVzIjpbIm1hbmFnZS1yZWFsbSIsIm1hbmFnZS11c2VycyIsInF1ZXJ5LXJlYWxtcyIsInZpZXctdXNlcnMiLCJ2aWV3LWNsaWVudHMiLCJtYW5hZ2UtYXV0aG9yaXphdGlvbiIsInF1ZXJ5LWNsaWVudHMiLCJtYW5hZ2UtY2xpZW50cyIsInF1ZXJ5LWdyb3VwcyIsInF1ZXJ5LXVzZXJzIl19LCJmaWR1Y2lhcnktcmV2aWV3Ijp7InJvbGVzIjpbIkFDVElWSVRJX1VTRVIiLCJBQ1RJVklUSV9BRE1JTiJdfSwidGVzdCI6eyJyb2xlcyI6WyJBQ1RJVklUSV9VU0VSIiwiQUNUSVZJVElfQURNSU4iXX0sImZ0Y2ktY2FzaC1kaXMtZm9ybSI6eyJyb2xlcyI6WyJBQ1RJVklUSV9VU0VSIiwiQUNUSVZJVElfQURNSU4iXX0sImN1c3RvbWVyLW9uYm9hcmRpbmctbm8tZGIiOnsicm9sZXMiOlsiQUNUSVZJVElfQURNSU4iXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoiZW1haWwgcHJvZmlsZSIsInNpZCI6IjUxYzYyMTE0LWNlMWEtNGM1My04YzdmLTNiMWRkYThiMGE2NiIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6IkZpZHVjaWFyeSBBZG1pbiIsInByZWZlcnJlZF91c2VybmFtZSI6ImZ0aWNfYWRtaW4iLCJnaXZlbl9uYW1lIjoiRmlkdWNpYXJ5IiwiZmFtaWx5X25hbWUiOiJBZG1pbiIsImVtYWlsIjoiZnRpY19hZG1pbkBleGFtcGxlLmNvbSJ9.M1VAt44mrl7dJ1YmyEuQf95N-YWbdfuJ-IquB5-143E5NLEVsdgI3yWYoP4TFRUHcR6FnxrYdIjuyPJqtkJZO7Vfb7YAfwCe6d6F4ofRM0eByjD00tOllMxRdhkn_6cfln-l79V7JQ36VmDpqCxQx8yAYACJ3YYuCwNwc-QT-wbUqn0bnEMWBkFwanBnoKzuZNaem_PLhvptGvuoE8cFSVBaa213u2ojIYhuPLSuVrVvKHb6Xa_pyV1hg8lkEnwvODmNdt2thEHQCgVxaA6mjOvX2HvpRSBT_eYU0KD1pXDAM4IqhTYopaNrg2FKXpC3f2r_RfncuHdMvJ33BCLCTQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sse-apa.dev.alfrescocloud.com/fiduciary-review/rb/v1/tasks",
+							"protocol": "https",
+							"host": [
+								"sse-apa",
+								"dev",
+								"alfrescocloud",
+								"com"
+							],
+							"path": [
+								"fiduciary-review",
+								"rb",
+								"v1",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Process Instances_bearer token from Swagger",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sse-apa.dev.alfrescocloud.com/{{process-name}}/rb/v1/process-instances",
+							"protocol": "https",
+							"host": [
+								"sse-apa",
+								"dev",
+								"alfrescocloud",
+								"com"
+							],
+							"path": [
+								"{{process-name}}",
+								"rb",
+								"v1",
+								"process-instances"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Process Instances_bearer token from Swagger Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sse-apa.dev.alfrescocloud.com/ftci-cash-dis-form/rb/v1/process-instances",
+							"protocol": "https",
+							"host": [
+								"sse-apa",
+								"dev",
+								"alfrescocloud",
+								"com"
+							],
+							"path": [
+								"ftci-cash-dis-form",
+								"rb",
+								"v1",
+								"process-instances"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get keycloak token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var tokens=JSON.parse(responseBody);",
+									"postman.setGlobalVariable(“kcAccessToken”, tokens.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "fiduciary-trust-poc-apa",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "ftic_admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "FiduciaryPOC",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "53dc11cb-bf19-4600-90de-8cf9737263e9",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://sse.dev.alfrescocloud.com/auth/realms/alfresco/protocol/openid-connect/token",
+							"protocol": "https",
+							"host": [
+								"sse",
+								"dev",
+								"alfrescocloud",
+								"com"
+							],
+							"path": [
+								"auth",
+								"realms",
+								"alfresco",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get keycloak token Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var tokens=JSON.parse(responseBody);",
+									"postman.setGlobalVariable(“kcAccessToken”, tokens.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "client_id",
+									"value": "fiduciary-trust-poc-apa",
+									"type": "text"
+								},
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "ftic_admin",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "FiduciaryPOC",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "53dc11cb-bf19-4600-90de-8cf9737263e9",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://sse.dev.alfrescocloud.com/auth/realms/alfresco/protocol/openid-connect/token",
+							"protocol": "https",
+							"host": [
+								"sse",
+								"dev",
+								"alfrescocloud",
+								"com"
+							],
+							"path": [
+								"auth",
+								"realms",
+								"alfresco",
+								"protocol",
+								"openid-connect",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Start Process Instance_bearer token from Swagger",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJKQTl2Zk56ZWhRcU1GRnduMzNGaFJrU0xlTzhGNm1lb3E1amNiYzhwQmU0In0.eyJleHAiOjE2NjEzNDk1NTMsImlhdCI6MTY2MTM0OTI1MywianRpIjoiNzBkZWM3YjgtMmNmMi00NTY2LWI0MjgtOWZlNmZkMTQxNmRkIiwiaXNzIjoiaHR0cHM6Ly9zc2UuZGV2LmFsZnJlc2NvY2xvdWQuY29tL2F1dGgvcmVhbG1zL2FsZnJlc2NvIiwiYXVkIjpbInJlYWxtLW1hbmFnZW1lbnQiLCJmaWR1Y2lhcnktcmV2aWV3IiwidGVzdCIsImZ0Y2ktY2FzaC1kaXMtZm9ybSIsImN1c3RvbWVyLW9uYm9hcmRpbmctbm8tZGIiLCJhY2NvdW50Il0sInN1YiI6IjhlNDBhMmY1LTZjNTctNDg4ZS04ZGI5LTVjYWYyYTJiNDk2YyIsInR5cCI6IkJlYXJlciIsImF6cCI6ImZpZHVjaWFyeS10cnVzdC1wb2MtYXBhIiwic2Vzc2lvbl9zdGF0ZSI6ImVlODczOTE3LWUwYTktNGQ2Yy05ZGEwLWUwNDMxZTMyODdkZCIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cHM6Ly9zc2UtaW5nZXN0aW9uLmRldi5hbGZyZXNjb2Nsb3VkLmNvbSIsImh0dHA6Ly8xMjcuMC4wLjEiLCJodHRwOi8vbG9jYWxob3N0IiwiaHR0cHM6Ly9zc2UuZGV2LmFsZnJlc2NvY2xvdWQuY29tIiwiaHR0cHM6Ly9zc2UtYXBhLmRldi5hbGZyZXNjb2Nsb3VkLmNvbSIsImh0dHBzOi8vc3NlLWFwcC5kZXYuYWxmcmVzY29jbG91ZC5jb20iLCJodHRwczovL2dyZWVuLXNzZS5kZXYuYWxmcmVzY29jbG91ZC5jb20iXSwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbImRlZmF1bHQtcm9sZXMtYWxmcmVzY28iLCJBQ1RJVklUSV9NT0RFTEVSIiwib2ZmbGluZV9hY2Nlc3MiLCJBQ1RJVklUSV9ERVZPUFMiLCJBQ1RJVklUSV9JREVOVElUWSIsIkFQUExJQ0FUSU9OX01BTkFHRVIiLCJhZG1pbiIsIkFDVElWSVRJX0FETUlOIiwiQUNUSVZJVElfVVNFUiIsIkFDVElWSVRJX0FOQUxZVElDUyIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsicmVhbG0tbWFuYWdlbWVudCI6eyJyb2xlcyI6WyJtYW5hZ2UtcmVhbG0iLCJtYW5hZ2UtdXNlcnMiLCJxdWVyeS1yZWFsbXMiLCJ2aWV3LXVzZXJzIiwidmlldy1jbGllbnRzIiwibWFuYWdlLWF1dGhvcml6YXRpb24iLCJxdWVyeS1jbGllbnRzIiwibWFuYWdlLWNsaWVudHMiLCJxdWVyeS1ncm91cHMiLCJxdWVyeS11c2VycyJdfSwiZmlkdWNpYXJ5LXJldmlldyI6eyJyb2xlcyI6WyJBQ1RJVklUSV9VU0VSIiwiQUNUSVZJVElfQURNSU4iXX0sInRlc3QiOnsicm9sZXMiOlsiQUNUSVZJVElfVVNFUiIsIkFDVElWSVRJX0FETUlOIl19LCJmdGNpLWNhc2gtZGlzLWZvcm0iOnsicm9sZXMiOlsiQUNUSVZJVElfVVNFUiIsIkFDVElWSVRJX0FETUlOIl19LCJjdXN0b21lci1vbmJvYXJkaW5nLW5vLWRiIjp7InJvbGVzIjpbIkFDVElWSVRJX0FETUlOIl19LCJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiJlZTg3MzkxNy1lMGE5LTRkNmMtOWRhMC1lMDQzMWUzMjg3ZGQiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJGaWR1Y2lhcnkgQWRtaW4iLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJmdGljX2FkbWluIiwiZ2l2ZW5fbmFtZSI6IkZpZHVjaWFyeSIsImZhbWlseV9uYW1lIjoiQWRtaW4iLCJlbWFpbCI6ImZ0aWNfYWRtaW5AZXhhbXBsZS5jb20ifQ.DX8teRpVCNOy2w8R7VtmQXTJn3v_uZqqCVD7iPaMda5OHiVKjzzjoRZwcriqW_0hYVPEWtuZE9bcgin2nnOorrRHMDvWAZNE64cvkj_lYC_0SNcRdLFmhloxm3xQz8YBnysH-hn2a_oCTi4KLm8-uwZj1D7EQm6CO2azLCYnHm4YBWEXVEgHzzsnCGfXkIUK69vwNgtDfMIwKOKfTYr_pphR5TjxlvVg9XBwxdLVUhhLg4b63nbfa_tDAtkpRsfyhqGqzToVB38ISzSLPOm2q-Guf8mQRBce2jMpnqNS94zQxYAPEJNGdVIwf5snYVY7lgQHmDIsEusvHS_CDlw5Yg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "Bearer {{kcAccessToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"processDefinitionKey\": \"Process_FGPWIsqUx\",\n  \"name\": \"test_run\",\n  \"variables\": {\n    \"status\": \"Submitted\",\n    \"PriorCallbackExists\": \"yes\",\n    \"callbackAssignedTo\": null,\n     \"LOBApprover1\": null,\n\"ApproverAction\": null\n\n  },\n  \"businessKey\": \"{{process-name}}\",\n  \"payloadType\": \"StartProcessPayload\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sse.dev.alfrescocloud.com/ftci-cash-dis-form/rb/v1/process-instances",
+							"protocol": "https",
+							"host": [
+								"sse",
+								"dev",
+								"alfrescocloud",
+								"com"
+							],
+							"path": [
+								"ftci-cash-dis-form",
+								"rb",
+								"v1",
+								"process-instances"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Process Instance Variables_bearer token from Swagger",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJKQTl2Zk56ZWhRcU1GRnduMzNGaFJrU0xlTzhGNm1lb3E1amNiYzhwQmU0In0.eyJleHAiOjE2NjAwNTc4NTEsImlhdCI6MTY2MDA1Njk1MSwiYXV0aF90aW1lIjoxNjYwMDUyODg2LCJqdGkiOiIzZGQ2YjAyMi1mYzg3LTRmZTgtOTkyOC1jNTY4YzM0YTFiZTAiLCJpc3MiOiJodHRwczovL3NzZS5kZXYuYWxmcmVzY29jbG91ZC5jb20vYXV0aC9yZWFsbXMvYWxmcmVzY28iLCJhdWQiOlsicmVhbG0tbWFuYWdlbWVudCIsImZpZHVjaWFyeS1yZXZpZXciLCJ0ZXN0IiwiY3VzdG9tZXItb25ib2FyZGluZy1uby1kYiIsImFjY291bnQiXSwic3ViIjoiOGU0MGEyZjUtNmM1Ny00ODhlLThkYjktNWNhZjJhMmI0OTZjIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYWxmcmVzY28iLCJzZXNzaW9uX3N0YXRlIjoiNGU0MmY4ZDktOTJlNy00ZmJkLWFlMjgtNDVjMmY4NjIyOGI0IiwiYWNyIjoiMCIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwczovL3NzZS1pbmdlc3Rpb24uZGV2LmFsZnJlc2NvY2xvdWQuY29tIiwiaHR0cDovLzEyNy4wLjAuMSIsImh0dHA6Ly9sb2NhbGhvc3QiLCJodHRwczovL3NzZS5kZXYuYWxmcmVzY29jbG91ZC5jb20iLCJodHRwczovL3NzZS1hcGEuZGV2LmFsZnJlc2NvY2xvdWQuY29tIiwiaHR0cHM6Ly9zc2UtYXBwLmRldi5hbGZyZXNjb2Nsb3VkLmNvbSIsImh0dHBzOi8vZ3JlZW4tc3NlLmRldi5hbGZyZXNjb2Nsb3VkLmNvbSJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZGVmYXVsdC1yb2xlcy1hbGZyZXNjbyIsIkFDVElWSVRJX01PREVMRVIiLCJvZmZsaW5lX2FjY2VzcyIsIkFDVElWSVRJX0RFVk9QUyIsIkFDVElWSVRJX0lERU5USVRZIiwiQVBQTElDQVRJT05fTUFOQUdFUiIsImFkbWluIiwiQUNUSVZJVElfQURNSU4iLCJBQ1RJVklUSV9VU0VSIiwiQUNUSVZJVElfQU5BTFlUSUNTIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJyZWFsbS1tYW5hZ2VtZW50Ijp7InJvbGVzIjpbIm1hbmFnZS1yZWFsbSIsIm1hbmFnZS11c2VycyIsInF1ZXJ5LXJlYWxtcyIsInZpZXctdXNlcnMiLCJ2aWV3LWNsaWVudHMiLCJtYW5hZ2UtYXV0aG9yaXphdGlvbiIsInF1ZXJ5LWNsaWVudHMiLCJtYW5hZ2UtY2xpZW50cyIsInF1ZXJ5LWdyb3VwcyIsInF1ZXJ5LXVzZXJzIl19LCJmaWR1Y2lhcnktcmV2aWV3Ijp7InJvbGVzIjpbIkFDVElWSVRJX1VTRVIiLCJBQ1RJVklUSV9BRE1JTiJdfSwidGVzdCI6eyJyb2xlcyI6WyJBQ1RJVklUSV9VU0VSIiwiQUNUSVZJVElfQURNSU4iXX0sImN1c3RvbWVyLW9uYm9hcmRpbmctbm8tZGIiOnsicm9sZXMiOlsiQUNUSVZJVElfQURNSU4iXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIGVtYWlsIHByb2ZpbGUiLCJzaWQiOiI0ZTQyZjhkOS05MmU3LTRmYmQtYWUyOC00NWMyZjg2MjI4YjQiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJGaWR1Y2lhcnkgQWRtaW4iLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJmdGljX2FkbWluIiwiZ2l2ZW5fbmFtZSI6IkZpZHVjaWFyeSIsImZhbWlseV9uYW1lIjoiQWRtaW4iLCJlbWFpbCI6ImZ0aWNfYWRtaW5AZXhhbXBsZS5jb20ifQ.cPZK2q3fVB1283UxOjarRbH-P14XDYu82-Pger20OQk_MHAvl7BhtXSb9ieqWoe4SbU8V7h1CH2vqajvi63JAhAb458BQez2WOzFDFHoe4ehuI7l0PUqSBCNuzWDwl8-VTIskNGcynR2G-q_pPXp8kDXimYoZbzHyXGPN60JMq6gbqL1ef6hEByKlaGDEq9NimCKOMEzELg27g7T0JHAhNZ7nvvI0lSASfEss6bJD0TBYEIqsJEQ3Nk76UjkiXo58c-VmhcUf7EHmDoIzEXF6G_sMpIT_D8Y1vFfx5C8X20tGEMvbZSPsS9BNH9RJy8tswGlfuDaxdrdxOWgWfVf-g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sse-apa.dev.alfrescocloud.com/{{process-name}}/rb/v1/process-instances/{{process-instance-id}}/variables",
+							"protocol": "https",
+							"host": [
+								"sse-apa",
+								"dev",
+								"alfrescocloud",
+								"com"
+							],
+							"path": [
+								"{{process-name}}",
+								"rb",
+								"v1",
+								"process-instances",
+								"{{process-instance-id}}",
+								"variables"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set Process Instance Variables_bearer token from Swagger",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJKQTl2Zk56ZWhRcU1GRnduMzNGaFJrU0xlTzhGNm1lb3E1amNiYzhwQmU0In0.eyJleHAiOjE2NjAwNTg4MDksImlhdCI6MTY2MDA1NzkwOSwiYXV0aF90aW1lIjoxNjYwMDUyODg2LCJqdGkiOiI3MjBiM2U3Ni0yN2IwLTQ3ZjktYTQ0NC1hOTQ1MmMyYWVlY2UiLCJpc3MiOiJodHRwczovL3NzZS5kZXYuYWxmcmVzY29jbG91ZC5jb20vYXV0aC9yZWFsbXMvYWxmcmVzY28iLCJhdWQiOlsicmVhbG0tbWFuYWdlbWVudCIsImZpZHVjaWFyeS1yZXZpZXciLCJ0ZXN0IiwiY3VzdG9tZXItb25ib2FyZGluZy1uby1kYiIsImFjY291bnQiXSwic3ViIjoiOGU0MGEyZjUtNmM1Ny00ODhlLThkYjktNWNhZjJhMmI0OTZjIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiYWxmcmVzY28iLCJzZXNzaW9uX3N0YXRlIjoiNGU0MmY4ZDktOTJlNy00ZmJkLWFlMjgtNDVjMmY4NjIyOGI0IiwiYWNyIjoiMCIsImFsbG93ZWQtb3JpZ2lucyI6WyJodHRwczovL3NzZS1pbmdlc3Rpb24uZGV2LmFsZnJlc2NvY2xvdWQuY29tIiwiaHR0cDovLzEyNy4wLjAuMSIsImh0dHA6Ly9sb2NhbGhvc3QiLCJodHRwczovL3NzZS5kZXYuYWxmcmVzY29jbG91ZC5jb20iLCJodHRwczovL3NzZS1hcGEuZGV2LmFsZnJlc2NvY2xvdWQuY29tIiwiaHR0cHM6Ly9zc2UtYXBwLmRldi5hbGZyZXNjb2Nsb3VkLmNvbSIsImh0dHBzOi8vZ3JlZW4tc3NlLmRldi5hbGZyZXNjb2Nsb3VkLmNvbSJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZGVmYXVsdC1yb2xlcy1hbGZyZXNjbyIsIkFDVElWSVRJX01PREVMRVIiLCJvZmZsaW5lX2FjY2VzcyIsIkFDVElWSVRJX0RFVk9QUyIsIkFDVElWSVRJX0lERU5USVRZIiwiQVBQTElDQVRJT05fTUFOQUdFUiIsImFkbWluIiwiQUNUSVZJVElfQURNSU4iLCJBQ1RJVklUSV9VU0VSIiwiQUNUSVZJVElfQU5BTFlUSUNTIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJyZWFsbS1tYW5hZ2VtZW50Ijp7InJvbGVzIjpbIm1hbmFnZS1yZWFsbSIsIm1hbmFnZS11c2VycyIsInF1ZXJ5LXJlYWxtcyIsInZpZXctdXNlcnMiLCJ2aWV3LWNsaWVudHMiLCJtYW5hZ2UtYXV0aG9yaXphdGlvbiIsInF1ZXJ5LWNsaWVudHMiLCJtYW5hZ2UtY2xpZW50cyIsInF1ZXJ5LWdyb3VwcyIsInF1ZXJ5LXVzZXJzIl19LCJmaWR1Y2lhcnktcmV2aWV3Ijp7InJvbGVzIjpbIkFDVElWSVRJX1VTRVIiLCJBQ1RJVklUSV9BRE1JTiJdfSwidGVzdCI6eyJyb2xlcyI6WyJBQ1RJVklUSV9VU0VSIiwiQUNUSVZJVElfQURNSU4iXX0sImN1c3RvbWVyLW9uYm9hcmRpbmctbm8tZGIiOnsicm9sZXMiOlsiQUNUSVZJVElfQURNSU4iXX0sImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIGVtYWlsIHByb2ZpbGUiLCJzaWQiOiI0ZTQyZjhkOS05MmU3LTRmYmQtYWUyOC00NWMyZjg2MjI4YjQiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJGaWR1Y2lhcnkgQWRtaW4iLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJmdGljX2FkbWluIiwiZ2l2ZW5fbmFtZSI6IkZpZHVjaWFyeSIsImZhbWlseV9uYW1lIjoiQWRtaW4iLCJlbWFpbCI6ImZ0aWNfYWRtaW5AZXhhbXBsZS5jb20ifQ.DUgAC83gE0oO_F5AQeICchXf3WgYKnlp4gIaLyow1rO59Bi5mI55xfG3KrhM1QJA9Jtl-SjgY_yK6z5Z5sNNlKdiguBxlgkqgERsu8XOLsH7ca8flyRM-8ZO-AWfE7tLijxSgPnpIZQZVSYHs9jdd0HrrPkxlvU3uqLp-GqDVj-uUceSl2u6zjxL0tMTcsKGiVWgj0PlMC9hfd1k8YMyWcLhrdR1u9h85d8RmA_Irjm1Yr_mSR6bJDLPrz4S3Hkofc1HBMlmipntdO_vLlfPFRPQNgm1YasHEzZCM_WLE64upHPBK5c11ZuDX4uJSZeyeV5LDTK3ZWoLvun2X7MIkg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"processInstanceId\": \"{{process-instance-id}}\",\n  \"variables\": {\n    \"status\": \"Approved\"\n  },\n  \"payloadType\": \"SetProcessVariablesPayload\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://sse-apa.dev.alfrescocloud.com/{{process-name}}/rb/v1/process-instances/{{process-instance-id}}/variables",
+							"protocol": "https",
+							"host": [
+								"sse-apa",
+								"dev",
+								"alfrescocloud",
+								"com"
+							],
+							"path": [
+								"{{process-name}}",
+								"rb",
+								"v1",
+								"process-instances",
+								"{{process-instance-id}}",
+								"variables"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Variables",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://sse-apa.dev.alfrescocloud.com/v1/process-instances/96b2ca13-22e8-11ed-9b24-6a251b7f9baf/variables",
+							"protocol": "https",
+							"host": [
+								"sse-apa",
+								"dev",
+								"alfrescocloud",
+								"com"
+							],
+							"path": [
+								"v1",
+								"process-instances",
+								"96b2ca13-22e8-11ed-9b24-6a251b7f9baf",
+								"variables"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "oauth2",
+				"oauth2": [
+					{
+						"key": "useBrowser",
+						"value": true,
+						"type": "boolean"
+					},
+					{
+						"key": "redirect_uri",
+						"value": "",
+						"type": "string"
+					},
+					{
+						"key": "authUrl",
+						"value": "https://sse.dev.alfrescocloud.com/auth/realms/alfresco/protocol/openid-connect/auth",
+						"type": "string"
+					},
+					{
+						"key": "grant_type",
+						"value": "implicit",
+						"type": "string"
+					},
+					{
+						"key": "accessTokenUrl",
+						"value": "{{hostname}}/auth/realms/alfresco/protocol/openid-connect/token",
+						"type": "string"
+					},
+					{
+						"key": "clientSecret",
+						"value": "{{oauth-apa-client-secret}}",
+						"type": "string"
+					},
+					{
+						"key": "clientId",
+						"value": "{{oauth-apa-client-id}}",
+						"type": "string"
+					},
+					{
+						"key": "scope",
+						"value": "openid",
+						"type": "string"
+					},
+					{
+						"key": "tokenName",
+						"value": "Alfresco APA FTCI Token",
+						"type": "string"
+					},
+					{
+						"key": "addTokenTo",
+						"value": "header",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}

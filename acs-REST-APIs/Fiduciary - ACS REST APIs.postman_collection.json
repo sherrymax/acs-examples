@@ -1,0 +1,5964 @@
+{
+	"info": {
+		"_postman_id": "c8aa37df-3489-42c5-bc33-244742fb461a",
+		"name": "Fiduciary - ACS REST APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2755505"
+	},
+	"item": [
+		{
+			"name": ".Authentication",
+			"item": [
+				{
+					"name": "Authenticate for Ticket : OAuth",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": {\n    \"query\": \"'OVERHAUL TRANSMISSION'\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/search/versions/1/search",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"search",
+								"versions",
+								"1",
+								"search"
+							]
+						},
+						"description": "Alfresco Identity Service is implemented on top of [JBoss Keycloak](https://www.keycloak.org/), which is both an Identity Provider (IdP) and a token issuer for OAuth 2 tokens. Keycloak deals with authentication, safety password storage, SSO, two factor authentication etc. Keycloak supports protocols such as OpenID Connect and SAML. Keycloak can store the user data in a variety of places, such as LDAP, Active Directory, and RDBMS."
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate for Ticket : Basic Auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"postman.setGlobalVariable('ticket', JSON.parse(responseBody).entry.id);",
+									"",
+									"",
+									"var CryptoJS = require(\"crypto-js\");",
+									"",
+									"//When we have the ticket we need to base64 encode it before we can use it in subsequent calls",
+									"// var responseTicket = 'TICKET_9b07ac0bc920d5b2f643cf71acc0853d3d5628f8'",
+									"",
+									"var responseTicket = pm.globals.get('ticket'); ",
+									"",
+									"var rawTicket = CryptoJS.enc.Utf8.parse(responseTicket);",
+									"var encodedTicket = CryptoJS.enc.Base64.stringify(rawTicket);",
+									"console.log(`Encrypted Ticket: ${encodedTicket}`);",
+									"",
+									"// pm.environment.set(\"authorizationHeader\", \"Basic \"+encodedTicket);",
+									"postman.setGlobalVariable('authorizationHeader', \"Basic \"+encodedTicket);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"userId\":\"ftic_admin\",\"password\":\"FiduciaryPOC\"}"
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/authentication/versions/1/tickets",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"authentication",
+								"versions",
+								"1",
+								"tickets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate for Ticket : Basic Auth Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"postman.setGlobalVariable('ticket', JSON.parse(responseBody).entry.id);",
+									"",
+									"",
+									"var CryptoJS = require(\"crypto-js\");",
+									"",
+									"//When we have the ticket we need to base64 encode it before we can use it in subsequent calls",
+									"// var responseTicket = 'TICKET_9b07ac0bc920d5b2f643cf71acc0853d3d5628f8'",
+									"",
+									"var responseTicket = pm.globals.get('ticket'); ",
+									"",
+									"var rawTicket = CryptoJS.enc.Utf8.parse(responseTicket);",
+									"var encodedTicket = CryptoJS.enc.Base64.stringify(rawTicket);",
+									"console.log(`Encrypted Ticket: ${encodedTicket}`);",
+									"",
+									"// pm.environment.set(\"authorizationHeader\", \"Basic \"+encodedTicket);",
+									"postman.setGlobalVariable('authorizationHeader', \"Basic \"+encodedTicket);",
+									"console.log(`Authorization Header: `, pm.globals.get('authorizationHeader'));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"userId\":\"demo\",\"password\":\"demo\"}"
+						},
+						"url": {
+							"raw": "http://18.232.90.22/alfresco/api/-default-/public/authentication/versions/1/tickets",
+							"protocol": "http",
+							"host": [
+								"18",
+								"232",
+								"90",
+								"22"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"authentication",
+								"versions",
+								"1",
+								"tickets"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "1. Sites",
+			"item": [
+				{
+					"name": "1a. Generic Site Actions",
+					"item": [
+						{
+							"name": "Create public site",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"postman.setGlobalVariable('site-guid', JSON.parse(responseBody).entry.guid);",
+											"postman.setGlobalVariable('site-id', JSON.parse(responseBody).entry.id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"content-type": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept-Encoding",
+										"value": "*",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"Jango Documents\",\n  \"description\": \"Site created for my jango documents\",\n  \"visibility\": \"PUBLIC\"\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/sites",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"sites"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List all public sites",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"content-type": true
+								}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept-Encoding",
+										"value": "*",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/sites",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"sites"
+									]
+								},
+								"description": "Append with {{site-id}} for details on a specific site.\n\neg : {{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/sites/{{site-id}}"
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve document library",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									}
+								],
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/sites/{{site-id}}/containers/documentLibrary",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"sites",
+										"{{site-id}}",
+										"containers",
+										"documentLibrary"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve all contents in a Site",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n \"query\": {\n \"language\": \"afts\",\n \"query\": \"ANCESTOR:\\\"workspace://SpacesStore/{{site-guid}}\\\"\"\n }\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/search/versions/1/search",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"search",
+										"versions",
+										"1",
+										"search"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "oauth2",
+						"oauth2": [
+							{
+								"key": "addTokenTo",
+								"value": "header",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "1b. Site Membership",
+					"item": [
+						{
+							"name": "User",
+							"item": [
+								{
+									"name": "List User members of Site",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{authorizationHeader}}"
+											}
+										],
+										"url": {
+											"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/sites/{{site-id}}/members",
+											"host": [
+												"{{hostname}}"
+											],
+											"path": [
+												"alfresco",
+												"api",
+												"-default-",
+												"public",
+												"alfresco",
+												"versions",
+												"1",
+												"sites",
+												"{{site-id}}",
+												"members"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Add User to Site",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{authorizationHeader}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "[\n  {\n    \"role\": \"SiteConsumer\",\n    \"id\": \"{{person-id}}\"\n  }\n]"
+										},
+										"url": {
+											"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/sites/{{site-id}}/members",
+											"host": [
+												"{{hostname}}"
+											],
+											"path": [
+												"alfresco",
+												"api",
+												"-default-",
+												"public",
+												"alfresco",
+												"versions",
+												"1",
+												"sites",
+												"{{site-id}}",
+												"members"
+											]
+										},
+										"description": "You can set the **role** to one of four types:\n\n*   SiteConsumer\n*   SiteCollaborator\n*   SiteContributor\n*   SiteManager"
+									},
+									"response": []
+								},
+								{
+									"name": "Update User Role in Site",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{authorizationHeader}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"role\": \"SiteManager\"\n}"
+										},
+										"url": {
+											"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/sites/{{site-id}}/members/{{person-id}}",
+											"host": [
+												"{{hostname}}"
+											],
+											"path": [
+												"alfresco",
+												"api",
+												"-default-",
+												"public",
+												"alfresco",
+												"versions",
+												"1",
+												"sites",
+												"{{site-id}}",
+												"members",
+												"{{person-id}}"
+											]
+										},
+										"description": "Roles :  \nSiteManager  \nSiteContributor  \nSiteCollaborator  \nSiteConsumer"
+									},
+									"response": []
+								},
+								{
+									"name": "Delete User from Site",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{authorizationHeader}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/sites/{{site-id}}/members/{{person-id}}",
+											"host": [
+												"{{hostname}}"
+											],
+											"path": [
+												"alfresco",
+												"api",
+												"-default-",
+												"public",
+												"alfresco",
+												"versions",
+												"1",
+												"sites",
+												"{{site-id}}",
+												"members",
+												"{{person-id}}"
+											]
+										},
+										"description": "Roles :  \nSiteManager  \nSiteContributor  \nSiteCollaborator  \nSiteConsumer"
+									},
+									"response": []
+								},
+								{
+									"name": "Get details on User membership",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{authorizationHeader}}"
+											}
+										],
+										"url": {
+											"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/sites/{{site-id}}/members/{{person-id}}",
+											"host": [
+												"{{hostname}}"
+											],
+											"path": [
+												"alfresco",
+												"api",
+												"-default-",
+												"public",
+												"alfresco",
+												"versions",
+												"1",
+												"sites",
+												"{{site-id}}",
+												"members",
+												"{{person-id}}"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"auth": {
+								"type": "oauth2",
+								"oauth2": [
+									{
+										"key": "addTokenTo",
+										"value": "header",
+										"type": "string"
+									}
+								]
+							},
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							]
+						},
+						{
+							"name": "Group",
+							"item": [
+								{
+									"name": "List Group members of Site",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{authorizationHeader}}"
+											}
+										],
+										"url": {
+											"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/sites/{{site-id}}/group-members",
+											"host": [
+												"{{hostname}}"
+											],
+											"path": [
+												"alfresco",
+												"api",
+												"-default-",
+												"public",
+												"alfresco",
+												"versions",
+												"1",
+												"sites",
+												"{{site-id}}",
+												"group-members"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Add Group to Site",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{authorizationHeader}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"role\": \"SiteConsumer\",\n  \"id\": \"{{group-id}}\"\n}"
+										},
+										"url": {
+											"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/sites/{{site-id}}/group-members",
+											"host": [
+												"{{hostname}}"
+											],
+											"path": [
+												"alfresco",
+												"api",
+												"-default-",
+												"public",
+												"alfresco",
+												"versions",
+												"1",
+												"sites",
+												"{{site-id}}",
+												"group-members"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Group Role in Site",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{authorizationHeader}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"role\": \"SiteManager\"\n}"
+										},
+										"url": {
+											"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/sites/{{site-id}}/group-members/{{group-id}}",
+											"host": [
+												"{{hostname}}"
+											],
+											"path": [
+												"alfresco",
+												"api",
+												"-default-",
+												"public",
+												"alfresco",
+												"versions",
+												"1",
+												"sites",
+												"{{site-id}}",
+												"group-members",
+												"{{group-id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Group from Site",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{authorizationHeader}}"
+											}
+										],
+										"url": {
+											"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/sites/{{site-id}}/group-members/{{group-id}}",
+											"host": [
+												"{{hostname}}"
+											],
+											"path": [
+												"alfresco",
+												"api",
+												"-default-",
+												"public",
+												"alfresco",
+												"versions",
+												"1",
+												"sites",
+												"{{site-id}}",
+												"group-members",
+												"{{group-id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get details on Group membership",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "{{authorizationHeader}}"
+											}
+										],
+										"url": {
+											"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/sites/{{site-id}}/group-members/{{group-id}}",
+											"host": [
+												"{{hostname}}"
+											],
+											"path": [
+												"alfresco",
+												"api",
+												"-default-",
+												"public",
+												"alfresco",
+												"versions",
+												"1",
+												"sites",
+												"{{site-id}}",
+												"group-members",
+												"{{group-id}}"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"auth": {
+								"type": "oauth2",
+								"oauth2": [
+									{
+										"key": "addTokenTo",
+										"value": "header",
+										"type": "string"
+									}
+								]
+							},
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								}
+							]
+						}
+					],
+					"auth": {
+						"type": "oauth2",
+						"oauth2": [
+							{
+								"key": "addTokenTo",
+								"value": "header",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "oauth2",
+				"oauth2": [
+					{
+						"key": "accessTokenUrl",
+						"value": "{{hostname}}/auth/realms/alfresco/protocol/openid-connect/token",
+						"type": "string"
+					},
+					{
+						"key": "clientSecret",
+						"value": "{{oauth-client-secret}}",
+						"type": "string"
+					},
+					{
+						"key": "clientId",
+						"value": "{{oauth-client-id}}",
+						"type": "string"
+					},
+					{
+						"key": "tokenName",
+						"value": "Alfresco PaaS FTCI Token",
+						"type": "string"
+					},
+					{
+						"key": "challengeAlgorithm",
+						"value": "S256",
+						"type": "string"
+					},
+					{
+						"key": "scope",
+						"value": "openid",
+						"type": "string"
+					},
+					{
+						"key": "redirect_uri",
+						"value": "https://apiqa.ent.lolcentral.com",
+						"type": "string"
+					},
+					{
+						"key": "grant_type",
+						"value": "client_credentials",
+						"type": "string"
+					},
+					{
+						"key": "authUrl",
+						"value": "https://apiqa.ent.lolcentral.com/login/oauth/authorize",
+						"type": "string"
+					},
+					{
+						"key": "addTokenTo",
+						"value": "header",
+						"type": "string"
+					},
+					{
+						"key": "client_authentication",
+						"value": "header",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "2. User/Group Management",
+			"item": [
+				{
+					"name": "2a. User",
+					"item": [
+						{
+							"name": "User : Create User",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"jdoe\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"jdoe\",\n  \"skypeId\": \"johndoe_skype\",\n  \"jobTitle\": \"Software Engineer\"\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/people",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"people"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User : List Users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/people",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"people"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User : Find User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// postman.setGlobalVariable('person-id', JSON.parse(responseBody).entry.id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									}
+								],
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/queries/people?term=ftci",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"queries",
+										"people"
+									],
+									"query": [
+										{
+											"key": "term",
+											"value": "ftci"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User : Get User Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									}
+								],
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/people/{{person-id}}",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"people",
+										"{{person-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User : List all sites that User has membership",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/people/{{person-id}}/sites",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"people",
+										"{{person-id}}",
+										"sites"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User : Update User Details",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"firstName\": \"Robert\",\n  \"mobile\": \"+1-407-630-1025\"\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/people/rwilds",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"people",
+										"rwilds"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User : Change User Password",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"oldPassword\": \"jdoe\",\n  \"password\": \"my-new-password\"\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/people/jdoe",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"people",
+										"jdoe"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User : Disable User",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"enabled\": false\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/people/jdoe",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"people",
+										"jdoe"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "oauth2",
+						"oauth2": [
+							{
+								"key": "addTokenTo",
+								"value": "header",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "2b. Group",
+					"item": [
+						{
+							"name": "Group : List all Groups",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									}
+								],
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/groups",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"groups"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Group : Create Group",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"ftci-group\",\n  \"displayName\": \"FTCI Group\"\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/groups",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"groups"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Group : List Members of a Group",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									}
+								],
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/groups/{{group-id}}/members",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"groups",
+										"{{group-id}}",
+										"members"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Group : Add Member to a Group",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"smathews\",\n  \"displayName\": \"Sherry Mathews\",\n  \"memberType\": \"PERSON\"\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/groups/{{group-id}}/members",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"groups",
+										"{{group-id}}",
+										"members"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Group : Delete Member from a Group",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/groups/{{group-id}}/members/{{group-member-id}}",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"groups",
+										"{{group-id}}",
+										"members",
+										"{{group-member-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Group : Add SubGroup to a Group",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"GROUP_ftic-poa-review-SERVICE-GROUP\",\n  \"displayName\": \"FTCI POA Review Group\",\n  \"memberType\": \"GROUP\"\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/groups/{{group-id}}/members",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"groups",
+										"{{group-id}}",
+										"members"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Group : Delete SubGroup from a Group",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/groups/{{group-id}}/members/{{subgroup-member-id}}",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"groups",
+										"{{group-id}}",
+										"members",
+										"{{subgroup-member-id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "oauth2",
+						"oauth2": [
+							{
+								"key": "addTokenTo",
+								"value": "header",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "3. Files/Folders",
+			"item": [
+				{
+					"name": "3a. Files",
+					"item": [
+						{
+							"name": "File : Create an empty File",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"postman.setGlobalVariable('node-id', JSON.parse(responseBody).entry.id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"my-file.pdf\",\n    \"nodeType\": \"cm:content\",\n  \t\"properties\": {\n    \t\"cm:title\": \"The Title\"\n  \t}\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{siteContainerId}}/children",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{siteContainerId}}",
+										"children"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "File : Delete a File and move to TrashCan",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}?permanent=false",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{node-id}}"
+									],
+									"query": [
+										{
+											"key": "permanent",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "File : Upload file to Folder",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"postman.setGlobalVariable('node-id', JSON.parse(responseBody).entry.id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "filedata",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "cm:description",
+											"value": "Updating Content",
+											"type": "text"
+										},
+										{
+											"key": "cm:autoVersionOnUpdateProps",
+											"value": "false",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{folder-node-id}}/children",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{folder-node-id}}",
+										"children"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "File : Upload file to Site Container (DocLib)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "filedata",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "cm:description",
+											"value": "Updating Content",
+											"type": "text"
+										},
+										{
+											"key": "cm:autoVersionOnUpdateProps",
+											"value": "false",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{siteContainerId}}/children",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{siteContainerId}}",
+										"children"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "File : Get Renditions of a File",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}/renditions",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{node-id}}",
+										"renditions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "File : Preview (Thumbnail) of a File",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}/renditions/{{rendition-id}}/content",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{node-id}}",
+										"renditions",
+										"{{rendition-id}}",
+										"content"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "File : Download File",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}/content",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{node-id}}",
+										"content"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "File : Rename File",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"properties\":\n   {\n       \"cm:name\": \"007 My Invoice File.pdf\"\n   }\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{node-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "File : Update File (Form Data)",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"content-type": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/octet-stream"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "filedata",
+											"description": "propertipes.",
+											"type": "file",
+											"src": "/Users/sherrymathews/Documents/Sample Attachments/Apple-Best-Fruit.pdf"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}/content?majorVersion=true",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{node-id}}",
+										"content"
+									],
+									"query": [
+										{
+											"key": "majorVersion",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "File : Copy File",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"targetParentId\": \"{{target-folder-id}}\"\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}/copy",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{node-id}}",
+										"copy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "File : Move File",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"targetParentId\": \"{{target-folder-id}}\"\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}/move",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{node-id}}",
+										"move"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "File : Share File",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var hostname = pm.globals.get('hostname')",
+											"postman.setGlobalVariable('shared-id', JSON.parse(responseBody).entry.id);",
+											"postman.setGlobalVariable('shared-url', hostname+'/share/s/'+JSON.parse(responseBody).entry.id);",
+											"console.log('Shared URL = '+pm.globals.get('shared-url'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nodeId\": \"{{node-id}}\",\n    \"expiresAt\": \"2022-08-15T23:00:00.000+0000\"\n  }"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/shared-links",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"shared-links"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "File : Remove Sharing of File",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/shared-links/{{shared-id}}",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"shared-links",
+										"{{shared-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "File : Get Share Link",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var hostname = pm.globals.get('hostname')",
+											"postman.setGlobalVariable('shared-id', JSON.parse(responseBody).entry.id);",
+											"postman.setGlobalVariable('shared-url', hostname+'/share/s/'+JSON.parse(responseBody).entry.id);",
+											"console.log('Shared URL = '+pm.globals.get('shared-url'));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/shared-links/{{shared-id}}",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"shared-links",
+										"{{shared-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "File : Create a new version",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/octet-stream"
+									}
+								],
+								"body": {
+									"mode": "file",
+									"file": {
+										"src": ""
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}/content",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{node-id}}",
+										"content"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "File : Version History",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}/versions",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{node-id}}",
+										"versions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get File Metadata Properties",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}?include=aspectNames,properties",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{node-id}}"
+									],
+									"query": [
+										{
+											"key": "include",
+											"value": "aspectNames,properties"
+										}
+									]
+								},
+								"description": "**Note:** this endpoint is available in Alfresco 5.2 and newer versions.\n\nUpdates the node **nodeId**. For example, you can rename a file or folder:\n\n``` json\n{\n  \"name\":\"My new name\"\n}\n\n```\n\nYou can also set or update one or more properties:\n\n``` json\n{\n  \"properties\":\n  {\n    \"cm:title\":\"Folder title\"\n  }\n}\n\n```\n\nYou can update multi-value properties of a node which supports properties of type multiple.\n\n``` json\n{\n \"name\":\"My Other Folder\",\n \"nodeType\":\"custom:destination\",\n \"properties\":\n {\n   \"cm:title\":\"Folder title\",\n   \"cm:description\":\"This is an important folder\",\n   \"custom:locations\": [\n                        \"location NewX\",\n                        \"location NewY\"\n                       ]\n }\n}\n\n```\n\n**Note:** setting properties of type d:content and d:category are not supported.\n\n**Note:** if you want to add or remove aspects, then you must use **GET /nodes/{nodeId}** first to get the complete set of *aspectNames*.\n\nYou can add (or remove) *locallySet* permissions, if any, in addition to any inherited permissions.  \nYou can also optionally disable (or re-enable) inherited permissions via *isInheritanceEnabled* flag:\n\n``` json\n{\n  \"permissions\":\n    {\n      \"isInheritanceEnabled\": false,\n      \"locallySet\":\n        [\n          {\"authorityId\": \"GROUP_special\", \"name\": \"Read\", \"accessStatus\":\"DENIED\"},\n          {\"authorityId\": \"testuser\", \"name\": \"Contributor\", \"accessStatus\":\"ALLOWED\"}\n        ]\n    }\n}\n\n```\n\n**Note:** if you want to add or remove locally set permissions then you must use **GET /nodes/{nodeId}** first to get the complete set of *locallySet* permissions.\n\n**Note:** Currently there is no optimistic locking for updates, so they are applied in \"last one wins\" order."
+							},
+							"response": []
+						},
+						{
+							"name": "Update File Metadata Properties",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"properties\":\n   {\n       \"cm:description\": \"Alfresco Demo\"\n   }\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{node-id}}"
+									]
+								},
+								"description": "**Note:** this endpoint is available in Alfresco 5.2 and newer versions.\n\nUpdates the node **nodeId**. For example, you can rename a file or folder:\n\n``` json\n{\n  \"name\":\"My new name\"\n}\n\n```\n\nYou can also set or update one or more properties:\n\n``` json\n{\n  \"properties\":\n  {\n    \"cm:title\":\"Folder title\"\n  }\n}\n\n```\n\nYou can update multi-value properties of a node which supports properties of type multiple.\n\n``` json\n{\n \"name\":\"My Other Folder\",\n \"nodeType\":\"custom:destination\",\n \"properties\":\n {\n   \"cm:title\":\"Folder title\",\n   \"cm:description\":\"This is an important folder\",\n   \"custom:locations\": [\n                        \"location NewX\",\n                        \"location NewY\"\n                       ]\n }\n}\n\n```\n\n**Note:** setting properties of type d:content and d:category are not supported.\n\n**Note:** if you want to add or remove aspects, then you must use **GET /nodes/{nodeId}** first to get the complete set of *aspectNames*.\n\nYou can add (or remove) *locallySet* permissions, if any, in addition to any inherited permissions.  \nYou can also optionally disable (or re-enable) inherited permissions via *isInheritanceEnabled* flag:\n\n``` json\n{\n  \"permissions\":\n    {\n      \"isInheritanceEnabled\": false,\n      \"locallySet\":\n        [\n          {\"authorityId\": \"GROUP_special\", \"name\": \"Read\", \"accessStatus\":\"DENIED\"},\n          {\"authorityId\": \"testuser\", \"name\": \"Contributor\", \"accessStatus\":\"ALLOWED\"}\n        ]\n    }\n}\n\n```\n\n**Note:** if you want to add or remove locally set permissions then you must use **GET /nodes/{nodeId}** first to get the complete set of *locallySet* permissions.\n\n**Note:** Currently there is no optimistic locking for updates, so they are applied in \"last one wins\" order."
+							},
+							"response": []
+						},
+						{
+							"name": "Update File Content (Binary)",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/octet-stream"
+									}
+								],
+								"body": {
+									"mode": "file",
+									"file": {
+										"src": ""
+									}
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}/content?majorVersion=true",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{node-id}}",
+										"content"
+									],
+									"query": [
+										{
+											"key": "majorVersion",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update File Content (Form Data)",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"content-type": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/octet-stream"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "filedata",
+											"type": "file",
+											"src": "/Users/sherrymathews/Documents/Sample Attachments/2018 AGA Report.pdf"
+										},
+										{
+											"key": "cm:description",
+											"value": "Testing 1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}/content?majorVersion=true",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{node-id}}",
+										"content"
+									],
+									"query": [
+										{
+											"key": "majorVersion",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update File Content (Text)",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "text/plain"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "What is Lorem Ipsum?\n\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}/content",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{node-id}}",
+										"content"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List Renditions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}/renditions",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{node-id}}",
+										"renditions"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Rendition Info",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}/renditions/{{rendition-id}}",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{node-id}}",
+										"renditions",
+										"{{rendition-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Rendition Content",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}/renditions/{{rendition-id}}/content",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{node-id}}",
+										"renditions",
+										"{{rendition-id}}",
+										"content"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Direct Access URL of File (Pending Test)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"attachment\": true\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes​/​{{node-id}}/request-direct-access-url",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes​",
+										"​{{node-id}}",
+										"request-direct-access-url"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get File Properties (Metadata)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{node-id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "oauth2",
+						"oauth2": [
+							{
+								"key": "clientSecret",
+								"value": "{{oauth-client-secret}}",
+								"type": "string"
+							},
+							{
+								"key": "clientId",
+								"value": "{{oauth-client-id}}",
+								"type": "string"
+							},
+							{
+								"key": "accessTokenUrl",
+								"value": "{{hostname}}/auth/realms/alfresco/protocol/openid-connect/token",
+								"type": "string"
+							},
+							{
+								"key": "tokenName",
+								"value": "Alfresco PaaS FTCI Token",
+								"type": "string"
+							},
+							{
+								"key": "challengeAlgorithm",
+								"value": "S256",
+								"type": "string"
+							},
+							{
+								"key": "scope",
+								"value": "openid",
+								"type": "string"
+							},
+							{
+								"key": "redirect_uri",
+								"value": "https://apiqa.ent.lolcentral.com",
+								"type": "string"
+							},
+							{
+								"key": "grant_type",
+								"value": "client_credentials",
+								"type": "string"
+							},
+							{
+								"key": "authUrl",
+								"value": "https://apiqa.ent.lolcentral.com/login/oauth/authorize",
+								"type": "string"
+							},
+							{
+								"key": "addTokenTo",
+								"value": "header",
+								"type": "string"
+							},
+							{
+								"key": "client_authentication",
+								"value": "header",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "3b. Folders",
+					"item": [
+						{
+							"name": "Folder : Create Folder",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"postman.setGlobalVariable('folder-node-id', JSON.parse(responseBody).entry.id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\":\"Receipts\",\n  \"nodeType\":\"cm:folder\"\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{siteContainerId}}/children",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{siteContainerId}}",
+										"children"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Folder : Create Multiple Folders",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[{\n    \"name\": \"F11\",\n    \"nodeType\": \"cm:folder\",\n    \"relativePath\": \"F1\"\n},\n{\n    \"name\": \"F12\",\n    \"nodeType\": \"cm:folder\",\n    \"relativePath\": \"F1\"\n},\n{\n    \"name\": \"F111\",\n    \"nodeType\": \"cm:folder\",\n    \"relativePath\": \"F1/F11\"\n},\n{\n    \"name\": \"F112\",\n    \"nodeType\": \"cm:folder\",\n    \"relativePath\": \"F1/F11\"\n},\n{\n    \"name\": \"F121\",\n    \"nodeType\": \"cm:folder\",\n    \"relativePath\": \"F1/F12\"\n},\n{\n    \"name\": \"F122\",\n    \"nodeType\": \"cm:folder\",\n    \"relativePath\": \"F1/F12\"\n}\n]"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{siteContainerId}}/children",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{siteContainerId}}",
+										"children"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Folder : Delete Folder and move to TrashCan Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{folder-node-id}}?permanent=false",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{folder-node-id}}"
+									],
+									"query": [
+										{
+											"key": "permanent",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Folder : Download Folder (Step 1 of 2)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"postman.setGlobalVariable('download-id', JSON.parse(responseBody).entry.id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nodeIds\":\n     [\n       \"{{folder-node-id}}\"\n     ]\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/downloads",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"downloads"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Folder : Download Folder (Step 2 of 2)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{download-id}}/content",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{download-id}}",
+										"content"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Folder : Rename Folder",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"properties\":\n   {\n       \"cm:name\": \"II Invoices II\"\n   }\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{folder-node-id}}",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{folder-node-id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Folder : Copy Folder",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"targetParentId\": \"{{target-folder-id}}\"\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{folder-node-id}}/copy",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{folder-node-id}}",
+										"copy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Folder : Move Folder",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"targetParentId\": \"{{target-folder-id}}\"\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{folder-node-id}}/move",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{folder-node-id}}",
+										"move"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve Children of a Folder (All Levels)",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n \"query\": {\n \"language\": \"afts\",\n \"query\": \"ANCESTOR:\\\"workspace://SpacesStore/{{folder-node-id}}\\\"\"\n }\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/search/versions/1/search",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"search",
+										"versions",
+										"1",
+										"search"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve Children of a Folder (First Level)",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									}
+								],
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{folder-node-id}}/children",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{folder-node-id}}",
+										"children"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Folder : Upload Folder to Site Container (DocLib)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "filedata",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "cm:description",
+											"value": "Updating Content",
+											"type": "text"
+										},
+										{
+											"key": "cm:autoVersionOnUpdateProps",
+											"value": "false",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{siteContainerId}}/children",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{siteContainerId}}",
+										"children"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Folder : Get Metadata Properties",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{folder-node-id}}?include=aspectNames,properties",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{folder-node-id}}"
+									],
+									"query": [
+										{
+											"key": "include",
+											"value": "aspectNames,properties"
+										}
+									]
+								},
+								"description": "**Note:** this endpoint is available in Alfresco 5.2 and newer versions.\n\nUpdates the node **nodeId**. For example, you can rename a file or folder:\n\n``` json\n{\n  \"name\":\"My new name\"\n}\n\n```\n\nYou can also set or update one or more properties:\n\n``` json\n{\n  \"properties\":\n  {\n    \"cm:title\":\"Folder title\"\n  }\n}\n\n```\n\nYou can update multi-value properties of a node which supports properties of type multiple.\n\n``` json\n{\n \"name\":\"My Other Folder\",\n \"nodeType\":\"custom:destination\",\n \"properties\":\n {\n   \"cm:title\":\"Folder title\",\n   \"cm:description\":\"This is an important folder\",\n   \"custom:locations\": [\n                        \"location NewX\",\n                        \"location NewY\"\n                       ]\n }\n}\n\n```\n\n**Note:** setting properties of type d:content and d:category are not supported.\n\n**Note:** if you want to add or remove aspects, then you must use **GET /nodes/{nodeId}** first to get the complete set of *aspectNames*.\n\nYou can add (or remove) *locallySet* permissions, if any, in addition to any inherited permissions.  \nYou can also optionally disable (or re-enable) inherited permissions via *isInheritanceEnabled* flag:\n\n``` json\n{\n  \"permissions\":\n    {\n      \"isInheritanceEnabled\": false,\n      \"locallySet\":\n        [\n          {\"authorityId\": \"GROUP_special\", \"name\": \"Read\", \"accessStatus\":\"DENIED\"},\n          {\"authorityId\": \"testuser\", \"name\": \"Contributor\", \"accessStatus\":\"ALLOWED\"}\n        ]\n    }\n}\n\n```\n\n**Note:** if you want to add or remove locally set permissions then you must use **GET /nodes/{nodeId}** first to get the complete set of *locallySet* permissions.\n\n**Note:** Currently there is no optimistic locking for updates, so they are applied in \"last one wins\" order."
+							},
+							"response": []
+						},
+						{
+							"name": "Folder : Update Metadata Properties",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authorizationHeader}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \"properties\":\n   {\n       \"inv:VendorName\": \"Alfresco Demo II\"\n   }\n}"
+								},
+								"url": {
+									"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{folder-node-id}}",
+									"host": [
+										"{{hostname}}"
+									],
+									"path": [
+										"alfresco",
+										"api",
+										"-default-",
+										"public",
+										"alfresco",
+										"versions",
+										"1",
+										"nodes",
+										"{{folder-node-id}}"
+									]
+								},
+								"description": "**Note:** this endpoint is available in Alfresco 5.2 and newer versions.\n\nUpdates the node **nodeId**. For example, you can rename a file or folder:\n\n``` json\n{\n  \"name\":\"My new name\"\n}\n\n```\n\nYou can also set or update one or more properties:\n\n``` json\n{\n  \"properties\":\n  {\n    \"cm:title\":\"Folder title\"\n  }\n}\n\n```\n\nYou can update multi-value properties of a node which supports properties of type multiple.\n\n``` json\n{\n \"name\":\"My Other Folder\",\n \"nodeType\":\"custom:destination\",\n \"properties\":\n {\n   \"cm:title\":\"Folder title\",\n   \"cm:description\":\"This is an important folder\",\n   \"custom:locations\": [\n                        \"location NewX\",\n                        \"location NewY\"\n                       ]\n }\n}\n\n```\n\n**Note:** setting properties of type d:content and d:category are not supported.\n\n**Note:** if you want to add or remove aspects, then you must use **GET /nodes/{nodeId}** first to get the complete set of *aspectNames*.\n\nYou can add (or remove) *locallySet* permissions, if any, in addition to any inherited permissions.  \nYou can also optionally disable (or re-enable) inherited permissions via *isInheritanceEnabled* flag:\n\n``` json\n{\n  \"permissions\":\n    {\n      \"isInheritanceEnabled\": false,\n      \"locallySet\":\n        [\n          {\"authorityId\": \"GROUP_special\", \"name\": \"Read\", \"accessStatus\":\"DENIED\"},\n          {\"authorityId\": \"testuser\", \"name\": \"Contributor\", \"accessStatus\":\"ALLOWED\"}\n        ]\n    }\n}\n\n```\n\n**Note:** if you want to add or remove locally set permissions then you must use **GET /nodes/{nodeId}** first to get the complete set of *locallySet* permissions.\n\n**Note:** Currently there is no optimistic locking for updates, so they are applied in \"last one wins\" order."
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "oauth2",
+						"oauth2": [
+							{
+								"key": "clientSecret",
+								"value": "{{oauth-client-secret}}",
+								"type": "string"
+							},
+							{
+								"key": "clientId",
+								"value": "{{oauth-client-id}}",
+								"type": "string"
+							},
+							{
+								"key": "accessTokenUrl",
+								"value": "{{hostname}}/auth/realms/alfresco/protocol/openid-connect/token",
+								"type": "string"
+							},
+							{
+								"key": "tokenName",
+								"value": "Alfresco PaaS FTCI Token",
+								"type": "string"
+							},
+							{
+								"key": "challengeAlgorithm",
+								"value": "S256",
+								"type": "string"
+							},
+							{
+								"key": "scope",
+								"value": "openid",
+								"type": "string"
+							},
+							{
+								"key": "redirect_uri",
+								"value": "https://apiqa.ent.lolcentral.com",
+								"type": "string"
+							},
+							{
+								"key": "grant_type",
+								"value": "client_credentials",
+								"type": "string"
+							},
+							{
+								"key": "authUrl",
+								"value": "https://apiqa.ent.lolcentral.com/login/oauth/authorize",
+								"type": "string"
+							},
+							{
+								"key": "addTokenTo",
+								"value": "header",
+								"type": "string"
+							},
+							{
+								"key": "client_authentication",
+								"value": "header",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "oauth2",
+				"oauth2": [
+					{
+						"key": "accessTokenUrl",
+						"value": "{{hostname}}/auth/realms/alfresco/protocol/openid-connect/token",
+						"type": "string"
+					},
+					{
+						"key": "clientSecret",
+						"value": "{{oauth-client-secret}}",
+						"type": "string"
+					},
+					{
+						"key": "clientId",
+						"value": "{{oauth-client-id}}",
+						"type": "string"
+					},
+					{
+						"key": "tokenName",
+						"value": "Alfresco PaaS FTCI Token",
+						"type": "string"
+					},
+					{
+						"key": "challengeAlgorithm",
+						"value": "S256",
+						"type": "string"
+					},
+					{
+						"key": "scope",
+						"value": "openid",
+						"type": "string"
+					},
+					{
+						"key": "redirect_uri",
+						"value": "https://apiqa.ent.lolcentral.com",
+						"type": "string"
+					},
+					{
+						"key": "grant_type",
+						"value": "client_credentials",
+						"type": "string"
+					},
+					{
+						"key": "authUrl",
+						"value": "https://apiqa.ent.lolcentral.com/login/oauth/authorize",
+						"type": "string"
+					},
+					{
+						"key": "addTokenTo",
+						"value": "header",
+						"type": "string"
+					},
+					{
+						"key": "client_authentication",
+						"value": "header",
+						"type": "string"
+					},
+					{
+						"key": "tokenType",
+						"value": "Bearer",
+						"type": "string"
+					},
+					{
+						"key": "accessToken",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJKQTl2Zk56ZWhRcU1GRnduMzNGaFJrU0xlTzhGNm1lb3E1amNiYzhwQmU0In0.eyJleHAiOjE2NTk1NDcwODYsImlhdCI6MTY1OTU0NTI4NiwianRpIjoiNDFkOGU1ZGYtOGQwZS00NTA2LWIzYmQtYzExZWY0ZjA3ODM3IiwiaXNzIjoiaHR0cHM6Ly9zc2UuZGV2LmFsZnJlc2NvY2xvdWQuY29tL2F1dGgvcmVhbG1zL2FsZnJlc2NvIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjViNzM4ZTRhLTI5MmUtNGJlNS04ZjcxLTgwOTI3YzE5YjM4MCIsInR5cCI6IkJlYXJlciIsImF6cCI6InNoZXJyeV9jbGllbnRfY3JlZGVudGlhbHMiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHBzOi8vc3NlLWluZ2VzdGlvbi5kZXYuYWxmcmVzY29jbG91ZC5jb20iLCJodHRwOi8vMTI3LjAuMC4xIiwiaHR0cDovL2xvY2FsaG9zdCIsImh0dHBzOi8vc3NlLmRldi5hbGZyZXNjb2Nsb3VkLmNvbSIsImh0dHBzOi8vc3NlLWFwYS5kZXYuYWxmcmVzY29jbG91ZC5jb20iLCJodHRwczovL3NzZS1hcHAuZGV2LmFsZnJlc2NvY2xvdWQuY29tIiwiaHR0cHM6Ly9ncmVlbi1zc2UuZGV2LmFsZnJlc2NvY2xvdWQuY29tIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWFsZnJlc2NvIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIGVtYWlsIHByb2ZpbGUiLCJjbGllbnRIb3N0IjoiMTk5LjkxLjE0NC42OCIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiY2xpZW50SWQiOiJzaGVycnlfY2xpZW50X2NyZWRlbnRpYWxzIiwicHJlZmVycmVkX3VzZXJuYW1lIjoic2VydmljZS1hY2NvdW50LXNoZXJyeV9jbGllbnRfY3JlZGVudGlhbHMiLCJjbGllbnRBZGRyZXNzIjoiMTk5LjkxLjE0NC42OCJ9.B3yVZAOdMn9qq_ftAqSoka6MbpObb65cexGT8QPNE9FGBLGv-k3qyYULNydELj9NcvYcGhKBFvr1jNAS1xHmjUjMYT6frCYAOF-qKpr_8cmBfM3G1MLd8jsh2xaeku8bJ1La1pJ17ynWIHgeiGCO_o8sjhwZkOwQEwhEV9kSsWdHW_vn-PSk46i9g1Z_caSaZOhM7w3zbnFkUSLO2ezYNGB9AQRRguy5yi-sMUOekSwRFgFzpGhf7CVw1crXLlsTnEam7iaxAkG74adHDcJQm0_4UMQJQM5yAynt_N2xkZ_6XrsW_-vBIEPIFGE939mq7nEchayDJHm1Tc8-gkp_0A",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "4. Metadata (Models)",
+			"item": [
+				{
+					"name": "Create/Upload Metadata Templates (Models)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "form",
+									"type": "file",
+									"src": "/Users/sherrymathews/Documents/ACS Resources/5 - Models/Ganessan Env/LoanOrigination.zip"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/s/api/cmm/upload",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"s",
+								"api",
+								"cmm",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List File Metadata Templates (Models)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}?include=aspectNames,properties",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"nodes",
+								"{{node-id}}"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": "aspectNames,properties"
+								}
+							]
+						},
+						"description": "**Note:** this endpoint is available in Alfresco 5.2 and newer versions.\n\nUpdates the node **nodeId**. For example, you can rename a file or folder:\n\n``` json\n{\n  \"name\":\"My new name\"\n}\n\n```\n\nYou can also set or update one or more properties:\n\n``` json\n{\n  \"properties\":\n  {\n    \"cm:title\":\"Folder title\"\n  }\n}\n\n```\n\nYou can update multi-value properties of a node which supports properties of type multiple.\n\n``` json\n{\n \"name\":\"My Other Folder\",\n \"nodeType\":\"custom:destination\",\n \"properties\":\n {\n   \"cm:title\":\"Folder title\",\n   \"cm:description\":\"This is an important folder\",\n   \"custom:locations\": [\n                        \"location NewX\",\n                        \"location NewY\"\n                       ]\n }\n}\n\n```\n\n**Note:** setting properties of type d:content and d:category are not supported.\n\n**Note:** if you want to add or remove aspects, then you must use **GET /nodes/{nodeId}** first to get the complete set of *aspectNames*.\n\nYou can add (or remove) *locallySet* permissions, if any, in addition to any inherited permissions.  \nYou can also optionally disable (or re-enable) inherited permissions via *isInheritanceEnabled* flag:\n\n``` json\n{\n  \"permissions\":\n    {\n      \"isInheritanceEnabled\": false,\n      \"locallySet\":\n        [\n          {\"authorityId\": \"GROUP_special\", \"name\": \"Read\", \"accessStatus\":\"DENIED\"},\n          {\"authorityId\": \"testuser\", \"name\": \"Contributor\", \"accessStatus\":\"ALLOWED\"}\n        ]\n    }\n}\n\n```\n\n**Note:** if you want to add or remove locally set permissions then you must use **GET /nodes/{nodeId}** first to get the complete set of *locallySet* permissions.\n\n**Note:** Currently there is no optimistic locking for updates, so they are applied in \"last one wins\" order."
+					},
+					"response": []
+				},
+				{
+					"name": "List Folder Metadata Templates (Models)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{folder-node-id}}?include=aspectNames,properties",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"nodes",
+								"{{folder-node-id}}"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": "aspectNames,properties"
+								}
+							]
+						},
+						"description": "**Note:** this endpoint is available in Alfresco 5.2 and newer versions.\n\nUpdates the node **nodeId**. For example, you can rename a file or folder:\n\n``` json\n{\n  \"name\":\"My new name\"\n}\n\n```\n\nYou can also set or update one or more properties:\n\n``` json\n{\n  \"properties\":\n  {\n    \"cm:title\":\"Folder title\"\n  }\n}\n\n```\n\nYou can update multi-value properties of a node which supports properties of type multiple.\n\n``` json\n{\n \"name\":\"My Other Folder\",\n \"nodeType\":\"custom:destination\",\n \"properties\":\n {\n   \"cm:title\":\"Folder title\",\n   \"cm:description\":\"This is an important folder\",\n   \"custom:locations\": [\n                        \"location NewX\",\n                        \"location NewY\"\n                       ]\n }\n}\n\n```\n\n**Note:** setting properties of type d:content and d:category are not supported.\n\n**Note:** if you want to add or remove aspects, then you must use **GET /nodes/{nodeId}** first to get the complete set of *aspectNames*.\n\nYou can add (or remove) *locallySet* permissions, if any, in addition to any inherited permissions.  \nYou can also optionally disable (or re-enable) inherited permissions via *isInheritanceEnabled* flag:\n\n``` json\n{\n  \"permissions\":\n    {\n      \"isInheritanceEnabled\": false,\n      \"locallySet\":\n        [\n          {\"authorityId\": \"GROUP_special\", \"name\": \"Read\", \"accessStatus\":\"DENIED\"},\n          {\"authorityId\": \"testuser\", \"name\": \"Contributor\", \"accessStatus\":\"ALLOWED\"}\n        ]\n    }\n}\n\n```\n\n**Note:** if you want to add or remove locally set permissions then you must use **GET /nodes/{nodeId}** first to get the complete set of *locallySet* permissions.\n\n**Note:** Currently there is no optimistic locking for updates, so they are applied in \"last one wins\" order."
+					},
+					"response": []
+				},
+				{
+					"name": "Associate Document Type to File",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"nodeType\": \"inv:Invoice\"\n}"
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/f3ec9862-2016-45a0-8a76-5e27fe0cfb96",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"nodes",
+								"f3ec9862-2016-45a0-8a76-5e27fe0cfb96"
+							]
+						},
+						"description": "**Note:** this endpoint is available in Alfresco 5.2 and newer versions.\n\nUpdates the node **nodeId**. For example, you can rename a file or folder:\n\n``` json\n{\n  \"name\":\"My new name\"\n}\n\n```\n\nYou can also set or update one or more properties:\n\n``` json\n{\n  \"properties\":\n  {\n    \"cm:title\":\"Folder title\"\n  }\n}\n\n```\n\nYou can update multi-value properties of a node which supports properties of type multiple.\n\n``` json\n{\n \"name\":\"My Other Folder\",\n \"nodeType\":\"custom:destination\",\n \"properties\":\n {\n   \"cm:title\":\"Folder title\",\n   \"cm:description\":\"This is an important folder\",\n   \"custom:locations\": [\n                        \"location NewX\",\n                        \"location NewY\"\n                       ]\n }\n}\n\n```\n\n**Note:** setting properties of type d:content and d:category are not supported.\n\n**Note:** if you want to add or remove aspects, then you must use **GET /nodes/{nodeId}** first to get the complete set of *aspectNames*.\n\nYou can add (or remove) *locallySet* permissions, if any, in addition to any inherited permissions.  \nYou can also optionally disable (or re-enable) inherited permissions via *isInheritanceEnabled* flag:\n\n``` json\n{\n  \"permissions\":\n    {\n      \"isInheritanceEnabled\": false,\n      \"locallySet\":\n        [\n          {\"authorityId\": \"GROUP_special\", \"name\": \"Read\", \"accessStatus\":\"DENIED\"},\n          {\"authorityId\": \"testuser\", \"name\": \"Contributor\", \"accessStatus\":\"ALLOWED\"}\n        ]\n    }\n}\n\n```\n\n**Note:** if you want to add or remove locally set permissions then you must use **GET /nodes/{nodeId}** first to get the complete set of *locallySet* permissions.\n\n**Note:** Currently there is no optimistic locking for updates, so they are applied in \"last one wins\" order."
+					},
+					"response": []
+				},
+				{
+					"name": "Associate Metadata Template to Folder",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"nodeType\": \"inv:Invoice\"\n}"
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/ae4ee63b-815d-4718-a7a7-c8b9d9017629",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"nodes",
+								"ae4ee63b-815d-4718-a7a7-c8b9d9017629"
+							]
+						},
+						"description": "**Note:** this endpoint is available in Alfresco 5.2 and newer versions.\n\nUpdates the node **nodeId**. For example, you can rename a file or folder:\n\n``` json\n{\n  \"name\":\"My new name\"\n}\n\n```\n\nYou can also set or update one or more properties:\n\n``` json\n{\n  \"properties\":\n  {\n    \"cm:title\":\"Folder title\"\n  }\n}\n\n```\n\nYou can update multi-value properties of a node which supports properties of type multiple.\n\n``` json\n{\n \"name\":\"My Other Folder\",\n \"nodeType\":\"custom:destination\",\n \"properties\":\n {\n   \"cm:title\":\"Folder title\",\n   \"cm:description\":\"This is an important folder\",\n   \"custom:locations\": [\n                        \"location NewX\",\n                        \"location NewY\"\n                       ]\n }\n}\n\n```\n\n**Note:** setting properties of type d:content and d:category are not supported.\n\n**Note:** if you want to add or remove aspects, then you must use **GET /nodes/{nodeId}** first to get the complete set of *aspectNames*.\n\nYou can add (or remove) *locallySet* permissions, if any, in addition to any inherited permissions.  \nYou can also optionally disable (or re-enable) inherited permissions via *isInheritanceEnabled* flag:\n\n``` json\n{\n  \"permissions\":\n    {\n      \"isInheritanceEnabled\": false,\n      \"locallySet\":\n        [\n          {\"authorityId\": \"GROUP_special\", \"name\": \"Read\", \"accessStatus\":\"DENIED\"},\n          {\"authorityId\": \"testuser\", \"name\": \"Contributor\", \"accessStatus\":\"ALLOWED\"}\n        ]\n    }\n}\n\n```\n\n**Note:** if you want to add or remove locally set permissions then you must use **GET /nodes/{nodeId}** first to get the complete set of *locallySet* permissions.\n\n**Note:** Currently there is no optimistic locking for updates, so they are applied in \"last one wins\" order."
+					},
+					"response": []
+				},
+				{
+					"name": "Associate Metadata Template (Model) to File",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"aspectNames\": [\n            \"rn:renditioned\",\n            \"cm:versionable\",\n            \"cm:titled\",\n            \"cm:auditable\",\n            \"inv:Vendor\",\n            \"cm:author\",\n            \"cm:thumbnailModification\"\n        ]\n}"
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"nodes",
+								"{{node-id}}"
+							]
+						},
+						"description": "**Note:** this endpoint is available in Alfresco 5.2 and newer versions.\n\nUpdates the node **nodeId**. For example, you can rename a file or folder:\n\n``` json\n{\n  \"name\":\"My new name\"\n}\n\n```\n\nYou can also set or update one or more properties:\n\n``` json\n{\n  \"properties\":\n  {\n    \"cm:title\":\"Folder title\"\n  }\n}\n\n```\n\nYou can update multi-value properties of a node which supports properties of type multiple.\n\n``` json\n{\n \"name\":\"My Other Folder\",\n \"nodeType\":\"custom:destination\",\n \"properties\":\n {\n   \"cm:title\":\"Folder title\",\n   \"cm:description\":\"This is an important folder\",\n   \"custom:locations\": [\n                        \"location NewX\",\n                        \"location NewY\"\n                       ]\n }\n}\n\n```\n\n**Note:** setting properties of type d:content and d:category are not supported.\n\n**Note:** if you want to add or remove aspects, then you must use **GET /nodes/{nodeId}** first to get the complete set of *aspectNames*.\n\nYou can add (or remove) *locallySet* permissions, if any, in addition to any inherited permissions.  \nYou can also optionally disable (or re-enable) inherited permissions via *isInheritanceEnabled* flag:\n\n``` json\n{\n  \"permissions\":\n    {\n      \"isInheritanceEnabled\": false,\n      \"locallySet\":\n        [\n          {\"authorityId\": \"GROUP_special\", \"name\": \"Read\", \"accessStatus\":\"DENIED\"},\n          {\"authorityId\": \"testuser\", \"name\": \"Contributor\", \"accessStatus\":\"ALLOWED\"}\n        ]\n    }\n}\n\n```\n\n**Note:** if you want to add or remove locally set permissions then you must use **GET /nodes/{nodeId}** first to get the complete set of *locallySet* permissions.\n\n**Note:** Currently there is no optimistic locking for updates, so they are applied in \"last one wins\" order."
+					},
+					"response": []
+				},
+				{
+					"name": "List Folder Metadata Templates (Models)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{folder-node-id}}?include=aspectNames,properties",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"nodes",
+								"{{folder-node-id}}"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": "aspectNames,properties"
+								}
+							]
+						},
+						"description": "**Note:** this endpoint is available in Alfresco 5.2 and newer versions.\n\nUpdates the node **nodeId**. For example, you can rename a file or folder:\n\n``` json\n{\n  \"name\":\"My new name\"\n}\n\n```\n\nYou can also set or update one or more properties:\n\n``` json\n{\n  \"properties\":\n  {\n    \"cm:title\":\"Folder title\"\n  }\n}\n\n```\n\nYou can update multi-value properties of a node which supports properties of type multiple.\n\n``` json\n{\n \"name\":\"My Other Folder\",\n \"nodeType\":\"custom:destination\",\n \"properties\":\n {\n   \"cm:title\":\"Folder title\",\n   \"cm:description\":\"This is an important folder\",\n   \"custom:locations\": [\n                        \"location NewX\",\n                        \"location NewY\"\n                       ]\n }\n}\n\n```\n\n**Note:** setting properties of type d:content and d:category are not supported.\n\n**Note:** if you want to add or remove aspects, then you must use **GET /nodes/{nodeId}** first to get the complete set of *aspectNames*.\n\nYou can add (or remove) *locallySet* permissions, if any, in addition to any inherited permissions.  \nYou can also optionally disable (or re-enable) inherited permissions via *isInheritanceEnabled* flag:\n\n``` json\n{\n  \"permissions\":\n    {\n      \"isInheritanceEnabled\": false,\n      \"locallySet\":\n        [\n          {\"authorityId\": \"GROUP_special\", \"name\": \"Read\", \"accessStatus\":\"DENIED\"},\n          {\"authorityId\": \"testuser\", \"name\": \"Contributor\", \"accessStatus\":\"ALLOWED\"}\n        ]\n    }\n}\n\n```\n\n**Note:** if you want to add or remove locally set permissions then you must use **GET /nodes/{nodeId}** first to get the complete set of *locallySet* permissions.\n\n**Note:** Currently there is no optimistic locking for updates, so they are applied in \"last one wins\" order."
+					},
+					"response": []
+				},
+				{
+					"name": "Associate Metadata Template (Model) to Folder",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"aspectNames\": [\n            \"rn:renditioned\",\n            \"cm:versionable\",\n            \"cm:titled\",\n            \"cm:auditable\",\n            \"inv:Vendor\",\n            \"cm:author\",\n            \"cm:thumbnailModification\"\n        ]\n}"
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{folder-node-id}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"nodes",
+								"{{folder-node-id}}"
+							]
+						},
+						"description": "**Note:** this endpoint is available in Alfresco 5.2 and newer versions.\n\nUpdates the node **nodeId**. For example, you can rename a file or folder:\n\n``` json\n{\n  \"name\":\"My new name\"\n}\n\n```\n\nYou can also set or update one or more properties:\n\n``` json\n{\n  \"properties\":\n  {\n    \"cm:title\":\"Folder title\"\n  }\n}\n\n```\n\nYou can update multi-value properties of a node which supports properties of type multiple.\n\n``` json\n{\n \"name\":\"My Other Folder\",\n \"nodeType\":\"custom:destination\",\n \"properties\":\n {\n   \"cm:title\":\"Folder title\",\n   \"cm:description\":\"This is an important folder\",\n   \"custom:locations\": [\n                        \"location NewX\",\n                        \"location NewY\"\n                       ]\n }\n}\n\n```\n\n**Note:** setting properties of type d:content and d:category are not supported.\n\n**Note:** if you want to add or remove aspects, then you must use **GET /nodes/{nodeId}** first to get the complete set of *aspectNames*.\n\nYou can add (or remove) *locallySet* permissions, if any, in addition to any inherited permissions.  \nYou can also optionally disable (or re-enable) inherited permissions via *isInheritanceEnabled* flag:\n\n``` json\n{\n  \"permissions\":\n    {\n      \"isInheritanceEnabled\": false,\n      \"locallySet\":\n        [\n          {\"authorityId\": \"GROUP_special\", \"name\": \"Read\", \"accessStatus\":\"DENIED\"},\n          {\"authorityId\": \"testuser\", \"name\": \"Contributor\", \"accessStatus\":\"ALLOWED\"}\n        ]\n    }\n}\n\n```\n\n**Note:** if you want to add or remove locally set permissions then you must use **GET /nodes/{nodeId}** first to get the complete set of *locallySet* permissions.\n\n**Note:** Currently there is no optimistic locking for updates, so they are applied in \"last one wins\" order."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Metadata Templates (Models) Pending Test",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"modelName\": \"LoanOrigination\", \n    \"operation\": \"deleteModel\", \n    \"arguments\": {\n        \"name\": \"LoanOrigination\"\n    }\n}\n"
+						},
+						"url": {
+							"raw": "{{hostname}}/share/service/cmm/model-service",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"share",
+								"service",
+								"cmm",
+								"model-service"
+							]
+						},
+						"description": "**Note:** this endpoint is available in Alfresco 5.2 and newer versions.\n\nUpdates the node **nodeId**. For example, you can rename a file or folder:\n\n``` json\n{\n  \"name\":\"My new name\"\n}\n\n```\n\nYou can also set or update one or more properties:\n\n``` json\n{\n  \"properties\":\n  {\n    \"cm:title\":\"Folder title\"\n  }\n}\n\n```\n\nYou can update multi-value properties of a node which supports properties of type multiple.\n\n``` json\n{\n \"name\":\"My Other Folder\",\n \"nodeType\":\"custom:destination\",\n \"properties\":\n {\n   \"cm:title\":\"Folder title\",\n   \"cm:description\":\"This is an important folder\",\n   \"custom:locations\": [\n                        \"location NewX\",\n                        \"location NewY\"\n                       ]\n }\n}\n\n```\n\n**Note:** setting properties of type d:content and d:category are not supported.\n\n**Note:** if you want to add or remove aspects, then you must use **GET /nodes/{nodeId}** first to get the complete set of *aspectNames*.\n\nYou can add (or remove) *locallySet* permissions, if any, in addition to any inherited permissions.  \nYou can also optionally disable (or re-enable) inherited permissions via *isInheritanceEnabled* flag:\n\n``` json\n{\n  \"permissions\":\n    {\n      \"isInheritanceEnabled\": false,\n      \"locallySet\":\n        [\n          {\"authorityId\": \"GROUP_special\", \"name\": \"Read\", \"accessStatus\":\"DENIED\"},\n          {\"authorityId\": \"testuser\", \"name\": \"Contributor\", \"accessStatus\":\"ALLOWED\"}\n        ]\n    }\n}\n\n```\n\n**Note:** if you want to add or remove locally set permissions then you must use **GET /nodes/{nodeId}** first to get the complete set of *locallySet* permissions.\n\n**Note:** Currently there is no optimistic locking for updates, so they are applied in \"last one wins\" order."
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "5. Permission",
+			"item": [
+				{
+					"name": "Get File/Folder Permissions",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}?include=permissions",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"nodes",
+								"{{node-id}}"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": "permissions"
+								}
+							]
+						},
+						"description": "**Note:** this endpoint is available in Alfresco 5.2 and newer versions.\n\nUpdates the node **nodeId**. For example, you can rename a file or folder:\n\n``` json\n{\n  \"name\":\"My new name\"\n}\n\n```\n\nYou can also set or update one or more properties:\n\n``` json\n{\n  \"properties\":\n  {\n    \"cm:title\":\"Folder title\"\n  }\n}\n\n```\n\nYou can update multi-value properties of a node which supports properties of type multiple.\n\n``` json\n{\n \"name\":\"My Other Folder\",\n \"nodeType\":\"custom:destination\",\n \"properties\":\n {\n   \"cm:title\":\"Folder title\",\n   \"cm:description\":\"This is an important folder\",\n   \"custom:locations\": [\n                        \"location NewX\",\n                        \"location NewY\"\n                       ]\n }\n}\n\n```\n\n**Note:** setting properties of type d:content and d:category are not supported.\n\n**Note:** if you want to add or remove aspects, then you must use **GET /nodes/{nodeId}** first to get the complete set of *aspectNames*.\n\nYou can add (or remove) *locallySet* permissions, if any, in addition to any inherited permissions.  \nYou can also optionally disable (or re-enable) inherited permissions via *isInheritanceEnabled* flag:\n\n``` json\n{\n  \"permissions\":\n    {\n      \"isInheritanceEnabled\": false,\n      \"locallySet\":\n        [\n          {\"authorityId\": \"GROUP_special\", \"name\": \"Read\", \"accessStatus\":\"DENIED\"},\n          {\"authorityId\": \"testuser\", \"name\": \"Contributor\", \"accessStatus\":\"ALLOWED\"}\n        ]\n    }\n}\n\n```\n\n**Note:** if you want to add or remove locally set permissions then you must use **GET /nodes/{nodeId}** first to get the complete set of *locallySet* permissions.\n\n**Note:** Currently there is no optimistic locking for updates, so they are applied in \"last one wins\" order."
+					},
+					"response": []
+				},
+				{
+					"name": "Update File/Folder Permissions",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"permissions\":\n    {\n      \"isInheritanceEnabled\": false,\n      \"locallySet\":\n        [\n          {\"authorityId\": \"{{group-id}}\", \"name\": \"Read\", \"accessStatus\":\"ALLOWED\"},\n          {\"authorityId\": \"{{person-id}}\", \"name\": \"Contributor\", \"accessStatus\":\"ALLOWED\"}\n        ]\n    }\n}"
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"nodes",
+								"{{node-id}}"
+							]
+						},
+						"description": "**Note:** this endpoint is available in Alfresco 5.2 and newer versions.\n\nUpdates the node **nodeId**. For example, you can rename a file or folder:\n\n``` json\n{\n  \"name\":\"My new name\"\n}\n\n```\n\nYou can also set or update one or more properties:\n\n``` json\n{\n  \"properties\":\n  {\n    \"cm:title\":\"Folder title\"\n  }\n}\n\n```\n\nYou can update multi-value properties of a node which supports properties of type multiple.\n\n``` json\n{\n \"name\":\"My Other Folder\",\n \"nodeType\":\"custom:destination\",\n \"properties\":\n {\n   \"cm:title\":\"Folder title\",\n   \"cm:description\":\"This is an important folder\",\n   \"custom:locations\": [\n                        \"location NewX\",\n                        \"location NewY\"\n                       ]\n }\n}\n\n```\n\n**Note:** setting properties of type d:content and d:category are not supported.\n\n**Note:** if you want to add or remove aspects, then you must use **GET /nodes/{nodeId}** first to get the complete set of *aspectNames*.\n\nYou can add (or remove) *locallySet* permissions, if any, in addition to any inherited permissions.  \nYou can also optionally disable (or re-enable) inherited permissions via *isInheritanceEnabled* flag:\n\n``` json\n{\n  \"permissions\":\n    {\n      \"isInheritanceEnabled\": false,\n      \"locallySet\":\n        [\n          {\"authorityId\": \"GROUP_special\", \"name\": \"Read\", \"accessStatus\":\"DENIED\"},\n          {\"authorityId\": \"testuser\", \"name\": \"Contributor\", \"accessStatus\":\"ALLOWED\"}\n        ]\n    }\n}\n\n```\n\n**Note:** if you want to add or remove locally set permissions then you must use **GET /nodes/{nodeId}** first to get the complete set of *locallySet* permissions.\n\n**Note:** Currently there is no optimistic locking for updates, so they are applied in \"last one wins\" order."
+					},
+					"response": []
+				},
+				{
+					"name": "Share File",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var hostname = pm.globals.get('hostname')",
+									"postman.setGlobalVariable('shared-id', JSON.parse(responseBody).entry.id);",
+									"postman.setGlobalVariable('shared-url', hostname+'/share/s/'+JSON.parse(responseBody).entry.id);",
+									"console.log('Shared URL = '+pm.globals.get('shared-url'));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nodeId\": \"{{node-id}}\",\n    \"expiresAt\": \"2022-08-15T23:00:00.000+0000\"\n  }"
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/shared-links",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"shared-links"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "6. Trash capabilities",
+			"item": [
+				{
+					"name": "List deleted contents",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/deleted-nodes?skipCount=0&maxItems=100",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"deleted-nodes"
+							],
+							"query": [
+								{
+									"key": "skipCount",
+									"value": "0"
+								},
+								{
+									"key": "maxItems",
+									"value": "100"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Permanently delete a deleted content",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/deleted-nodes/{{deleted-node-id}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"deleted-nodes",
+								"{{deleted-node-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restore a deleted content",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"targetParentId\": \"{{target-folder-id}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/deleted-nodes/{{deleted-node-id}}/restore",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"deleted-nodes",
+								"{{deleted-node-id}}",
+								"restore"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cleanup Trashcan",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{hostname}}/alfresco/s/api/archive/workspace/SpacesStore",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"s",
+								"api",
+								"archive",
+								"workspace",
+								"SpacesStore"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "7. Search",
+			"item": [
+				{
+					"name": "Search - Full Text",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": {\n    \"query\": \"'Southwest'\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/search/versions/1/search",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"search",
+								"versions",
+								"1",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search - Standard Metadata",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": {\n    \"query\": \"cm:title:'Adding to an existing document'\"\n  }\n}\n"
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/search/versions/1/search",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"search",
+								"versions",
+								"1",
+								"search"
+							]
+						},
+						"description": "{\"query\":{ \"query\": \"select * from cmis:document WHERE cmis:lastModifiedBy = 'ftic_admin'\", \"language\": \"cmis\" }}"
+					},
+					"response": []
+				},
+				{
+					"name": "Search - Custom Metadata",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": {\n    \"query\": \"inv:VendorName:Southwest\"\n  }\n}\n"
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/search/versions/1/search",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"search",
+								"versions",
+								"1",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search within a Folder - First Level",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							}
+						],
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{folder-node-id}}/children",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"nodes",
+								"{{folder-node-id}}",
+								"children"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search within a Folder - All Levels",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"query\": {\n \"language\": \"afts\",\n \"query\": \"ANCESTOR:\\\"workspace://SpacesStore/{{folder-node-id}}\\\"\"\n }\n}"
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/search/versions/1/search",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"search",
+								"versions",
+								"1",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search within a Site",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"query\": {\n \"language\": \"afts\",\n \"query\": \"ANCESTOR:\\\"workspace://SpacesStore/{{site-guid}}\\\"\"\n }\n}"
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/search/versions/1/search",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"search",
+								"versions",
+								"1",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search - List all contents at all levels",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"query\": {\n \"language\": \"afts\",\n \"query\": \"ANCESTOR:\\\"workspace://SpacesStore/{{folder-node-id}}\\\"\"\n }\n}"
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/search/versions/1/search",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"search",
+								"versions",
+								"1",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search for a User",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							}
+						],
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/queries/people?term=ftci",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"queries",
+								"people"
+							],
+							"query": [
+								{
+									"key": "term",
+									"value": "ftci"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search for Content by Aspect Name",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": {\n    \"query\": \"+TYPE:\\\"cm:content\\\" AND +ASPECT:\\\"inv:Vendor\\\"\",\n    \"language\": \"afts\"\n  },\n  \"include\": [\n    \"aspectNames\"\n  ],\n  \"paging\": {\n    \"maxItems\": \"10\",\n    \"skipCount\": \"0\"\n  },\n  \"sort\": [{\"type\":\"FIELD\", \"field\":\"cm:name\", \"ascending\":\"false\"}]\n}"
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/search/versions/1/search",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"search",
+								"versions",
+								"1",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search for Content by File Name",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": {\n    \"query\": \"select * from cmis:document WHERE cmis:name LIKE 'Proof%'\",\n    \"language\": \"cmis\"\n  }\n}\n"
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/search/versions/1/search",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"search",
+								"versions",
+								"1",
+								"search"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "8. Retention policies on file/folders",
+			"item": [
+				{
+					"name": "Get action definition collection for RM",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/s/api/rm/rm-actiondefinitions",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"s",
+								"api",
+								"rm",
+								"rm-actiondefinitions"
+							]
+						},
+						"description": "**Note:** this endpoint is available in Alfresco 5.2 and newer versions.\n\nUpdates the node **nodeId**. For example, you can rename a file or folder:\n\n``` json\n{\n  \"name\":\"My new name\"\n}\n\n```\n\nYou can also set or update one or more properties:\n\n``` json\n{\n  \"properties\":\n  {\n    \"cm:title\":\"Folder title\"\n  }\n}\n\n```\n\nYou can update multi-value properties of a node which supports properties of type multiple.\n\n``` json\n{\n \"name\":\"My Other Folder\",\n \"nodeType\":\"custom:destination\",\n \"properties\":\n {\n   \"cm:title\":\"Folder title\",\n   \"cm:description\":\"This is an important folder\",\n   \"custom:locations\": [\n                        \"location NewX\",\n                        \"location NewY\"\n                       ]\n }\n}\n\n```\n\n**Note:** setting properties of type d:content and d:category are not supported.\n\n**Note:** if you want to add or remove aspects, then you must use **GET /nodes/{nodeId}** first to get the complete set of *aspectNames*.\n\nYou can add (or remove) *locallySet* permissions, if any, in addition to any inherited permissions.  \nYou can also optionally disable (or re-enable) inherited permissions via *isInheritanceEnabled* flag:\n\n``` json\n{\n  \"permissions\":\n    {\n      \"isInheritanceEnabled\": false,\n      \"locallySet\":\n        [\n          {\"authorityId\": \"GROUP_special\", \"name\": \"Read\", \"accessStatus\":\"DENIED\"},\n          {\"authorityId\": \"testuser\", \"name\": \"Contributor\", \"accessStatus\":\"ALLOWED\"}\n        ]\n    }\n}\n\n```\n\n**Note:** if you want to add or remove locally set permissions then you must use **GET /nodes/{nodeId}** first to get the complete set of *locallySet* permissions.\n\n**Note:** Currently there is no optimistic locking for updates, so they are applied in \"last one wins\" order."
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "9. Audit",
+			"item": [
+				{
+					"name": "List Audit Applications",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							}
+						],
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/audit-applications",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"audit-applications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Audit Application Info",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							}
+						],
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/audit-applications/{{auditApplicationId}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"audit-applications",
+								"{{auditApplicationId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Audit Application Info",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"isEnabled\": true\n}"
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/audit-applications/{{auditApplicationId}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"audit-applications",
+								"{{auditApplicationId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Audit Entries for Audit Application",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							}
+						],
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/audit-applications/{{auditApplicationId}}/audit-entries",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"audit-applications",
+								"{{auditApplicationId}}",
+								"audit-entries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Audit Entries for Audit Application",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							}
+						],
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/audit-applications/{{auditApplicationId}}/audit-entries?where=(id BETWEEN ('15728', '15730'))",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"audit-applications",
+								"{{auditApplicationId}}",
+								"audit-entries"
+							],
+							"query": [
+								{
+									"key": "where",
+									"value": "(id BETWEEN ('15728', '15730'))"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an Audit Entry",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							}
+						],
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/audit-applications/{{auditApplicationId}}/audit-entries/{{auditEntryId}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"audit-applications",
+								"{{auditApplicationId}}",
+								"audit-entries",
+								"{{auditEntryId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an Audit Entry",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							}
+						],
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/audit-applications/{{auditApplicationId}}/audit-entries/{{auditEntryId}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"audit-applications",
+								"{{auditApplicationId}}",
+								"audit-entries",
+								"{{auditEntryId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Audit Entries for a Node",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							}
+						],
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}/audit-entries",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"nodes",
+								"{{node-id}}",
+								"audit-entries"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Actions",
+			"item": [
+				{
+					"name": "Retrieve actions for a node",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/nodes/{{node-id}}/action-definitions",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"nodes",
+								"{{node-id}}",
+								"action-definitions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve list of available actions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/action-definitions",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"action-definitions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve the details of an action definition",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/action-definitions/{{action-definition-id}}",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"action-definitions",
+								"{{action-definition-id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Execute an action - Copy a file",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"actionDefinitionId\": \"copy\",\n  \"targetId\": \"{{node-id}}\",\n  \"params\": {\n    \"destination-folder\": \"{{folder-node-id}}\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/action-executions",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"action-executions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Execute an action - Run a server side Javascript",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authorizationHeader}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"actionDefinitionId\": \"script\",\n  \"targetId\": \"{{node-id}}\",\n  \"params\": {\n    \"script-ref\": \"{{script-ref-id}}\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{hostname}}/alfresco/api/-default-/public/alfresco/versions/1/action-executions",
+							"host": [
+								"{{hostname}}"
+							],
+							"path": [
+								"alfresco",
+								"api",
+								"-default-",
+								"public",
+								"alfresco",
+								"versions",
+								"1",
+								"action-executions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Fetch Security Marks of a Node",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "ftic_admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "FiduciaryPOC",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sse.dev.alfrescocloud.com/alfresco/api/-default-/public/gs/versions/1/secured-nodes/b36e882b-e484-4a77-8fd5-5b3ea5d7e11b/securing-marks",
+					"protocol": "https",
+					"host": [
+						"sse",
+						"dev",
+						"alfrescocloud",
+						"com"
+					],
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"gs",
+						"versions",
+						"1",
+						"secured-nodes",
+						"b36e882b-e484-4a77-8fd5-5b3ea5d7e11b",
+						"securing-marks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Security Marks to a Node",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "ftic_admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "FiduciaryPOC",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\"id\": \"PmShCOAF\", \"groupId\": \"abc3d376-1e17-4614-93a2-3d7110ebc606\", \"op\": \"ADD\"}]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sse.dev.alfrescocloud.com/alfresco/api/-default-/public/gs/versions/1/secured-nodes/ef261e2a-691f-434e-86b6-1ebb4deeaf14/securing-marks",
+					"protocol": "https",
+					"host": [
+						"sse",
+						"dev",
+						"alfrescocloud",
+						"com"
+					],
+					"path": [
+						"alfresco",
+						"api",
+						"-default-",
+						"public",
+						"gs",
+						"versions",
+						"1",
+						"secured-nodes",
+						"ef261e2a-691f-434e-86b6-1ebb4deeaf14",
+						"securing-marks"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "client_authentication",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "{{hostname}}/auth/realms/alfresco/protocol/openid-connect/token",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "{{oauth-client-secret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{oauth-client-id}}",
+				"type": "string"
+			},
+			{
+				"key": "tokenType",
+				"value": "Bearer",
+				"type": "string"
+			},
+			{
+				"key": "accessToken",
+				"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJKQTl2Zk56ZWhRcU1GRnduMzNGaFJrU0xlTzhGNm1lb3E1amNiYzhwQmU0In0.eyJleHAiOjE2NTk1NTM3NDUsImlhdCI6MTY1OTU1MTk0NSwianRpIjoiY2MzMWJhNjAtMDQzNC00NzE3LTkwNjgtMDhkYWU1ZjJjMWU1IiwiaXNzIjoiaHR0cHM6Ly9zc2UuZGV2LmFsZnJlc2NvY2xvdWQuY29tL2F1dGgvcmVhbG1zL2FsZnJlc2NvIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjViNzM4ZTRhLTI5MmUtNGJlNS04ZjcxLTgwOTI3YzE5YjM4MCIsInR5cCI6IkJlYXJlciIsImF6cCI6InNoZXJyeV9jbGllbnRfY3JlZGVudGlhbHMiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHBzOi8vc3NlLWluZ2VzdGlvbi5kZXYuYWxmcmVzY29jbG91ZC5jb20iLCJodHRwOi8vMTI3LjAuMC4xIiwiaHR0cDovL2xvY2FsaG9zdCIsImh0dHBzOi8vc3NlLmRldi5hbGZyZXNjb2Nsb3VkLmNvbSIsImh0dHBzOi8vc3NlLWFwYS5kZXYuYWxmcmVzY29jbG91ZC5jb20iLCJodHRwczovL3NzZS1hcHAuZGV2LmFsZnJlc2NvY2xvdWQuY29tIiwiaHR0cHM6Ly9ncmVlbi1zc2UuZGV2LmFsZnJlc2NvY2xvdWQuY29tIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWFsZnJlc2NvIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIGVtYWlsIHByb2ZpbGUiLCJjbGllbnRIb3N0IjoiMTk5LjkxLjE0NC42OCIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiY2xpZW50SWQiOiJzaGVycnlfY2xpZW50X2NyZWRlbnRpYWxzIiwicHJlZmVycmVkX3VzZXJuYW1lIjoic2VydmljZS1hY2NvdW50LXNoZXJyeV9jbGllbnRfY3JlZGVudGlhbHMiLCJjbGllbnRBZGRyZXNzIjoiMTk5LjkxLjE0NC42OCJ9.Leb7n6d9iw2leLFycbSwujBnu7qAEQGoGSdyfTEYlgk1yc8q92ShoNEsa_wPuwJ1FnIt4DXznR_c8HzpDKVt0aIStyKkQIz6x-JcP6HZtxV7e7SHkeKr6SiD0kPUVSzbCKreWP-5Iliph4s__x-_rQw0cFEkCxFPrl_nT-xcIvYpYQSRDpAbRwYWWYvuaAXQCWTyNzPRAfxkPY_dWbYAOcT8DxaifYM2JRTVGRetA-PHSjok_QzEJXNNxN9pp9MT3ip659_rwnYQlEZ0-rAiZe3k5yVGGPxtlQpkOTojBlzIz2C9jYBs5JTGXzoRSkYCn6HY44PiqMCHlxw-agTLxw",
+				"type": "string"
+			},
+			{
+				"key": "tokenName",
+				"value": "Alfresco PaaS FTCI Token",
+				"type": "string"
+			},
+			{
+				"key": "challengeAlgorithm",
+				"value": "S256",
+				"type": "string"
+			},
+			{
+				"key": "scope",
+				"value": "openid",
+				"type": "string"
+			},
+			{
+				"key": "redirect_uri",
+				"value": "https://apiqa.ent.lolcentral.com",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "client_credentials",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://apiqa.ent.lolcentral.com/login/oauth/authorize",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"/*",
+					"More APIs : ",
+					"1. http://<hostname>/alfresco/s/index/package/",
+					"2. https://api-explorer.alfresco.com/api-explorer/",
+					"*/"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
