@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "c8aa37df-3489-42c5-bc33-244742fb461a",
-		"name": "Fiduciary - ACS REST APIs",
+		"name": "POC - ACS REST APIs",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "2755505"
 	},
@@ -5807,6 +5807,44 @@
 						"secured-nodes",
 						"b36e882b-e484-4a77-8fd5-5b3ea5d7e11b",
 						"securing-marks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Repository Info (Discover)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "ftic_admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "FiduciaryPOC",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sse.dev.alfrescocloud.com/alfresco/api/discovery",
+					"protocol": "https",
+					"host": [
+						"sse",
+						"dev",
+						"alfrescocloud",
+						"com"
+					],
+					"path": [
+						"alfresco",
+						"api",
+						"discovery"
 					]
 				}
 			},
