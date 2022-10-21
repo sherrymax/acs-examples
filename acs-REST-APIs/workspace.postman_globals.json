@@ -1,0 +1,179 @@
+{
+	"id": "fbe88202-1813-4d1a-821e-ddb631e2ba28",
+	"values": [
+		{
+			"key": "node-id",
+			"value": "737e3f5c-e7ab-48af-a1a5-9c7fc6c55c8d",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "hostname",
+			"value": "http://1.2.3.4",
+			"enabled": true
+		},
+		{
+			"key": "site-guid",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "site-id",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "siteContainerId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "ticket",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "folder-node-id",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "authorizationHeader",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "person-id",
+			"value": "service-account-my_poc_client_credentials",
+			"enabled": true
+		},
+		{
+			"key": "group-id",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "rendition-id",
+			"value": "doclib",
+			"enabled": true
+		},
+		{
+			"key": "target-folder-id",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "shared-url",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "download-id",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "oauth-client-id",
+			"value": "my_poc_client_credentials",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "oauth-client-secret",
+			"value": "d56319a8-c582-463b-986a-600632093916",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "deleted-node-id",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "shared-id",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "action-definition-id",
+			"value": "copy",
+			"enabled": true
+		},
+		{
+			"key": "script-ref-id",
+			"value": "workspace://SpacesStore/85f1a2c1-5bf1-4918-b14f-35c35d892690",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "process-name",
+			"value": "claims-review-process",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "process-instance-id",
+			"value": "96b2ca13-22e8-11ed-9b24-6a251b7f9baf",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "oauth-apa-client-id",
+			"value": "headless-poc-apa",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "oauth-apa-client-secret",
+			"value": "53dc11cb-bf19-4600-90de-8cf9737263e9",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "auditApplicationId",
+			"value": "alfresco-access",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "auditEntryId",
+			"value": "15731",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "group-member-id",
+			"value": "smathews",
+			"enabled": true
+		},
+		{
+			"key": "subgroup-member-id",
+			"value": "GROUP_my-poa-review-SERVICE-GROUP",
+			"enabled": true
+		},
+		{
+			"key": "workshop-site-id",
+			"value": "sm-postman-site",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "workshop-container-id",
+			"value": "5157ef61-babc-47fb-8ae1-20c4f9563755",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"name": "Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2022-10-21T20:15:58.363Z",
+	"_postman_exported_using": "Postman/10.0.19"
+}

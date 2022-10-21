@@ -95,7 +95,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"userId\":\"ftic_admin\",\"password\":\"FiduciaryPOC\"}"
+							"raw": "{\"userId\":\"demo\",\"password\":\"demo\"}"
 						},
 						"url": {
 							"raw": "{{hostname}}/alfresco/api/-default-/public/authentication/versions/1/tickets",
@@ -188,6 +188,41 @@
 						}
 					},
 					"response": []
+				}
+			],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "demo",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "demo",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		},
@@ -416,11 +451,16 @@
 						}
 					],
 					"auth": {
-						"type": "oauth2",
-						"oauth2": [
+						"type": "basic",
+						"basic": [
 							{
-								"key": "addTokenTo",
-								"value": "header",
+								"key": "password",
+								"value": "demo",
+								"type": "string"
+							},
+							{
+								"key": "username",
+								"value": "demo",
 								"type": "string"
 							}
 						]
@@ -647,11 +687,16 @@
 								}
 							],
 							"auth": {
-								"type": "oauth2",
-								"oauth2": [
+								"type": "basic",
+								"basic": [
 									{
-										"key": "addTokenTo",
-										"value": "header",
+										"key": "password",
+										"value": "demo",
+										"type": "string"
+									},
+									{
+										"key": "username",
+										"value": "demo",
 										"type": "string"
 									}
 								]
@@ -868,11 +913,16 @@
 								}
 							],
 							"auth": {
-								"type": "oauth2",
-								"oauth2": [
+								"type": "basic",
+								"basic": [
 									{
-										"key": "addTokenTo",
-										"value": "header",
+										"key": "password",
+										"value": "demo",
+										"type": "string"
+									},
+									{
+										"key": "username",
+										"value": "demo",
 										"type": "string"
 									}
 								]
@@ -900,11 +950,16 @@
 						}
 					],
 					"auth": {
-						"type": "oauth2",
-						"oauth2": [
+						"type": "basic",
+						"basic": [
 							{
-								"key": "addTokenTo",
-								"value": "header",
+								"key": "password",
+								"value": "demo",
+								"type": "string"
+							},
+							{
+								"key": "username",
+								"value": "demo",
 								"type": "string"
 							}
 						]
@@ -932,61 +987,16 @@
 				}
 			],
 			"auth": {
-				"type": "oauth2",
-				"oauth2": [
+				"type": "basic",
+				"basic": [
 					{
-						"key": "accessTokenUrl",
-						"value": "{{hostname}}/auth/realms/alfresco/protocol/openid-connect/token",
+						"key": "password",
+						"value": "demo",
 						"type": "string"
 					},
 					{
-						"key": "clientSecret",
-						"value": "{{oauth-client-secret}}",
-						"type": "string"
-					},
-					{
-						"key": "clientId",
-						"value": "{{oauth-client-id}}",
-						"type": "string"
-					},
-					{
-						"key": "tokenName",
-						"value": "Alfresco PaaS FTCI Token",
-						"type": "string"
-					},
-					{
-						"key": "challengeAlgorithm",
-						"value": "S256",
-						"type": "string"
-					},
-					{
-						"key": "scope",
-						"value": "openid",
-						"type": "string"
-					},
-					{
-						"key": "redirect_uri",
-						"value": "https://apiqa.ent.lolcentral.com",
-						"type": "string"
-					},
-					{
-						"key": "grant_type",
-						"value": "client_credentials",
-						"type": "string"
-					},
-					{
-						"key": "authUrl",
-						"value": "https://apiqa.ent.lolcentral.com/login/oauth/authorize",
-						"type": "string"
-					},
-					{
-						"key": "addTokenTo",
-						"value": "header",
-						"type": "string"
-					},
-					{
-						"key": "client_authentication",
-						"value": "header",
+						"key": "username",
+						"value": "demo",
 						"type": "string"
 					}
 				]
@@ -1300,11 +1310,16 @@
 						}
 					],
 					"auth": {
-						"type": "oauth2",
-						"oauth2": [
+						"type": "basic",
+						"basic": [
 							{
-								"key": "addTokenTo",
-								"value": "header",
+								"key": "password",
+								"value": "demo",
+								"type": "string"
+							},
+							{
+								"key": "username",
+								"value": "demo",
 								"type": "string"
 							}
 						]
@@ -1594,11 +1609,16 @@
 						}
 					],
 					"auth": {
-						"type": "oauth2",
-						"oauth2": [
+						"type": "basic",
+						"basic": [
 							{
-								"key": "addTokenTo",
-								"value": "header",
+								"key": "password",
+								"value": "demo",
+								"type": "string"
+							},
+							{
+								"key": "username",
+								"value": "demo",
 								"type": "string"
 							}
 						]
@@ -1625,6 +1645,21 @@
 					]
 				}
 			],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "demo",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "demo",
+						"type": "string"
+					}
+				]
+			},
 			"event": [
 				{
 					"listen": "prerequest",
@@ -2941,61 +2976,16 @@
 						}
 					],
 					"auth": {
-						"type": "oauth2",
-						"oauth2": [
+						"type": "basic",
+						"basic": [
 							{
-								"key": "clientSecret",
-								"value": "{{oauth-client-secret}}",
+								"key": "password",
+								"value": "demo",
 								"type": "string"
 							},
 							{
-								"key": "clientId",
-								"value": "{{oauth-client-id}}",
-								"type": "string"
-							},
-							{
-								"key": "accessTokenUrl",
-								"value": "{{hostname}}/auth/realms/alfresco/protocol/openid-connect/token",
-								"type": "string"
-							},
-							{
-								"key": "tokenName",
-								"value": "Alfresco PaaS FTCI Token",
-								"type": "string"
-							},
-							{
-								"key": "challengeAlgorithm",
-								"value": "S256",
-								"type": "string"
-							},
-							{
-								"key": "scope",
-								"value": "openid",
-								"type": "string"
-							},
-							{
-								"key": "redirect_uri",
-								"value": "https://apiqa.ent.lolcentral.com",
-								"type": "string"
-							},
-							{
-								"key": "grant_type",
-								"value": "client_credentials",
-								"type": "string"
-							},
-							{
-								"key": "authUrl",
-								"value": "https://apiqa.ent.lolcentral.com/login/oauth/authorize",
-								"type": "string"
-							},
-							{
-								"key": "addTokenTo",
-								"value": "header",
-								"type": "string"
-							},
-							{
-								"key": "client_authentication",
-								"value": "header",
+								"key": "username",
+								"value": "demo",
 								"type": "string"
 							}
 						]
@@ -3638,61 +3628,16 @@
 						}
 					],
 					"auth": {
-						"type": "oauth2",
-						"oauth2": [
+						"type": "basic",
+						"basic": [
 							{
-								"key": "clientSecret",
-								"value": "{{oauth-client-secret}}",
+								"key": "password",
+								"value": "demo",
 								"type": "string"
 							},
 							{
-								"key": "clientId",
-								"value": "{{oauth-client-id}}",
-								"type": "string"
-							},
-							{
-								"key": "accessTokenUrl",
-								"value": "{{hostname}}/auth/realms/alfresco/protocol/openid-connect/token",
-								"type": "string"
-							},
-							{
-								"key": "tokenName",
-								"value": "Alfresco PaaS FTCI Token",
-								"type": "string"
-							},
-							{
-								"key": "challengeAlgorithm",
-								"value": "S256",
-								"type": "string"
-							},
-							{
-								"key": "scope",
-								"value": "openid",
-								"type": "string"
-							},
-							{
-								"key": "redirect_uri",
-								"value": "https://apiqa.ent.lolcentral.com",
-								"type": "string"
-							},
-							{
-								"key": "grant_type",
-								"value": "client_credentials",
-								"type": "string"
-							},
-							{
-								"key": "authUrl",
-								"value": "https://apiqa.ent.lolcentral.com/login/oauth/authorize",
-								"type": "string"
-							},
-							{
-								"key": "addTokenTo",
-								"value": "header",
-								"type": "string"
-							},
-							{
-								"key": "client_authentication",
-								"value": "header",
+								"key": "username",
+								"value": "demo",
 								"type": "string"
 							}
 						]
@@ -3720,71 +3665,16 @@
 				}
 			],
 			"auth": {
-				"type": "oauth2",
-				"oauth2": [
+				"type": "basic",
+				"basic": [
 					{
-						"key": "accessTokenUrl",
-						"value": "{{hostname}}/auth/realms/alfresco/protocol/openid-connect/token",
+						"key": "password",
+						"value": "demo",
 						"type": "string"
 					},
 					{
-						"key": "clientSecret",
-						"value": "{{oauth-client-secret}}",
-						"type": "string"
-					},
-					{
-						"key": "clientId",
-						"value": "{{oauth-client-id}}",
-						"type": "string"
-					},
-					{
-						"key": "tokenName",
-						"value": "Alfresco PaaS FTCI Token",
-						"type": "string"
-					},
-					{
-						"key": "challengeAlgorithm",
-						"value": "S256",
-						"type": "string"
-					},
-					{
-						"key": "scope",
-						"value": "openid",
-						"type": "string"
-					},
-					{
-						"key": "redirect_uri",
-						"value": "https://apiqa.ent.lolcentral.com",
-						"type": "string"
-					},
-					{
-						"key": "grant_type",
-						"value": "client_credentials",
-						"type": "string"
-					},
-					{
-						"key": "authUrl",
-						"value": "https://apiqa.ent.lolcentral.com/login/oauth/authorize",
-						"type": "string"
-					},
-					{
-						"key": "addTokenTo",
-						"value": "header",
-						"type": "string"
-					},
-					{
-						"key": "client_authentication",
-						"value": "header",
-						"type": "string"
-					},
-					{
-						"key": "tokenType",
-						"value": "Bearer",
-						"type": "string"
-					},
-					{
-						"key": "accessToken",
-						"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJKQTl2Zk56ZWhRcU1GRnduMzNGaFJrU0xlTzhGNm1lb3E1amNiYzhwQmU0In0.eyJleHAiOjE2NTk1NDcwODYsImlhdCI6MTY1OTU0NTI4NiwianRpIjoiNDFkOGU1ZGYtOGQwZS00NTA2LWIzYmQtYzExZWY0ZjA3ODM3IiwiaXNzIjoiaHR0cHM6Ly9zc2UuZGV2LmFsZnJlc2NvY2xvdWQuY29tL2F1dGgvcmVhbG1zL2FsZnJlc2NvIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjViNzM4ZTRhLTI5MmUtNGJlNS04ZjcxLTgwOTI3YzE5YjM4MCIsInR5cCI6IkJlYXJlciIsImF6cCI6InNoZXJyeV9jbGllbnRfY3JlZGVudGlhbHMiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHBzOi8vc3NlLWluZ2VzdGlvbi5kZXYuYWxmcmVzY29jbG91ZC5jb20iLCJodHRwOi8vMTI3LjAuMC4xIiwiaHR0cDovL2xvY2FsaG9zdCIsImh0dHBzOi8vc3NlLmRldi5hbGZyZXNjb2Nsb3VkLmNvbSIsImh0dHBzOi8vc3NlLWFwYS5kZXYuYWxmcmVzY29jbG91ZC5jb20iLCJodHRwczovL3NzZS1hcHAuZGV2LmFsZnJlc2NvY2xvdWQuY29tIiwiaHR0cHM6Ly9ncmVlbi1zc2UuZGV2LmFsZnJlc2NvY2xvdWQuY29tIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWFsZnJlc2NvIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIGVtYWlsIHByb2ZpbGUiLCJjbGllbnRIb3N0IjoiMTk5LjkxLjE0NC42OCIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiY2xpZW50SWQiOiJzaGVycnlfY2xpZW50X2NyZWRlbnRpYWxzIiwicHJlZmVycmVkX3VzZXJuYW1lIjoic2VydmljZS1hY2NvdW50LXNoZXJyeV9jbGllbnRfY3JlZGVudGlhbHMiLCJjbGllbnRBZGRyZXNzIjoiMTk5LjkxLjE0NC42OCJ9.B3yVZAOdMn9qq_ftAqSoka6MbpObb65cexGT8QPNE9FGBLGv-k3qyYULNydELj9NcvYcGhKBFvr1jNAS1xHmjUjMYT6frCYAOF-qKpr_8cmBfM3G1MLd8jsh2xaeku8bJ1La1pJ17ynWIHgeiGCO_o8sjhwZkOwQEwhEV9kSsWdHW_vn-PSk46i9g1Z_caSaZOhM7w3zbnFkUSLO2ezYNGB9AQRRguy5yi-sMUOekSwRFgFzpGhf7CVw1crXLlsTnEam7iaxAkG74adHDcJQm0_4UMQJQM5yAynt_N2xkZ_6XrsW_-vBIEPIFGE939mq7nEchayDJHm1Tc8-gkp_0A",
+						"key": "username",
+						"value": "demo",
 						"type": "string"
 					}
 				]
@@ -4195,6 +4085,21 @@
 					"response": []
 				}
 			],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "demo",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "demo",
+						"type": "string"
+					}
+				]
+			},
 			"event": [
 				{
 					"listen": "prerequest",
@@ -4358,6 +4263,21 @@
 					"response": []
 				}
 			],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "demo",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "demo",
+						"type": "string"
+					}
+				]
+			},
 			"event": [
 				{
 					"listen": "prerequest",
@@ -4577,6 +4497,21 @@
 					"response": []
 				}
 			],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "demo",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "demo",
+						"type": "string"
+					}
+				]
+			},
 			"event": [
 				{
 					"listen": "prerequest",
@@ -5073,6 +5008,21 @@
 					"response": []
 				}
 			],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "demo",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "demo",
+						"type": "string"
+					}
+				]
+			},
 			"event": [
 				{
 					"listen": "prerequest",
@@ -5136,6 +5086,21 @@
 					"response": []
 				}
 			],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "demo",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "demo",
+						"type": "string"
+					}
+				]
+			},
 			"event": [
 				{
 					"listen": "prerequest",
@@ -5504,6 +5469,41 @@
 					},
 					"response": []
 				}
+			],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "demo",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "demo",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
 			]
 		},
 		{
@@ -5765,6 +5765,41 @@
 					},
 					"response": []
 				}
+			],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "demo",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "demo",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
 			]
 		},
 		{
@@ -5903,100 +5938,6 @@
 				}
 			},
 			"response": []
-		}
-	],
-	"auth": {
-		"type": "oauth2",
-		"oauth2": [
-			{
-				"key": "client_authentication",
-				"value": "header",
-				"type": "string"
-			},
-			{
-				"key": "accessTokenUrl",
-				"value": "{{hostname}}/auth/realms/alfresco/protocol/openid-connect/token",
-				"type": "string"
-			},
-			{
-				"key": "clientSecret",
-				"value": "{{oauth-client-secret}}",
-				"type": "string"
-			},
-			{
-				"key": "clientId",
-				"value": "{{oauth-client-id}}",
-				"type": "string"
-			},
-			{
-				"key": "tokenType",
-				"value": "Bearer",
-				"type": "string"
-			},
-			{
-				"key": "accessToken",
-				"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJKQTl2Zk56ZWhRcU1GRnduMzNGaFJrU0xlTzhGNm1lb3E1amNiYzhwQmU0In0.eyJleHAiOjE2NTk1NTM3NDUsImlhdCI6MTY1OTU1MTk0NSwianRpIjoiY2MzMWJhNjAtMDQzNC00NzE3LTkwNjgtMDhkYWU1ZjJjMWU1IiwiaXNzIjoiaHR0cHM6Ly9zc2UuZGV2LmFsZnJlc2NvY2xvdWQuY29tL2F1dGgvcmVhbG1zL2FsZnJlc2NvIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjViNzM4ZTRhLTI5MmUtNGJlNS04ZjcxLTgwOTI3YzE5YjM4MCIsInR5cCI6IkJlYXJlciIsImF6cCI6InNoZXJyeV9jbGllbnRfY3JlZGVudGlhbHMiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHBzOi8vc3NlLWluZ2VzdGlvbi5kZXYuYWxmcmVzY29jbG91ZC5jb20iLCJodHRwOi8vMTI3LjAuMC4xIiwiaHR0cDovL2xvY2FsaG9zdCIsImh0dHBzOi8vc3NlLmRldi5hbGZyZXNjb2Nsb3VkLmNvbSIsImh0dHBzOi8vc3NlLWFwYS5kZXYuYWxmcmVzY29jbG91ZC5jb20iLCJodHRwczovL3NzZS1hcHAuZGV2LmFsZnJlc2NvY2xvdWQuY29tIiwiaHR0cHM6Ly9ncmVlbi1zc2UuZGV2LmFsZnJlc2NvY2xvdWQuY29tIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLWFsZnJlc2NvIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIGVtYWlsIHByb2ZpbGUiLCJjbGllbnRIb3N0IjoiMTk5LjkxLjE0NC42OCIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiY2xpZW50SWQiOiJzaGVycnlfY2xpZW50X2NyZWRlbnRpYWxzIiwicHJlZmVycmVkX3VzZXJuYW1lIjoic2VydmljZS1hY2NvdW50LXNoZXJyeV9jbGllbnRfY3JlZGVudGlhbHMiLCJjbGllbnRBZGRyZXNzIjoiMTk5LjkxLjE0NC42OCJ9.Leb7n6d9iw2leLFycbSwujBnu7qAEQGoGSdyfTEYlgk1yc8q92ShoNEsa_wPuwJ1FnIt4DXznR_c8HzpDKVt0aIStyKkQIz6x-JcP6HZtxV7e7SHkeKr6SiD0kPUVSzbCKreWP-5Iliph4s__x-_rQw0cFEkCxFPrl_nT-xcIvYpYQSRDpAbRwYWWYvuaAXQCWTyNzPRAfxkPY_dWbYAOcT8DxaifYM2JRTVGRetA-PHSjok_QzEJXNNxN9pp9MT3ip659_rwnYQlEZ0-rAiZe3k5yVGGPxtlQpkOTojBlzIz2C9jYBs5JTGXzoRSkYCn6HY44PiqMCHlxw-agTLxw",
-				"type": "string"
-			},
-			{
-				"key": "tokenName",
-				"value": "Alfresco PaaS FTCI Token",
-				"type": "string"
-			},
-			{
-				"key": "challengeAlgorithm",
-				"value": "S256",
-				"type": "string"
-			},
-			{
-				"key": "scope",
-				"value": "openid",
-				"type": "string"
-			},
-			{
-				"key": "redirect_uri",
-				"value": "https://apiqa.ent.lolcentral.com",
-				"type": "string"
-			},
-			{
-				"key": "grant_type",
-				"value": "client_credentials",
-				"type": "string"
-			},
-			{
-				"key": "authUrl",
-				"value": "https://apiqa.ent.lolcentral.com/login/oauth/authorize",
-				"type": "string"
-			},
-			{
-				"key": "addTokenTo",
-				"value": "header",
-				"type": "string"
-			}
-		]
-	},
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					"/*",
-					"More APIs : ",
-					"1. http://<hostname>/alfresco/s/index/package/",
-					"2. https://api-explorer.alfresco.com/api-explorer/",
-					"*/"
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					""
-				]
-			}
 		}
 	]
 }
