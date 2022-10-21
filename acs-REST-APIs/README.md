@@ -3,7 +3,9 @@
 * Alfresco Content Services (ACS) <br/>
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/2755505-c8aa37df-3489-42c5-bc33-244742fb461a?action=collection%2Ffork&collection-url=entityId%3D2755505-c8aa37df-3489-42c5-bc33-244742fb461a%26entityType%3Dcollection%26workspaceId%3D7cc9b67f-91a2-49b9-a2ea-de9a1700135c)
 
-* A set of Global Variables is [available here](assets/workspace.postman_globals.json). Right click > Save Link As to download this JSON file. Please import it into Postman for seamless execution.
+* A set of Global Variables is [available here](assets/workspace.postman_globals.json). 
+  * Right click > Save Link As to download this JSON file
+  * Import the JSON into Postman for seamless execution.
 
 
 ## References
