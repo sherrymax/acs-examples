@@ -5,7 +5,7 @@
 
 * A set of Global Variables is [available here](assets/workspace.postman_globals.json). Please import into Postman for seamless execution.
   
-* A set of Global Variables is <a href="/assets/workspace.postman_globals.json" download>available here</a>. Please import into Postman for seamless execution.
+* A set of Global Variables is <a href="https://github.com/sherrymax/acs-examples/blob/master/acs-REST-APIs/assets/workspace.postman_globals.json" download>available here</a>. Please import into Postman for seamless execution.
 
 ### References
 
