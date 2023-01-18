@@ -1,6 +1,7 @@
-#### This article details the steps required to configure a custom Advanced Search template.
+#### This article details the steps required to configure a custom Advanced Search template
 
 ### Use-Case / Requirement
+
 The admin user should be able to create a customised Advanced Search template for searching a specific document type (eg: Contract Document).
 
 ### Prerequisites to run this demo end-2-end
@@ -9,7 +10,9 @@ The admin user should be able to create a customised Advanced Search template fo
 * Alfresco Demo Platform (ADP) : Only for ADP Users
 
 ## Configuration Steps
+
 1. Download and Import a model to apply.
+
 * [Contracts](../acs-model-examples/CLM.zip)
 
 ![model-manager](assets/1.png)
@@ -19,19 +22,19 @@ The admin user should be able to create a customised Advanced Search template fo
 * share-config.xml - This file lists the document type to be searched.
 * share-form-config.xml - This file has the `search-form` where the user enters the search criteria.
 
-
-In Alfresco Demo Platform (ADP), the location of files in SHARE container will be: 
+In Alfresco Demo Platform (ADP), the location of files in SHARE container will be:
 
 ```
 1. /usr/local/tomcat/webapps/share/WEB-INF/classes/alfresco/share-config.xml
 2. /usr/local/tomcat/webapps/share/WEB-INF/classes/alfresco/share-form-config.xml
 ```
+
 > <b>Note for ADP Users :</b> These files will be in the SHARE container. Hence you've to shell into container by running following commands <li>`./adp.py shell share`  <li>`cd /usr/local/tomcat/webapps/share/WEB-INF/classes/alfresco/` <li>`vim share-config.xml` <li>`vim share-form-config.xml`
 
 The following files have to be updated for a custom Advanced Search on a certain document type.
 
-
 ## Step 1: Update the share-config.xml
+
 ``` xml
 <config evaluator="string-compare" condition="AdvancedSearch">
     <advanced-search>
@@ -44,10 +47,15 @@ The following files have to be updated for a custom Advanced Search on a certain
     </advanced-search>
 </config>
 ```
-## Result:
+
+## Result
+
 ![search-by-doc-type](assets/2.png)
 
 ## Step 2 : Update the share-form-config.xml
+
+All types of <b>Form Controls</b> are available at : <https://docs.alfresco.com/content-services/latest/develop/reference/share-document-library-ref/#form-controls>
+
 ``` xml
 <!-- lm:Contracts type (new nodes) -->
 <config evaluator="model-type" condition="lm:contractDocument">
@@ -59,35 +67,30 @@ The following files have to be updated for a custom Advanced Search on a certain
                 <show id="lm:contractType" force="true" />
             </field-visibility>
             <appearance>
-                <field id="mimetype">
-                    <control template="/org/alfresco/components/form/controls/mimetype.ftl" />
+                <field id="lm:contractName">
+                    <control template="/org/alfresco/components/form/controls/textfield.ftl" />
                 </field>
-                <field id="cm:modifier">
-                    <control>
-                        <control-param name="forceEditable">true</control-param>
-                    </control>
-                </field>
-                <field id="cm:modified">
-                    <control template="/org/alfresco/components/form/controls/daterange.ftl" />
+                <field id="lm:contractType">
+                    <control template="/org/alfresco/components/form/controls/textfield.ftl" />
                 </field>
             </appearance>
         </form>
     </forms>
 </config>
 ```
-## Result:
+
+## Result
+
 ![search-form-by-doc-type](assets/3.png)
 
-
-
 ## Save the files and restart Alfresco
-> **Note**: ADP Users should save the files followed by STOP and START of SHARE container.
 
+> **Note**: ADP Users should save the files followed by STOP and START of SHARE container.
 
 ### ACS : RUN the DEMO
 
-
-
 ### References
-1. https://ecmarchitect.com/alfresco-developer-series-tutorials/content/tutorial/tutorial.html#configuring-advanced-search-in-alfresco-share
-2. https://hub.alfresco.com/t5/alfresco-content-services-hub/share-advanced-search/ba-p/291116#Search_Forms
+
+1. <https://ecmarchitect.com/alfresco-developer-series-tutorials/content/tutorial/tutorial.html#configuring-advanced-search-in-alfresco-share>
+2. <https://hub.alfresco.com/t5/alfresco-content-services-hub/share-advanced-search/ba-p/291116#Search_Forms>
+3. <https://docs.alfresco.com/content-services/6.2/develop/reference/share-document-library-ref/#form-controls>
