@@ -47,7 +47,7 @@ logger.error(r);
 ```javascript
  try {
         var hostName = 'http://' + sysAdmin.getHost();
-        var requestBody = "{\"processDefinitionKey\":\"CreateRecordProcess\",\"variables\":[{\"name\":\"nodeIdList\",\"value\":\"" + nodeListString + "\"}, {\"name\":\"recordFolderName\",\"value\":\"" + node.name + "\"}]}";
+        var requestBody = "{\"processDefinitionKey\":\"CreateRecordProcess\",\"variables\":[{\"name\":\"nodeIdList\",\"value\":\"" + nodeListString + "\"}, {\"name\":\"recordFolderName\",\"value\":\"" + document.name + "\"}]}";
 
         var requestURL = hostName + "/activiti-app/api/enterprise/process-instances";
         var res = http.post(requestURL, requestBody, "application/json", 'demo', 'demo');
