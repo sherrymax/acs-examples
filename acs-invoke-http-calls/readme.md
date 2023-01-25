@@ -45,17 +45,21 @@ logger.error(r);
 ```
 
 ```javascript
- try {
-        var hostName = 'http://' + sysAdmin.getHost();
-        var requestBody = "{\"processDefinitionKey\":\"CreateRecordProcess\",\"variables\":[{\"name\":\"nodeIdList\",\"value\":\"" + nodeListString + "\"}, {\"name\":\"recordFolderName\",\"value\":\"" + document.name + "\"}]}";
+try {
+    var hostName = 'http://' + sysAdmin.getHost();
+    var requestBody = "{\"processDefinitionKey\":\"CreateRecordProcess\",\"variables\":[{\"name\":\"nodeIdList\",\"value\":\"" + nodeListString + "\"}, {\"name\":\"recordFolderName\",\"value\":\"" + document.name + "\"}]}";
 
-        var requestURL = hostName + "/activiti-app/api/enterprise/process-instances";
-        var res = http.post(requestURL, requestBody, "application/json", 'demo', 'demo');
-        logger.system.out(res.id);
+    var requestURL = hostName + "/activiti-app/api/enterprise/process-instances";
+    var res = http.post(requestURL, requestBody, "application/json", 'demo', 'demo');
+    logger.system.out(res.id);
 
-    } catch (ex) {
+} catch (ex) {
 
-    }
+}
 ```
 
 ## Run the DEMO
+
+## References
+
+* Get Alfresco HostName : <https://github.com/sherrymax/acs-examples/tree/master/acs-get-alfresco-hostname>

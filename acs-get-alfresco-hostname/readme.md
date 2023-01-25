@@ -29,3 +29,7 @@ logger.system.out(hostName);
 ```
 
 ## Run the DEMO
+
+## References
+
+* <https://docs.alfresco.com/content-services/latest/develop/repo-ext-points/javascript-root-objects/>
