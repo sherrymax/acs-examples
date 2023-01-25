@@ -7,24 +7,24 @@ The server-side Javascripts have the need to get the hostname of Alfresco Server
 ### Prerequisites to run this demo end-2-end
 
 * Alfresco Content Services (Version 6.1 and above)
-* [Custom JAR File](../action-script-sample-1.0-SNAPSHOT.jar)
+* [Custom JAR File](../alfresco-script-root-object-1.0.0.jar)
 
 ## Configuration Steps
 
-1. Deploy the [action-script-sample-1.0-SNAPSHOT.jar](assets/action-script-sample-1.0-SNAPSHOT.jar) file to ACS. Full credits and thanks to [Angel Borroy](https://github.com/aborroy).
+1. Deploy the [alfresco-script-root-object-1.0.0.jar](assets/alfresco-script-root-object-1.0.0.jar) file to ACS. Full credits and thanks to [Angel Borroy](https://github.com/aborroy).
 2. Restart ACS Server/Container.
 
 ## Configuration Step in ADP/Orca (Only for Orca/ADP users)
 
 ```
-Location to deploy action-script-sample-1.0-SNAPSHOT.jar in ADP/Orca will be: 
-adp/data/services/content/custom/action-script-sample-1.0-SNAPSHOT.jar
+Location to deploy alfresco-script-root-object-1.0.0.jar in ADP/Orca will be: 
+adp/data/services/content/custom/alfresco-script-root-object-1.0.0.jar
 ```
 
 ## Javascript examples that invoke HTTP
 
 ```javascript
-var hostName = 'http://' + sysAdmin.getHost();
+var hostName = 'http://' + sysAdmin.getAlfrescoHost();
 logger.system.out(hostName);
 ```
 
@@ -33,3 +33,5 @@ logger.system.out(hostName);
 ## References
 
 * <https://docs.alfresco.com/content-services/latest/develop/repo-ext-points/javascript-root-objects/>
+* <https://github.com/aborroy/alfresco-script-root-object>
+* <https://github.com/aborroy/alfresco-script-root-object/releases/tag/1.0.0>
