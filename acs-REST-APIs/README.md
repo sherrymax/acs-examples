@@ -14,4 +14,4 @@
 <https://hub.alfresco.com/t5/alfresco-content-services-blog/v1-rest-api-10-things-you-should-know/ba-p/287692>
 * Alfresco Content Services : API Explorer - <https://api-explorer.alfresco.com/api-explorer/>
 * Alfresco Process Services : API Explorer - <https://api-explorer.alfresco.com/activiti-app/api-explorer.html>
-* Alfresco Content Services : API Explorer - <https://se2.dev.alfrescocloud.com/ags-api-explorer/>
+* Alfresco Governance Services : API Explorer - <https://se2.dev.alfrescocloud.com/ags-api-explorer/>
