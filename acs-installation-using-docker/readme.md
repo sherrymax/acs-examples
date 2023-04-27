@@ -62,7 +62,8 @@ An Enterprise edition of Alfresco Content Services has to be installed using Doc
    > Note: For 30 day Enterprise Trial, the `docker-compose.yaml` can be downloaded from the link given in the email response from Alfresco.
 
 10. Note the login credentials to [Quay.io](https://quay.io/repository/).
-    > Note: For 30 day Enterprise Trial, the `quay login credentials` is available in the email response from Alfresco.
+    > Note: For 30 day Enterprise Trial, the `quay login credentials` are available in the email response from Alfresco.
+
     > Note: Only the encrypted password has to be used.
 
 11. Run the following command to login to Quay.io.
@@ -77,7 +78,7 @@ An Enterprise edition of Alfresco Content Services has to be installed using Doc
     ```
     docker-compose up &
     ```
-    > Note: It will take around 10 minutes to download images and get them started.
+    > Note: It will take under 5 minutes to download images and get them started.
 
 14. Run the following command to verify status.
     ```
