@@ -49,7 +49,8 @@ An Enterprise edition of Alfresco Content Services has to be installed using Doc
 7. Start `Docker Service`.
    ```
    sudo systemctl start docker.service
-   ```   
+   ```
+   > Note: Verify status by `sudo systemctl status docker.service`
 
 8. Create a folder with name `alfresco`.
    ```
@@ -83,11 +84,17 @@ An Enterprise edition of Alfresco Content Services has to be installed using Doc
     docker ps -a
     ```
 
-15. Navigate to the following URLs to open Alfresco.
+15. Default username/password.
     ```
-    http://<hostname>:8080/alfresco
-    http://<hostname>:8080/share
+    admin/admin
     ```
+
+### ACS : RUN the DEMO
+Navigate to the following URLs to open Alfresco.
+```
+http://<hostname>:8080/alfresco
+http://<hostname>:8080/share
+```
 
 ### TIP
 Run this command to START containers
