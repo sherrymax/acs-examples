@@ -3,7 +3,7 @@
 ### Use-Case / Requirement
 An Enterprise edition of Alfresco Content Services has to be installed using Docker Compose.
 
-### Prerequisites to run this demo end-2-end
+### Prerequisites to ACS Installation
 
 * Alfresco Content Services Enterprise License - A [30-day Free trial license](https://www.alfresco.com/platform/content-services-ecm/trial/download) is also available from Alfresco.
 * An [Amazon Linux](https://aws.amazon.com/amazon-linux-ami/) EC2 instance is used to install Alfresco in this article.
