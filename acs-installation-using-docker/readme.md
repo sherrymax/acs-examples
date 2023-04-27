@@ -17,6 +17,7 @@ An Enterprise edition of Alfresco Content Services has to be installed using Doc
    CPU : t3.2xlarge
    Storage : 100GB
    ```
+   ![amazon-linux](assets/2.png)
 
 2. Connect to the Amazon Linux EC2 Instance.
    ```
