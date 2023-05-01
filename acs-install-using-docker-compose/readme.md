@@ -98,6 +98,8 @@ http://<hostname>:8080/share
 ```
 
 ### TIP
+Special thanks to [Abhinav Kumar Mishra](https://github.com/abhinavmishra14) for sharing the Docker commands useful for installation.
+
 Run this command to START containers
 ```
 docker-compose up
@@ -113,7 +115,49 @@ Run this command to REBUILD with clear cache and RESTART
 docker-compose down && docker-compose build --no-cache && docker-compose up
 ```
 
+To create the external volumes use following command:
+```
+docker volume create <volumeName>
+```
+
+To purge the external volumes use following command:
+```
+docker volume rm -f <volumeName>
+```
+
+To build use following command:
+To build the images, This command will ignore any images which are already built and no changes to DockerFile has been identified. It will use cache.
+```
+docker-compose -f ./docker-compose.yml build
+```
+
+To build the images with no cache. It will force rebuild
+```
+docker-compose -f ./docker-compose.yml build --no-cache
+```
+
+To launch containers use following command:
+```
+docker-compose -f ./docker-compose.yml up
+```
+
+To build and launch containers use following command:
+```
+docker-compose -f ./docker-compose.yml up --build
+```
+
+To shutdown use following command:
+```
+docker-compose -f ./docker-compose.yml down
+```
+
+To tail logs use following command:
+```
+docker-compose -f ./docker-compose.yml logs -f
+```
+
 ### References
 1. Alfresco Installation using Docker Compose : https://docs.alfresco.com/content-services/latest/install/containers/docker-compose/
 2. How to install Docker on Amazon Linux 2 : https://www.cyberciti.biz/faq/how-to-install-docker-on-amazon-linux-2/
 3. Top 15 Docker Commands : https://www.edureka.co/blog/docker-commands/
+4. ACS Community Installation : https://github.com/abhinavmishra14/acs-community-71-docker
