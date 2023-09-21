@@ -9,7 +9,7 @@ Neither the Regular Search nor the Live Search fom within Alfresco Share does se
 
 ## Concepts
 
-* <b>Simple Search :</b> The search field at the top right corner of the Share UI window is called the "Simple Search" field. 
+* <b>Simple Search :</b> The search field at the top right corner of the Share UI window is called the "Simple Search" field.
 * <b>Live Search :</b> From version 5.0 onwards, while typing first characters into that field the so called "Live Search" is triggered. ON pressing enter, the full search is triggered and all results for the entered search term are displayed.
 
 In both cases, the search against documents with the text entered into the search field is limited to what is pre-configured in the out-of-the-box configuration.
@@ -26,10 +26,13 @@ The default list of what is searched against for documents can be found in the f
 * /alfresco/templates/webscripts/org/alfresco/slingshot/search/search.get.config.xml
 
 ```
-Locations in ADP will be: 
+Locations in ADP will be:
 1. adp/data/services/content/live-search-docs.get.config.xml
 2. adp/data/services/content/search.get.config.xml
 ```
+
+Please Note : The `search.get.config.xml` and `live-search-docs.get.config.xml` will be located under `Share Services`.
+https://github.com/Alfresco/share/blob/6e47606435ebacb3aa7dd3c083428d57c2655245/share-services/src/main/resources/alfresco/templates/webscripts/org/alfresco/slingshot/search/search.get.config.xml
 
 You can override these files and add to the fields listing that are searched against for finding documents in simple/live search.
 
@@ -37,8 +40,8 @@ You can override these files and add to the fields listing that are searched aga
 ## Steps to add custom properties to simple/live search
 
 <b>Step 1: </b>Edit the configuration files and add your additional custom properties.  
-    
-Example : 
+
+Example :
 If you have properties `lm:ContractNumber` and `lm:ContractStatus`
 For Simple Search : Change `search.get.config.xml` from
 ```xml
