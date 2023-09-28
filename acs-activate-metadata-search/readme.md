@@ -109,6 +109,9 @@ For example: If you wanted to add `sys:node-dbid` property, it should be added a
 ![simple-search-image](assets/3.png)
 
 
+### Support Case
+Please find the [support case article](assets/Article.pdf) from Alfresco.
+
 ### References
-1. https://alfresco.my.salesforce.com/articles/en_US/Technical_Article/Can-we-add-custom-properties-into-the-properties-list-which-Share-Simple-Search-searches-against?popup=true
+1. https://community.hyland.com/tskb/000014139-can-we-add-custom-properties-into-the-properties-list-which-share-simplelive-search-search-against
 2. https://hub.alfresco.com/t5/alfresco-content-services-hub/share-advanced-search/ba-p/291116#Search_Forms
