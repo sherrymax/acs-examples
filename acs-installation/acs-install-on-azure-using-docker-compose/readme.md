@@ -1,4 +1,4 @@
-#### This article details the steps required to install Alfresco Content Services - Enterprise (ACS) using Docker Compose.
+#### This article details the steps required to install Alfresco Content Services - Enterprise (ACS) on Azure Cloud using Docker Compose.
 
 ### Use-Case / Requirement
 An Enterprise edition of Alfresco Content Services has to be installed using Docker Compose.
@@ -6,59 +6,82 @@ An Enterprise edition of Alfresco Content Services has to be installed using Doc
 ### Prerequisites to ACS Installation
 
 * Alfresco Content Services Enterprise License - A [30-day Free trial license](https://www.alfresco.com/platform/content-services-ecm/trial/download) is also available from Alfresco.
-* An [Amazon Linux](https://aws.amazon.com/amazon-linux-ami/) EC2 instance is used to install Alfresco in this article.
+* An [Azure - Ubuntu Linux - VM](https://azure.microsoft.com/en-us/solutions/linux-on-azure/ubuntu/) is used to install Alfresco in this article.
 * Login credentials to [Quay.io](https://quay.io/repository/) that holds container images of Alfresco Enterprise Edition.
 > Note: If you've requested for a [30-day Free trial license](https://www.alfresco.com/platform/content-services-ecm/trial/download), please wait for the email from Alfresco with details, as shown below.
 ![email-details](assets/1.png)
 
 ## Installation Steps
-1. Create an [Amazon Linux](https://aws.amazon.com/amazon-linux-ami/) EC2 instance.
+1. Create an [Azure VM (Ubuntu Linux)](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal?tabs=ubuntu) instance.
    ```
-   CPU : t3.2xlarge
-   Storage : 100GB
+   OS : Ubuntu Linux
+   Version : 22.04
+   Size : Standard E2s v3 (2 vcpus, 16 GiB memory)
    ```
    ![amazon-linux](assets/2.png)
 
-2. Connect to the Amazon Linux EC2 Instance.
+2. Connect to the Azure VM.
    ```
-   ssh -i "my-aws.pem" ec2-user@ec2-1-2-3-4.compute-1.amazonaws.com
-   ```
-
-3. Switch to `root` user for all installation privileges.
-   ```
-   sudo su
+   ssh -i "my-azure.pem" <azure-username>@.2.3.4
    ```
 
-4. Install `Docker` on the connected Amazon Linux EC2 Instance.
+4. [Install Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) on the connected Amazon Linux EC2 Instance.
    ```
-   yum install docker
+   # Add Docker's official GPG key:
+   sudo apt-get update
+   sudo apt-get install ca-certificates curl gnupg
+   sudo install -m 0755 -d /etc/apt/keyrings
+   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+   sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+   # Add the repository to Apt sources:
+   echo \
+   "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+   "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   sudo apt-get update
    ```
 
-5. Install `docker-compose` on the connected Amazon Linux EC2 Instance.
+5. Install `Docker packages` on the connected Azure VM.
    ```
-   wget https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)
-   sudo mv docker-compose-$(uname -s)-$(uname -m) /usr/local/bin/docker-compose
-   sudo chmod -v +x /usr/local/bin/docker-compose
+   sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
    ```
 
-6. Enable `Docker Service`.
+5. Install `docker-compose` on the connected Azure VM.
    ```
-   sudo systemctl enable docker.service
+   sudo apt install docker-compose
    ```
 
-7. Start `Docker Service`.
+7. [Update Permissions](https://phoenixnap.com/kb/docker-permission-denied).
    ```
-   sudo systemctl start docker.service
+   sudo groupadd -f docker
+   sudo usermod -aG docker <azure-username>>
+   newgrp docker
+   groups
    ```
-   > Note: Verify status by `sudo systemctl status docker.service`
+
+8. Verify that the Docker Engine installation is successful by running the `hello-world` image.
+   ```
+   sudo docker run hello-world
+   ```
+   This command downloads a test image and runs it in a container. When the container runs, it prints a confirmation message and exits.
+   <br/>
+
+7. Verify Socker running status 
+   ```
+   sudo systemctl status docker.service
+   ```
 
 8. Create a folder with name `alfresco`.
    ```
    mkdir /alfresco
    cd /alfresco
-   ```
+   ```   
 
 9. Upload the `docker-compose.yaml` file to the above `alfresco` folder.
+   ```
+   scp -i my-azure.pem docker-compose.yml <azure-username>@1.2.3.4:/home/<azure-username>/alfresco
+   ```
    > Note: For 30 day Enterprise Trial, the `docker-compose.yaml` can be downloaded from the link given in the email response from Alfresco.
 
 10. Note the login credentials to [Quay.io](https://quay.io/repository/).
@@ -76,7 +99,7 @@ An Enterprise edition of Alfresco Content Services has to be installed using Doc
 
 13. Run the following command to start downloading container images.
     ```
-    docker-compose up &
+    docker-compose up -d
     ```
     > Note: It will take under 5 minutes to download images and get them started.
 
