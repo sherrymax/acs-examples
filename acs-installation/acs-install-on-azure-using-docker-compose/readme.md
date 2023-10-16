@@ -25,7 +25,7 @@ An Enterprise edition of Alfresco Content Services has to be installed using Doc
    ssh -i "my-azure.pem" <azure-username>@.2.3.4
    ```
 
-4. [Install Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) on the connected Amazon Linux EC2 Instance.
+3. [Install Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) on the connected Azure VM.
    ```
    # Add Docker's official GPG key:
    sudo apt-get update
