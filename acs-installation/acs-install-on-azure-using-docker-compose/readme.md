@@ -9,6 +9,7 @@ An Enterprise edition of Alfresco Content Services has to be installed using Doc
 * An [Azure - Ubuntu Linux - VM](https://azure.microsoft.com/en-us/solutions/linux-on-azure/ubuntu/) is used to install Alfresco in this article.
 * Login credentials to [Quay.io](https://quay.io/repository/) that holds container images of Alfresco Enterprise Edition.
 > Note: If you've requested for a [30-day Free trial license](https://www.alfresco.com/platform/content-services-ecm/trial/download), please wait for the email from Alfresco with details, as shown below.
+
 ![email-details](assets/1.png)
 
 ## Installation Steps
@@ -18,7 +19,7 @@ An Enterprise edition of Alfresco Content Services has to be installed using Doc
    Version : 22.04
    Size : Standard E2s v3 (2 vcpus, 16 GiB memory)
    ```
-   ![amazon-linux](assets/2.png)
+![amazon-linux](assets/2.png)
 
 
 2. Please configure the following after creating the Azure.
