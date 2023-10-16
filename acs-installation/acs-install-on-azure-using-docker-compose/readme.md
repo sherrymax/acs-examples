@@ -193,8 +193,9 @@ docker-compose -f ./docker-compose.yml logs -f
 2. How to create Linux VM in Azure : https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal?tabs=ubuntu
 3. How to create Windows VM in Azure : https://learn.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-portal
 4. YouTube Video on Linux VM creation in Azure : https://www.youtube.com/watch?v=IhY1iBfnVj0&t=1045s
-5. What is a Bastion ? : https://learn.microsoft.com/en-us/azure/bastion/bastion-overview
-6. How to configure a Bastion ? : https://learn.microsoft.com/en-us/azure/bastion/tutorial-create-host-portal
-7. How to install Docker on Azure Linux VM : https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
-8. Top 15 Docker Commands : https://www.edureka.co/blog/docker-commands/
-9. ACS Community Installation : https://github.com/abhinavmishra14/acs-community-71-docker
+5. What is a Bastion : https://learn.microsoft.com/en-us/azure/bastion/bastion-overview
+6. How to configure a Bastion : https://learn.microsoft.com/en-us/azure/bastion/tutorial-create-host-portal
+7. Bastion Deployment : https://learn.microsoft.com/en-us/azure/bastion/tutorial-create-host-portal
+8. How to install Docker on Azure Linux VM : https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+9. Top 15 Docker Commands : https://www.edureka.co/blog/docker-commands/
+10. ACS Community Installation : https://github.com/abhinavmishra14/acs-community-71-docker
