@@ -82,16 +82,16 @@ An Enterprise edition of Alfresco Content Services has to be installed using Doc
    ```
 
 10. Create a folder with name `alfresco`.
-   ```
-   mkdir /alfresco
-   cd /alfresco
-   ```   
+      ```
+      mkdir /alfresco
+      cd /alfresco
+      ```   
 
 11. Upload the `docker-compose.yaml` file to the above `alfresco` folder.
-   ```
-   scp -i my-azure.pem docker-compose.yml <azure-username>@1.2.3.4:/home/<azure-username>/alfresco
-   ```
-   > Note: For 30 day Enterprise Trial, the `docker-compose.yaml` can be downloaded from the link given in the email response from Alfresco.
+      ```
+    scp -i my-azure.pem docker-compose.yml <azure-username>@1.2.3.4:/home/<azure-username>/alfresco
+      ```
+    > Note: For 30 day Enterprise Trial, the `docker-compose.yaml` can be downloaded from the link given in the email response from Alfresco.
 
 12. Note the login credentials to [Quay.io](https://quay.io/repository/).
     > Note: For 30 day Enterprise Trial, the `quay login username` and `quay login encrypted password` are available in the email response from Alfresco.
