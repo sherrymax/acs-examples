@@ -9,6 +9,7 @@ An Enterprise edition of Alfresco Content Services has to be installed using Doc
 * An [Amazon Linux](https://aws.amazon.com/amazon-linux-ami/) EC2 instance is used to install Alfresco in this article.
 * Login credentials to [Quay.io](https://quay.io/repository/) that holds container images of Alfresco Enterprise Edition.
 > Note: If you've requested for a [30-day Free trial license](https://www.alfresco.com/platform/content-services-ecm/trial/download), please wait for the email from Alfresco with details, as shown below.
+
 ![email-details](assets/1.png)
 
 ## Installation Steps
