@@ -20,12 +20,21 @@ An Enterprise edition of Alfresco Content Services has to be installed using Doc
    ```
    ![amazon-linux](assets/2.png)
 
-2. Connect to the Azure VM.
+
+2. Please configure the following after creating the Azure.
+* Configure Networking Rule to accept Incoming connections from My IP address or All.
+* Increase Idle Timeout by clicking the IP address from VM Home Page
+* Open the VM > Click Public IP address > Add a DNS name label
+* Open the VM and Update Access Control (IAM) and add the Rule for READ
+* Open the Network Interface (NIC) and Update Access Control (IAM) and add the Rule for READ with IP matching to the Private IP of VM.
+* Create a Bastion
+
+3. Connect to the Azure VM.
    ```
    ssh -i "my-azure.pem" <azure-username>@.2.3.4
    ```
 
-3. [Install Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) on the connected Azure VM.
+4. [Install Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) on the connected Azure VM.
    ```
    # Add Docker's official GPG key:
    sudo apt-get update
@@ -47,7 +56,7 @@ An Enterprise edition of Alfresco Content Services has to be installed using Doc
    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
    ```
 
-5. Install `docker-compose` on the connected Azure VM.
+6. Install `docker-compose` on the connected Azure VM.
    ```
    sudo apt install docker-compose
    ```
@@ -55,7 +64,7 @@ An Enterprise edition of Alfresco Content Services has to be installed using Doc
 7. [Update Permissions](https://phoenixnap.com/kb/docker-permission-denied).
    ```
    sudo groupadd -f docker
-   sudo usermod -aG docker <azure-username>>
+   sudo usermod -aG docker <azure-username>
    newgrp docker
    groups
    ```
@@ -67,48 +76,48 @@ An Enterprise edition of Alfresco Content Services has to be installed using Doc
    This command downloads a test image and runs it in a container. When the container runs, it prints a confirmation message and exits.
    <br/>
 
-7. Verify Socker running status 
+9. Verify Socker running status 
    ```
    sudo systemctl status docker.service
    ```
 
-8. Create a folder with name `alfresco`.
+10. Create a folder with name `alfresco`.
    ```
    mkdir /alfresco
    cd /alfresco
    ```   
 
-9. Upload the `docker-compose.yaml` file to the above `alfresco` folder.
+11. Upload the `docker-compose.yaml` file to the above `alfresco` folder.
    ```
    scp -i my-azure.pem docker-compose.yml <azure-username>@1.2.3.4:/home/<azure-username>/alfresco
    ```
    > Note: For 30 day Enterprise Trial, the `docker-compose.yaml` can be downloaded from the link given in the email response from Alfresco.
 
-10. Note the login credentials to [Quay.io](https://quay.io/repository/).
+12. Note the login credentials to [Quay.io](https://quay.io/repository/).
     > Note: For 30 day Enterprise Trial, the `quay login username` and `quay login encrypted password` are available in the email response from Alfresco.
 
     > Note: Only the encrypted password has to be used.
 
-11. Run the following command to login to Quay.io.
+13. Run the following command to login to Quay.io.
     ```
     docker login quay.io -u="<quay-login-username>"
     ```
 
-12. Enter the `quay-login-encrypted-password` when prompted.
+14. Enter the `quay-login-encrypted-password` when prompted.
     > Note: For 30 day Enterprise Trial, the `quay login encrypted password` is available in the email response from Alfresco.
 
-13. Run the following command to start downloading container images.
+15. Run the following command to start downloading container images.
     ```
     docker-compose up -d
     ```
     > Note: It will take under 5 minutes to download images and get them started.
 
-14. Run the following command to verify status.
+16. Run the following command to verify status.
     ```
     docker ps -a
     ```
 
-15. Default username/password.
+17. Default username/password.
     ```
     admin/admin
     ```
