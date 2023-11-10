@@ -10,6 +10,8 @@ An Enterprise edition of Alfresco Content Services with SOLR has to be installed
 * [Helm Charts](https://github.com/Alfresco/acs-deployment/tree/v6.0.2/helm/alfresco-content-services) from Alfresco Repo are used.
 * [Values.yaml](./assets/local-dev-values.yaml) is used for the default values of this installation.
 * Login credentials to [Quay.io](https://quay.io/repository/) that holds container images of Alfresco Enterprise Edition.
+* [K9s](https://k9scli.io/topics/commands/) to manage the Kubernetes Clusters and PODS.
+
 > Note: If you've requested for a [30-day Free trial license](https://www.alfresco.com/platform/content-services-ecm/trial/download), please wait for the email from Alfresco with details, as shown below.
 
 > Note: Helm chart v6.0.2 can only be used to install ACS v7.4. Hence the installation commands will specify that version number.
