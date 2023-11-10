@@ -182,6 +182,7 @@ eg: https://sherrymax1.eastus.cloudapp.azure.com/alfresco/s/enterprise/admin/adm
 
 11. Verify the SOLR Search Services
 ![Search](./assets/6.png)
+![Search-2](./assets/6a.png)
 
 
 ### ACS : RUN the DEMO
