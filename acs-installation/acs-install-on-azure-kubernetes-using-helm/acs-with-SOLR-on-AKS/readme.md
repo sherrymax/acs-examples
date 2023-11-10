@@ -114,9 +114,9 @@ Click CloudShell and Login.
       ```
 
 6. Add DNS Name to the External IP (Public IP):
-![DNS](./assets/4.png)
-![DNS](./assets/4b.png)
-![DNS](./assets/4c.png)
+![DNS-1](./assets/4.png)
+![DNS-2](./assets/4b.png)
+![DNS-3](./assets/4c.png)
 Take a note of that DNS name.
 
    * DNS Name example : sherrymax1.eastus.cloudapp.azure.com
@@ -127,7 +127,7 @@ Take a note of that DNS name.
       ```
       curl -fO https://raw.githubusercontent.com/sherrymax/acs-examples/master/acs-installation/acs-install-on-azure-kubernetes-using-helm/acs-with-SOLR-on-AKS/assets/local-dev-values.yaml
       ```
-   * Install Alfresco Content Services after updating DNS name in the below command.
+   * Install Alfresco Content Services after updating `DNS name` in the below command.
       ```
       helm install acs alfresco/alfresco-content-services \
       --version 6.0.2 \
@@ -143,18 +143,46 @@ Take a note of that DNS name.
       ```
    >NOTE: Please be patient until server is fully available. <br/>Time for a Coffee break !!!
 
+   * OPTIONAL : If needed, Upgrade Alfresco Content Services after updating `DNS name` in the below command.
+      ```
+      helm upgrade --install acs alfresco/alfresco-content-services \
+      --reuse-values \
+      --version 6.0.2 \
+      --values local-dev-values.yaml \
+      --set global.known_urls=<dns-name-noted-at-step-6> \
+      --set alfresco-sync-service.enabled=false \
+      --set global.tracking.sharedsecret=supersecretpass \
+      --set repository.ingress.annotations."nginx\.ingress\.kubernetes\.io/force-ssl-redirect"=\"true\" \
+      --set share.ingress.annotations."nginx\.ingress\.kubernetes\.io/force-ssl-redirect"=\"true\" \
+      --set global.gateway.annotations."nginx\.ingress\.kubernetes\.io/force-ssl-redirect"=\"true\" \
+      --set repository.persistence.storageClass="azurefile-csi" \
+      --namespace alfresco
+      ```
+
 8. <b>Launch</b>
    Open browser and navigate to :
-   * https://sherrymax1.eastus.cloudapp.azure.com/share
-   * https://sherrymax1.eastus.cloudapp.azure.com/alfresco
-   * https://sherrymax1.eastus.cloudapp.azure.com/workspace
+   * Web UI (1) : https://sherrymax1.eastus.cloudapp.azure.com/share
+   * Web UI (2) : https://sherrymax1.eastus.cloudapp.azure.com/workspace
+   * Admin Console (1) : https://sherrymax1.eastus.cloudapp.azure.com/alfresco
 
-   >Note: The default certificate that comes with this installation has to be updated as per your organisational standards.
+   >Note: The default certificate that comes with this installation has to be updated as per your organisational standards. Until then, certificate will be invalid and proceed at your own risk.
 
 9. Default username/password.
     ```
     admin/admin
     ```
+10. Upload the license, after logging to admin console with default credentials.
+`https://<dns-name>/alfresco`
+eg: https://sherrymax1.eastus.cloudapp.azure.com/alfresco
+`https://<dns-name>/alfresco/s/enterprise/admin/admin-license`
+eg: https://sherrymax1.eastus.cloudapp.azure.com/alfresco/s/enterprise/admin/admin-license
+![License-1](./assets/5.png)
+![License-2](./assets/5a.png)
+![License-1](./assets/5b.png)
+
+11. Verify the SOLR Search Services
+![Search](./assets/6.png)
+
 
 ### ACS : RUN the DEMO
 Navigate to the following URLs to open Alfresco.
