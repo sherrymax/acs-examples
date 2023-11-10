@@ -125,7 +125,7 @@ Take a note of that DNS name.
 7. <b>Alfresco Content Services</b>
    * Download the `values.yaml`
       ```
-      curl -fO https://raw.githubusercontent.com/Alfresco/acs-deployment/master/docs/helm/values/local-dev-values.yaml
+      curl -fO https://raw.githubusercontent.com/sherrymax/acs-examples/master/acs-installation/acs-install-on-azure-kubernetes-using-helm/acs-with-SOLR-on-AKS/assets/local-dev-values.yaml
       ```
    * Install Alfresco Content Services after updating DNS name in the below command.
       ```
