@@ -165,7 +165,9 @@ Take a note of that DNS name.
    Open browser and navigate to :
    * Web UI (1) : https://sherrymax1.eastus.cloudapp.azure.com/share
    * Web UI (2) : https://sherrymax1.eastus.cloudapp.azure.com/workspace
-   * Admin Console (1) : https://sherrymax1.eastus.cloudapp.azure.com/alfresco<br/>
+   * Admin Console : https://sherrymax1.eastus.cloudapp.azure.com/alfresco
+   * API Explorer : https://sherrymax1.eastus.cloudapp.azure.com/api-explorer
+   <br/>
 
    >Note: The default certificate that comes with this installation has to be updated as per your organisational standards. Until then, certificate will be invalid and proceed at your own risk.
 
@@ -193,6 +195,7 @@ Navigate to the following URLs to open Alfresco.
 https://<dns-name>/alfresco
 https://<hostname>/share
 https://<hostname>/workspace
+https://<hostname>/api-explorer
 ```
 
 ### TIPS
