@@ -1,202 +1,302 @@
 #### This article details the steps required to install Alfresco Content Services - Enterprise (ACS) on Azure Kubernetes Services (AKS) using Helm Charts.
 
 ### Use-Case / Requirement
-An Enterprise edition of Alfresco Content Services has to be installed on Azure Kubernetes Services (AKS) using Helm Charts.
+An Enterprise edition of Alfresco Content Services with SOLR has to be installed on Azure Kubernetes Services (AKS) using Helm Charts.
 
 ### Prerequisites to ACS Installation
 
 * Alfresco Content Services Enterprise License - A [30-day Free trial license](https://www.alfresco.com/platform/content-services-ecm/trial/download) is also available from Alfresco.
-* An [Azure - Ubuntu Linux - VM](https://azure.microsoft.com/en-us/solutions/linux-on-azure/ubuntu/) is used to install Alfresco in this article.
+* An [Azure - Kubernetes Cluster (AKS)](https://azure.microsoft.com/en-us/solutions/linux-on-azure/ubuntu/) is used to install Alfresco in this article.
+* [Helm Charts](https://github.com/Alfresco/acs-deployment/tree/v6.0.2/helm/alfresco-content-services) from Alfresco Repo are used.
+* [Values.yaml](./assets/local-dev-values.yaml) is used for the default values of this installation.
 * Login credentials to [Quay.io](https://quay.io/repository/) that holds container images of Alfresco Enterprise Edition.
+* [K9s](https://k9scli.io/topics/commands/) to manage the Kubernetes Clusters and PODS.
+
 > Note: If you've requested for a [30-day Free trial license](https://www.alfresco.com/platform/content-services-ecm/trial/download), please wait for the email from Alfresco with details, as shown below.
+
+> Note: Helm chart v6.0.2 can only be used to install ACS v7.4. Hence the installation commands will specify that version number.
 
 ![email-details](assets/1.png)
 
 ## Installation Steps
-1. Create an [Azure VM (Ubuntu Linux)](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal?tabs=ubuntu) instance.
-   ```
-   OS : Ubuntu Linux
-   Version : 22.04
-   Size : Standard E2s v3 (2 vcpus, 16 GiB memory)
-   ```
-![amazon-linux](assets/2.png)
+1. Create a [Kubernetes Cluster](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal?tabs=azure-cli#create-an-aks-cluster) in Azure Portal.
+   
+   ![aks](assets/2.png)
+Create a Kubernetes Cluster
+![aks](assets/2a.png)
+Enter values as needed.
+![aks](assets/2b.png)
+Modify agentpool/nodepool
+![aks](assets/2c.png)
+Node Size and Count
+![aks](assets/2d.png)
+Networking
+![aks](assets/2e.png)
+Monitoring/Alerting/Policies
+![aks](assets/2f.png)
+![aks](assets/2g.png)
+![aks](assets/2h.png)
+Validate
+![aks](assets/2i.png)
+![aks](assets/2j.png)
+Create the cluster - Deployment in progress
+![aks](assets/2k.png)
+Create the cluster - Completed
+![aks](assets/2l.png)
+Go to resource
+![aks](assets/2m.png)
+
+2. Connect to the Azure Kubernetes Cluster.
+![aks-cluster-connect](assets/3.png)
+Click CloudShell and Login.
+![aks-cluster-connect](assets/3a.png)
 
 
-2. Please configure the following after creating the Azure.
-* Configure Networking Rule to accept Incoming connections from My IP address or All.
-* Increase Idle Timeout by clicking the IP address from VM Home Page
-* Open the VM > Click Public IP address > Add a DNS name label
-* Open the VM and Update Access Control (IAM) and add the Rule for READ
-* Open the Network Interface (NIC) and Update Access Control (IAM) and add the Rule for READ with IP matching to the Private IP of VM.
-* Create a Bastion
-
-3. Connect to the Azure VM.
-   ```
-   ssh -i "my-azure.pem" <azure-username>@.2.3.4
-   ```
-
-4. [Install Docker](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) on the connected Azure VM.
-   ```
-   # Add Docker's official GPG key:
-   sudo apt-get update
-   sudo apt-get install ca-certificates curl gnupg
-   sudo install -m 0755 -d /etc/apt/keyrings
-   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-   sudo chmod a+r /etc/apt/keyrings/docker.gpg
-
-   # Add the repository to Apt sources:
-   echo \
-   "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-   "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-   sudo apt-get update
-   ```
-
-5. Install `Docker packages` on the connected Azure VM.
-   ```
-   sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-   ```
-
-6. Install `docker-compose` on the connected Azure VM.
-   ```
-   sudo apt install docker-compose
-   ```
-
-7. [Update Permissions](https://phoenixnap.com/kb/docker-permission-denied).
-   ```
-   sudo groupadd -f docker
-   sudo usermod -aG docker <azure-username>
-   newgrp docker
-   groups
-   ```
-
-8. Verify that the Docker Engine installation is successful by running the `hello-world` image.
-   ```
-   sudo docker run hello-world
-   ```
-   This command downloads a test image and runs it in a container. When the container runs, it prints a confirmation message and exits.
-   <br/>
-
-9. Verify Socker running status 
-   ```
-   sudo systemctl status docker.service
-   ```
-
-10. Create a folder with name `alfresco`.
+3. Run the below command in the Cloud Shell :
+   * Create a namespace of the name `alfresco`
       ```
-      mkdir /alfresco
-      cd /alfresco
-      ```   
-
-11. Upload the `docker-compose.yaml` file to the above `alfresco` folder.
+      kubectl create namespace alfresco
       ```
-    scp -i my-azure.pem docker-compose.yml <azure-username>@1.2.3.4:/home/<azure-username>/alfresco
+   * Verify the above step by listing all namespaces
       ```
-    > Note: For 30 day Enterprise Trial, the `docker-compose.yaml` can be downloaded from the link given in the email response from Alfresco.
+      kubectl get namespaces
+      ```
+   * Create sceret replacing the `username` and `password` in the below command.
+      ```
+      kubectl create secret docker-registry quay-registry-secret --docker-server=quay.io --docker-username=<username> --docker-password=<password> -n alfresco
+      ```
+   * Verify the above step by listing all secrets
+      ```
+      kubectl get secret -A
+      ```
+4. <b>Repositories</b>
 
-12. Note the login credentials to [Quay.io](https://quay.io/repository/).
-    > Note: For 30 day Enterprise Trial, the `quay login username` and `quay login encrypted password` are available in the email response from Alfresco.
+   * Add `alfresco` Helm repository
+      ```
+      helm repo add alfresco https://kubernetes-charts.alfresco.com/stable
+      ```
+   * Add `ingress-nginx` Helm repository
+      ```
+      helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+      ```
+   * Update all the Helm repositories
+      ```
+      helm repo update
+      ```
+   * Verify the above step by listing all Helm repositories
+      ```
+      helm repo list
+      ```
+5. <b>Ingress-NGINX</b>
 
-    > Note: Only the encrypted password has to be used.
+   * Install the `ingress-nginx` controller within the `alfresco` namespace
+      ```
+      helm install acs-ingress ingress-nginx/ingress-nginx --version=4.4.0 \
+      --set controller.scope.enabled=true \
+      --set controller.scope.namespace=alfresco \
+      --set rbac.create=true \
+      --namespace alfresco
+      ```
+      >Note: The command will wait until the deployment is ready. So please be patient.
+   * Once the `ingress-nginx` controller is installed, it may take a few minutes for the LoadBalancer IP to be available. Watch the status by running :
+      ```
+      kubectl --namespace alfresco get services -o wide -w acs-ingress-ingress-nginx-controller
+      ```
+   * Patch the `ingress-nginx` controller (Optional Step)
+      ```
+      kubectl -n alfresco patch cm acs-ingress-ingress-nginx-controller -p '{"data": {"allow-snippet-annotations":"true"}}'
+      ```
+   * Verify NGINX is up and running
+      ```
+      kubectl get pods --namespace alfresco
+      ```
+   * Note External IP (Public IP) from `ingress-nginx` controller 
+      ```
+      kubectl --namespace alfresco get services -o wide -w  acs-ingress-ingress-nginx-controller
+      ```
 
-13. Run the following command to login to Quay.io.
-    ```
-    docker login quay.io -u="<quay-login-username>"
-    ```
+6. Add DNS Name to the External IP (Public IP):
+![DNS-1](./assets/4.png)
+![DNS-2](./assets/4b.png)
+![DNS-3](./assets/4c.png)
+Take a note of that DNS name.
 
-14. Enter the `quay-login-encrypted-password` when prompted.
-    > Note: For 30 day Enterprise Trial, the `quay login encrypted password` is available in the email response from Alfresco.
+   * DNS Name example : sherrymax1.eastus.cloudapp.azure.com
+<br/>
 
-15. Run the following command to start downloading container images.
-    ```
-    docker-compose up -d
-    ```
-    > Note: It will take under 5 minutes to download images and get them started.
+7. <b>Alfresco Content Services</b>
+   * Download the `values.yaml`
+      ```
+      curl -fO https://raw.githubusercontent.com/sherrymax/acs-examples/master/acs-installation/acs-install-on-azure-kubernetes-using-helm/acs-with-SOLR-on-AKS/assets/local-dev-values.yaml
+      ```
+   * Install Alfresco Content Services after updating `DNS name` in the below command.
+      ```
+      helm install acs alfresco/alfresco-content-services \
+      --version 6.0.2 \
+      --values local-dev-values.yaml \
+      --set global.known_urls=<dns-name-noted-at-step-6> \
+      --set alfresco-sync-service.enabled=false \
+      --set global.tracking.sharedsecret=supersecretpass \
+      --set repository.ingress.annotations."nginx\.ingress\.kubernetes\.io/force-ssl-redirect"=\"true\" \
+      --set share.ingress.annotations."nginx\.ingress\.kubernetes\.io/force-ssl-redirect"=\"true\" \
+      --set global.gateway.annotations."nginx\.ingress\.kubernetes\.io/force-ssl-redirect"=\"true\" \
+      --set repository.persistence.storageClass="azurefile-csi" \
+      --namespace alfresco
+      ```
+      >NOTE: Please be patient until server is fully available. <br/>Time for a Coffee break !!!
 
-16. Run the following command to verify status.
-    ```
-    docker ps -a
-    ```
+   * <b>OPTIONAL</b> : If needed, Upgrade Alfresco Content Services after updating `DNS name` in the below command.
+      ```
+      helm upgrade --install acs alfresco/alfresco-content-services \
+      --reuse-values \
+      --version 6.0.2 \
+      --values local-dev-values.yaml \
+      --set global.known_urls=<dns-name-noted-at-step-6> \
+      --set alfresco-sync-service.enabled=false \
+      --set global.tracking.sharedsecret=supersecretpass \
+      --set repository.ingress.annotations."nginx\.ingress\.kubernetes\.io/force-ssl-redirect"=\"true\" \
+      --set share.ingress.annotations."nginx\.ingress\.kubernetes\.io/force-ssl-redirect"=\"true\" \
+      --set global.gateway.annotations."nginx\.ingress\.kubernetes\.io/force-ssl-redirect"=\"true\" \
+      --set repository.persistence.storageClass="azurefile-csi" \
+      --namespace alfresco
+      ```
 
-17. Default username/password.
+8. <b>Launch</b><br/>
+   Open browser and navigate to :
+   * Web UI (1) : https://sherrymax1.eastus.cloudapp.azure.com/share
+   * Web UI (2) : https://sherrymax1.eastus.cloudapp.azure.com/workspace
+   * Admin Console (1) : https://sherrymax1.eastus.cloudapp.azure.com/alfresco<br/>
+
+   >Note: The default certificate that comes with this installation has to be updated as per your organisational standards. Until then, certificate will be invalid and proceed at your own risk.
+
+9. Default username/password.
     ```
     admin/admin
     ```
+10. Upload the license, after logging to admin console with default credentials.<br/>
+`https://<dns-name>/alfresco`
+eg: https://sherrymax1.eastus.cloudapp.azure.com/alfresco<br/>
+`https://<dns-name>/alfresco/s/enterprise/admin/admin-license`
+eg: https://sherrymax1.eastus.cloudapp.azure.com/alfresco/s/enterprise/admin/admin-license
+![License-1](./assets/5.png)
+![License-2](./assets/5a.png)
+![License-1](./assets/5b.png)
+
+11. Verify the SOLR Search Services
+![Search](./assets/6.png)
+![Search-2](./assets/6a.png)
+
 
 ### ACS : RUN the DEMO
 Navigate to the following URLs to open Alfresco.
 ```
-http://<hostname>:8080/alfresco
-http://<hostname>:8080/share
+https://<dns-name>/alfresco
+https://<hostname>/share
+https://<hostname>/workspace
 ```
 
-### TIP
-Special thanks to [Abhinav Kumar Mishra](https://github.com/abhinavmishra14) for sharing the Docker commands useful for installation.
+### TIPS
+Special thanks to [Alex Chapellon](https://github.com/alxgomz) for sharing the Kubernetes and Helm commands useful for installation.
 
-Run this command to START containers
+To List all Pods, Services, Deployments and ReplicaSets within the `alfresco` namespace
 ```
-docker-compose up
-```
-
-Run this command to STOP containers
-```
-docker-compose down
+kubectl -n alfresco get all
 ```
 
-Run this command to REBUILD with clear cache and RESTART
+To view the status of all the pods:
 ```
-docker-compose down && docker-compose build --no-cache && docker-compose up
-```
-
-To create the external volumes use following command:
-```
-docker volume create <volumeName>
+kubectl get pods -n alfresco
 ```
 
-To purge the external volumes use following command:
+Check status and list all PODS in `alfresco` Namespace
 ```
-docker volume rm -f <volumeName>
-```
-
-To build use following command:
-To build the images, This command will ignore any images which are already built and no changes to DockerFile has been identified. It will use cache.
-```
-docker-compose -f ./docker-compose.yml build
+kubectl -n alfresco get pods
 ```
 
-To build the images with no cache. It will force rebuild
+View Logs of POD
 ```
-docker-compose -f ./docker-compose.yml build --no-cache
-```
-
-To launch containers use following command:
-```
-docker-compose -f ./docker-compose.yml up
+kubectl logs -f <pod-name> -n <container-name>
+kubectl logs -f acs-activemq-7879f9fb88-jmspw -n alfresco
 ```
 
-To build and launch containers use following command:
+Shell into a POD
 ```
-docker-compose -f ./docker-compose.yml up --build
-```
-
-To shutdown use following command:
-```
-docker-compose -f ./docker-compose.yml down
+kubectl exec -ti podname — cmd
 ```
 
-To tail logs use following command:
+To List ConfigMaps
 ```
-docker-compose -f ./docker-compose.yml logs -f
+kubectl -n alfresco get cm
 ```
+
+To List all Services
+```
+kubectl get svc --namespace alfresco
+```
+
+To list a specific service in `alfresco` namespace
+```
+kubectl get svc acs-ingress-ingress-nginx-controller -o yaml  -n alfresco
+```
+
+Describe a specific service in `alfresco` namespace
+```
+kubectl describe svc <service-name> -n <namespace>
+kubectl describe svc acs-ingress-ingress-nginx-controller -n alfresco
+```
+
+List all Deployments of all namespaces
+```
+kubectl get deployments --all-namespaces=true
+```
+
+List all Deployments in `alfresco` Namespace
+```
+kubectl get deployments --namespace alfresco
+```
+
+Get Persistence Volumes in `alfresco` namespace
+```
+kubectl get pvc --namespace alfresco
+```
+
+Delete a specific Persistence Volumes in `alfresco` namespace
+```
+kubectl delete pvc --namespace alfresco data-acs-postgresql-acs-0
+```
+
+To redeploy ACS pods after making changes:
+```
+helm2 upgrade alfresco --install ./alfresco-content-services -n alfresco -f values.yaml
+```
+
+View the logs of a particular pod:
+```
+kubectl logs <pod name> -f -n alfresco
+```
+
+Delete an individual pod (force it to restart):
+```
+Kubectl delete pod <pod name> --grace-period=0 --force
+```
+
+Get a shell in the running container:
+```
+Kubectl exec -it <pod name> -- sh
+```
+
+Delete the Alfresco Helm charts:
+```
+helm2 delete alfresco --purge
+```
+
+Copy a file from your local machine to container:
+```
+kubectl cp /local/path namespace/podname:path/to/directory 
+eg:
+kubectl cp /local/dump mongo-0:/dump
+```
+
 
 ### References
-1. Alfresco Installation using Docker Compose : https://docs.alfresco.com/content-services/latest/install/containers/docker-compose/
-2. How to create Linux VM in Azure : https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-portal?tabs=ubuntu
-3. How to create Windows VM in Azure : https://learn.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-portal
-4. YouTube Video on Linux VM creation in Azure : https://www.youtube.com/watch?v=IhY1iBfnVj0&t=1045s
-5. What is a Bastion : https://learn.microsoft.com/en-us/azure/bastion/bastion-overview
-6. How to configure a Bastion : https://learn.microsoft.com/en-us/azure/bastion/tutorial-create-host-portal
-7. Bastion Deployment : https://learn.microsoft.com/en-us/azure/bastion/tutorial-create-host-portal
-8. How to install Docker on Azure Linux VM : https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
-9. Top 15 Docker Commands : https://www.edureka.co/blog/docker-commands/
-10. ACS Community Installation : https://github.com/abhinavmishra14/acs-community-71-docker
+1. Analyse Kubernetes using K9s : https://k9scli.io/topics/commands/
