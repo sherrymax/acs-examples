@@ -141,9 +141,9 @@ Take a note of that DNS name.
       --set repository.persistence.storageClass="azurefile-csi" \
       --namespace alfresco
       ```
-   >NOTE: Please be patient until server is fully available. <br/>Time for a Coffee break !!!
+      >NOTE: Please be patient until server is fully available. <br/>Time for a Coffee break !!!
 
-   * OPTIONAL : If needed, Upgrade Alfresco Content Services after updating `DNS name` in the below command.
+   * <b>OPTIONAL</b> : If needed, Upgrade Alfresco Content Services after updating `DNS name` in the below command.
       ```
       helm upgrade --install acs alfresco/alfresco-content-services \
       --reuse-values \
@@ -159,11 +159,11 @@ Take a note of that DNS name.
       --namespace alfresco
       ```
 
-8. <b>Launch</b>
+8. <b>Launch</b><br/>
    Open browser and navigate to :
    * Web UI (1) : https://sherrymax1.eastus.cloudapp.azure.com/share
    * Web UI (2) : https://sherrymax1.eastus.cloudapp.azure.com/workspace
-   * Admin Console (1) : https://sherrymax1.eastus.cloudapp.azure.com/alfresco
+   * Admin Console (1) : https://sherrymax1.eastus.cloudapp.azure.com/alfresco<br/>
 
    >Note: The default certificate that comes with this installation has to be updated as per your organisational standards. Until then, certificate will be invalid and proceed at your own risk.
 
@@ -171,9 +171,9 @@ Take a note of that DNS name.
     ```
     admin/admin
     ```
-10. Upload the license, after logging to admin console with default credentials.
+10. Upload the license, after logging to admin console with default credentials.<br/>
 `https://<dns-name>/alfresco`
-eg: https://sherrymax1.eastus.cloudapp.azure.com/alfresco
+eg: https://sherrymax1.eastus.cloudapp.azure.com/alfresco<br/>
 `https://<dns-name>/alfresco/s/enterprise/admin/admin-license`
 eg: https://sherrymax1.eastus.cloudapp.azure.com/alfresco/s/enterprise/admin/admin-license
 ![License-1](./assets/5.png)
@@ -193,7 +193,7 @@ https://<hostname>/share
 https://<hostname>/workspace
 ```
 
-### TIP
+### TIPS
 Special thanks to [Alex Chapellon](https://github.com/alxgomz) for sharing the Kubernetes and Helm commands useful for installation.
 
 To List all Pods, Services, Deployments and ReplicaSets within the `alfresco` namespace
