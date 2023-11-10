@@ -20,8 +20,8 @@ An Enterprise edition of Alfresco Content Services with SOLR has to be installed
 
 ## Installation Steps
 1. Create a [Kubernetes Cluster](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal?tabs=azure-cli#create-an-aks-cluster) in Azure Portal.
-   
-   ![aks](assets/2.png)
+
+![aks](assets/2.png)
 Create a Kubernetes Cluster
 ![aks](assets/2a.png)
 Enter values as needed.
@@ -110,7 +110,7 @@ Click CloudShell and Login.
       ```
       kubectl get pods --namespace alfresco
       ```
-   * Note External IP (Public IP) from `ingress-nginx` controller 
+   * Note External IP (Public IP) from `ingress-nginx` controller
       ```
       kubectl --namespace alfresco get services -o wide -w  acs-ingress-ingress-nginx-controller
       ```
@@ -292,7 +292,7 @@ helm2 delete alfresco --purge
 
 Copy a file from your local machine to container:
 ```
-kubectl cp /local/path namespace/podname:path/to/directory 
+kubectl cp /local/path namespace/podname:path/to/directory
 eg:
 kubectl cp /local/dump mongo-0:/dump
 ```
