@@ -1,3 +1,11 @@
+<table style="align:center">
+<tr style="align:center; border:0px">
+<td style="align:center; border:0px" width="25%"><img src="https://cdn.freebiesupply.com/logos/large/2x/alfresco-1-logo-svg-vector.svg" width="100px" height="100px"></img></td>
+<td style="align:center; border:0px" width="35%"><img src="https://suyati.com/blog/wp-content/uploads/2015/03/apache-solr-logo1.png" width="200px" height="100px"></img></td>
+<td style="align:center; border:0px" width="40%"><img src="https://pixelrobots.co.uk/wp-content/uploads/2018/09/AKS-FI.png" width="200px" height="100px"></img></td>
+</tr>
+</table>
+
 #### This article details the steps required to install Alfresco Content Services - Enterprise (ACS) on Azure Kubernetes Services (AKS) using Helm Charts.
 
 ### Use-Case / Requirement
