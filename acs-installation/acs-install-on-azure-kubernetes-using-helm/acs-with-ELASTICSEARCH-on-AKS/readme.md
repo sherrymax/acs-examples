@@ -1,5 +1,5 @@
 <div width="100%">
-<table style="align:center">
+<table width="100%" style="align:center">
 <tr style="align:center; border:0px">
 <td style="align:center; border:0px" width="25%"><img src="https://cdn.freebiesupply.com/logos/large/2x/alfresco-1-logo-svg-vector.svg" width="100px" height="100px"></img></td>
 <td style="align:center; border:0px" width="35%"><img src="https://miro.medium.com/v2/resize:fit:1400/1*BmvPfSSm2G8C-khX1rhCGg.png" width="200px" height="100px"></img></td>
