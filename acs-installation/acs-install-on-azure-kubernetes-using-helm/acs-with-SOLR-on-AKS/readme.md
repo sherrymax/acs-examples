@@ -30,7 +30,7 @@ An Enterprise edition of Alfresco Content Services with SOLR has to be installed
 
 ### Assumptions
 * The below specifications are for a Sandbox/Test/Dev and <u>NOT for a PRODUCTION environment</u>. 
-* For PRODUCTION environments, the Alfresco components (i.e MQ, DB, ElasticSearch, Transformation server etc.) can be setup as separate clusters/nodes for optimal performance. 
+* For PRODUCTION environments, the Alfresco components (i.e MQ, DB, SOLR, ElasticSearch, Transformation server etc.) can be setup as separate clusters/nodes for optimal performance. Please reach out to our <u>Hyalnd Services team</u> for a successful PROD implementation.
 * However, this article covers only Sandbox/Test/Dev installation and setup.
 
 ### Minimum Hardware Specifications

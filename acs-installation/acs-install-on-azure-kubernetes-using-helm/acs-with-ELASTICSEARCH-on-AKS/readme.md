@@ -28,9 +28,23 @@ An Enterprise edition of Alfresco Content Services with ELASTICSEARCH has to be 
 
 ![email-details](assets/1.png)
 
-## Installation Steps
+### Assumptions
+* The below specifications are for a Sandbox/Test/Dev and <u>NOT for a PRODUCTION environment</u>.
+* For PRODUCTION environments, the Alfresco components (i.e MQ, DB, SOLR, ElasticSearch, Transformation server etc.) can be setup as separate clusters/nodes for optimal performance. Please reach out to our <u>Hyalnd Services team</u> for a successful PROD implementation.
+* However, this article covers only Sandbox/Test/Dev installation and setup.
+
+### Minimum Hardware Specifications
+<table>
+<tr><td style="width:50%">Minimum Number of Nodes</td><td style="width:50%">3</td></tr>
+<tr><td style="width:50%">CPU Type</td><td style="width:50%">Standard D4s v3</td></tr>
+<tr><td style="width:50%">Minimum CPU per Node</td><td style="width:50%">4</td></tr>
+<tr><td style="width:50%">Minimum Memory (RAM) per Node</td><td style="width:50%">16 GB</td></tr>
+<tr><td style="width:50%">Operating System (OS)</td><td style="width:50%">Red Hat Linux (RHEL)<br/>OR<br/>Ubuntu Linux</td></tr>
+</table>
+
+### Installation Steps
 1. Create a [Kubernetes Cluster](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal?tabs=azure-cli#create-an-aks-cluster) in Azure Portal.
-   
+
    ![aks](assets/2.png)
 Create a Kubernetes Cluster
 ![aks](assets/2a.png)
@@ -120,7 +134,7 @@ Click CloudShell and Login.
       ```
       kubectl get pods --namespace alfresco
       ```
-   * Note External IP (Public IP) from `ingress-nginx` controller 
+   * Note External IP (Public IP) from `ingress-nginx` controller
       ```
       kubectl --namespace alfresco get services -o wide -w  acs-ingress-ingress-nginx-controller
       ```
@@ -305,7 +319,7 @@ helm2 delete alfresco --purge
 
 Copy a file from your local machine to container:
 ```
-kubectl cp /local/path namespace/podname:path/to/directory 
+kubectl cp /local/path namespace/podname:path/to/directory
 eg:
 kubectl cp /local/dump mongo-0:/dump
 ```
