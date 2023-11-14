@@ -37,10 +37,9 @@ An Enterprise edition of Alfresco Content Services with SOLR has to be installed
 <table>
 <tr><td style="width:50%">Minimum Number of Nodes</td><td style="width:50%">3</td></tr>
 <tr><td style="width:50%">CPU Type</td><td style="width:50%">Standard D4s v3</td></tr>
-<tr><td style="width:50%">Minimum CPU</td><td style="width:50%">4</td></tr>
-<tr><td style="width:50%">Minimum Memory (RAM)</td><td style="width:50%">16 GB</td></tr>
+<tr><td style="width:50%">Minimum CPU per Node</td><td style="width:50%">4</td></tr>
+<tr><td style="width:50%">Minimum Memory (RAM) per Node</td><td style="width:50%">16 GB</td></tr>
 <tr><td style="width:50%">Operating System (OS)</td><td style="width:50%">Red Hat Linux (RHEL)<br/>OR<br/>Ubuntu Linux</td></tr>
-<tr><td style="width:50%">Minimum Number of Nodes</td><td style="width:50%">3</td></tr>
 </table>
 
 ### Installation Steps
