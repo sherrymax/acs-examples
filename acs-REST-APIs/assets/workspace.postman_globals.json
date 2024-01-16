@@ -170,7 +170,12 @@
 			"value": "5157ef61-babc-47fb-8ae1-20c4f9563755",
 			"type": "default",
 			"enabled": true
-		}
+		},
+		{
+			"key": "user-id",
+			"value": "",
+			"enabled": true
+		},
 	],
 	"name": "Globals",
 	"_postman_variable_scope": "globals",
