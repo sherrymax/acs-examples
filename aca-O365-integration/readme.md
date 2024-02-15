@@ -30,7 +30,7 @@ Users should be able to contribute and collaborate MS-Office Contents in Alfresc
 ![web-api-permissions](assets/web-api-permissions.png)
 > **Note**: More than one Redirect URIs can be added to the list.
 
-4. Click Register button. ![web-regn](assets/web-regn.png)
+4. Click Register button.
 5. Click the Web App that just got created.
 6. Note the :
    * Application (client) ID
