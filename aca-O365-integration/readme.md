@@ -44,8 +44,8 @@ Users should be able to contribute and collaborate MS-Office Contents in Alfresc
 ![aca-services](assets/aca-services.png)
 
    
-Now the document should be good to `Check-In Online`.
-![aca-menu](assets/aca-menu.png)
+   Now the document should be good to `Check-In Online`.
+   ![aca-menu](assets/aca-menu.png)
 
 
 ### ACS : RUN the DEMO
