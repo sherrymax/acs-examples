@@ -43,10 +43,17 @@ Users should be able to contribute and collaborate MS-Office Contents in Alfresc
 
 2. Do the below configurations.
 ![aca-services](assets/aca-services.png)
-
    
-   Now the document should be good to `Check-In Online`.
-   ![aca-menu](assets/aca-menu.png)
+3. Now the document should be good to `Edit Online`.
+![aca-menu](assets/aca-menu.png)
+
+4. A popup will appear prompting login. Use the same login where the WEB app got created in Azure Portal. Once logged in, the cookies will be reused for same action in the future.
+
+5. A new browser tab will open with the document in O365.
+
+6. The changes are auto saved. Close the browser tab once changes are done.
+
+7. Back to ACA Document Viewer and now the document should be good to `Check-In Online` or `Cancel Checkin`.
 
 
 ### ACS : RUN the DEMO
