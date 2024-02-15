@@ -26,7 +26,8 @@ Users should be able to contribute and collaborate MS-Office Contents in Alfresc
    ![app-home](assets/spa-home.png)
 3. Register your Web application. ![app-regn-1](assets/web-regn-1.png)
 > **Note**: The Redirect URI will be `https://<your-subdomain>.alfdemo.com/ocms/dummy/path`
-
+![web-authentication](assets/web-authentication.png)
+![web-api-permissions](assets/web-api-permissions.png)
 > **Note**: More than one Redirect URIs can be added to the list.
 
 4. Click Register button. ![web-regn](assets/web-regn.png)
