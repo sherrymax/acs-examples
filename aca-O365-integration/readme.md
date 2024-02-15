@@ -41,7 +41,7 @@ Users should be able to contribute and collaborate MS-Office Contents in Alfresc
 1. Update the `ACA Admin > Stage `.
 ![aca-stage](assets/aca-stage.png)
 
-2. Do the below configurations.
+2. Do the below configurations for each 3 service.
 ![aca-services](assets/aca-services.png)
    
 3. Now the document should be good to `Edit Online`.
