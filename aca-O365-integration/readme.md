@@ -48,12 +48,25 @@ Users should be able to contribute and collaborate MS-Office Contents in Alfresc
 ![aca-menu](assets/aca-menu.png)
 
 4. A popup will appear prompting login. Use the same login where the WEB app got created in Azure Portal. Once logged in, the cookies will be reused for same action in the future.
+![aca-popup](assets/aca-popup.png)
 
-5. A new browser tab will open with the document in O365.
+5. ACA will show the message regareding successful online checkout.
+![aca-onlinemsg](assets/aca-onlinemsg.png)
 
-6. The changes are auto saved. Close the browser tab once changes are done.
+6. A new browser tab will open with the document in O365.
+![aca-newtab](assets/aca-newtab.png)
 
-7. Back to ACA Document Viewer and now the document should be good to `Check-In Online` or `Cancel Checkin`.
+7. The changes are auto saved. Close the browser tab once changes are done.
+![aca-newsentence](assets/aca-newsentence.png)
+
+8. Back to ACA Document Viewer and now the document should be good to `Check-In Online` or `Cancel Checkin`.
+![aca-checkin](assets/aca-checkin.png)
+
+9. Prompts to enter credentials may appear if your session is not active. Else the prompts will disappear by itself. Click on the Green Checkin button to finish the process.
+![aca-checkin2](assets/aca-checkin2.png)
+
+10. The ACA page will automatically refresh to see the updated document with the edits done in Office365.
+![aca-final](assets/aca-final.png)
 
 
 ### ACS : RUN the DEMO
