@@ -16,8 +16,34 @@ Users should be able to contribute and collaborate MS-Office Contents in Alfresc
 
 ## Configuration Steps
 
-* Step 1: [Configure O365 Web App](https://github.com/sherrymax/acs-examples/tree/master/aca-O365-integration#configure-o365-web-app)
-* Step 2: [Configure Alfresco Content Accelerator (ACA)](https://github.com/sherrymax/acs-examples/tree/master/aca-O365-integration#configure-alfresco-content-accelerator-aca-for-adporca-users)
+* Step 1: [Configure AWS Elastic Load Balancer](https://github.com/sherrymax/acs-examples/tree/master/aca-O365-integration#configure-aws-elastic-load-balancer)
+* Step 2: [Configure O365 Web App](https://github.com/sherrymax/acs-examples/tree/master/aca-O365-integration#configure-o365-web-app)
+* Step 3: [Configure Alfresco Content Accelerator (ACA)](https://github.com/sherrymax/acs-examples/tree/master/aca-O365-integration#configure-alfresco-content-accelerator-aca-for-adporca-users)
+
+### Configure AWS Elastic Load Balancer
+
+Run command:
+```
+./adp.py aws ec2 ssl
+```
+Once authenticated, start mapping the details from EC2 Instance.
+
+* Please provide `region` you wish to use: `<region-of-your-ec2-instance> eg: us-east-1`
+* Please specify the `elb_name` for this instance: `<myname-mycustomername> eg: sherry-mantech`
+* Please specify the `ec2_public_dns` for this instance: `<Public-IPv4-DNS from AWS Instance Details Page>`
+* Please specify the `instance_id` for this instance: `<Instance ID from AWS Instance Details Page>`
+* Please specify the `subdomain` for this instance: `<mycustomername> eg: mantech`
+* Please specify the `owner` for this instance: `<myname> eg: Sherry Mathews`
+* Please specify the `is_poc` for this instance: `<true/false> eg: false`
+* Please specify the `target_end_date` for this instance: `<target_end_date> eg: 12/31/2021`
+* Please specify the `elb_purpose` for this instance: `<mention_your_purpose> eg: Demo`
+* Please specify the `customer` for this instance: `<mycustomername> eg: ManTech` 
+
+> **Note**: Please wait for a few minutes as the Elastic Load Balancer (ELB) will be starting up. The status can be verified from `AWS Services > Load Balancers`.
+
+> **Note**: Once the ELB is available, navigate to the `Redirect URI`
+
+> **Note**: The Redirect URI will be `https://<your-subdomain>.alfdemo.com`
 
 ### Configure O365 Web App
 
