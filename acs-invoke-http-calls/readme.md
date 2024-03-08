@@ -19,7 +19,7 @@ An HTTP call (GET, POST, PUT etc) has to be triggered from ACS.
 ## Configuration Step in ADP/Orca (Only for Orca/ADP users)
 
 ```
-Location to deploy http_js.amp and alfresco-global.properties in ADP/Orca will be: 
+Location to deploy http_js.amp and alfresco-global.properties in ADP/Orca will be:
 adp/data/services/content/http_js.amp
 adp/data/services/content/javascript-console-repo-0.7-SNAPSHOT.amp (if running on ACS v7.0/7.1)
 adp/data/services/content/javascript-console-share-0.7-SNAPSHOT.amp (if running on ACS v7.0/7.1)
@@ -46,7 +46,8 @@ logger.error(r);
 
 ```javascript
 try {
-    var hostName = 'http://' + sysAdmin.getHost();
+
+    var hostName = 'http://' + sysAdmin.getHost();  //use full hostname like http://ec2-54-152-185-130.compute-1.amazonaws.com
     var requestBody = "{\"processDefinitionKey\":\"CreateRecordProcess\",\"variables\":[{\"name\":\"nodeIdList\",\"value\":\"" + nodeListString + "\"}, {\"name\":\"recordFolderName\",\"value\":\"" + document.name + "\"}]}";
 
     var requestURL = hostName + "/activiti-app/api/enterprise/process-instances";
