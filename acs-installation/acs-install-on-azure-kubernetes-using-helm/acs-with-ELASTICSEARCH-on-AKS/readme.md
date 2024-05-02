@@ -74,6 +74,8 @@ Go to resource
 ![aks-cluster-connect](assets/3.png)
 Click CloudShell and Login.
 ![aks-cluster-connect](assets/3a.png)
+Enter Storage Details (if asked)
+![aks-cluster-connect](assets/3b.png)
 
 
 3. Run the below command in the Cloud Shell :
