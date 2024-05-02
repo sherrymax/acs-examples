@@ -72,11 +72,12 @@ Go to resource
 
 2. Connect to the Azure Kubernetes Cluster.
 ![aks-cluster-connect](assets/3.png)
-Click CloudShell and Login.
-![aks-cluster-connect](assets/3a.png)
+
 Enter Storage Details (if asked)
 ![aks-cluster-connect](assets/3b.png)
 
+Click CloudShell and Login.
+![aks-cluster-connect](assets/3a.png)
 
 3. Run the below command in the Cloud Shell :
    * Create a namespace of the name `alfresco`
