@@ -68,10 +68,10 @@ java -jar alfresco-mmt.jar list /path/to/alfresco.war
 
 <b>Admin Console Verification</b>
 
-- Access Alfresco Admin Console
-- Navigate to System Summary
+- Access [Alfresco Admin Console](http://localhost:8080/alfresco)
+- Navigate to [System Summary](http://localhost:8080/alfresco/s/enterprise/admin/admin-systemsummary)
 - Verify Azure Connector is listed in installed modules
-
+<br/>![assets/4.png](assets/4.png)
 ---
 
 
