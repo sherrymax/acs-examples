@@ -59,12 +59,18 @@ java -jar alfresco-mmt.jar install /path/to/alfresco-azure-connector-x.x.x.amp /
 
 ### Step 4: Verify Installation
 
-Check that the configuration files are properly installed:
+<b>Check that the configuration files are properly installed</b>
 
 ```bash
 # Verify the AMP installation
 java -jar alfresco-mmt.jar list /path/to/alfresco.war
 ```
+
+<b>Admin Console Verification</b>
+
+- Access Alfresco Admin Console
+- Navigate to System Summary
+- Verify Azure Connector is listed in installed modules
 
 ---
 
@@ -147,12 +153,6 @@ sudo systemctl start alfresco
 ```
 
 ## Step 8: Verify Configuration
-
-<b>Admin Console Verification</b>
-
-- Access Alfresco Admin Console
-- Navigate to System Summary
-- Verify Azure Connector is listed in installed modules
 
 <b>Check Alfresco Logs</b>
 ```bash
