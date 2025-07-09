@@ -22,7 +22,7 @@ This guide shows how to install **Azure BLOB Connector** on **Alfresco**
 ### Step 1: Download the Azure Connector
 
 Go to the Alfresco Support Portal or Hyland Community
-Download the `alfresco-azure-connector-x.x.x.amp` file.
+Download the `alfresco-azure-connector-x.x.x.amp` file.<br/>
 [Supported Versions and Platforms](https://docs.alfresco.com/microsoft-azure/latest/support/)
 > Ensure you have the correct version compatible with your Alfresco Content Services version
 
