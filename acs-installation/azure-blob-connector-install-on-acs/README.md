@@ -41,16 +41,32 @@ sudo systemctl stop alfresco
 ```
 ---
 
-### Step 3: Install the AMP using Module Management Tool (MMT)
+### Step 3 : Connect to Container as ROOT User
+
+```
+docker ps --find container id
+docker exec -it -u 0 <container-id> /bin/bash
+
+eg: docker exec -it -u 0 ef50a9d1bfde /bin/bash
+```
+
+### Step 4: Install the AMP using Module Management Tool (MMT)
+
 
 Navigate to your Alfresco installation directory and use the MMT to install the AMP:
 
 ```bash
+#Upload alfresco-azure-connector-3.2.0.amp to /usr/local/tomcat/amps
+TIP : Upload as a File from Docker Desktop
+
+
 # Navigate to the bin directory containing MMT
-cd /opt/alfresco/bin
+cd /usr/local/tomcat
 
 # Install the Azure Connector AMP (use -force flag)
-java -jar alfresco-mmt.jar install /path/to/alfresco-azure-connector-x.x.x.amp /path/to/alfresco.war -force
+java -jar alfresco-mmt.jar install /path/to/alfresco-azure-connector-x.x.x.amp /path/to/alfresco.war -force -nobackup
+
+eg: java -jar alfresco-mmt/alfresco-mmt-21.20.jar install amps/alfresco-azure-connector-3.2.0.amp /usr/local/tomcat/webapps/alfresco/ -force -nobackup
 
 # Alternative using apply_amps tool
 ./apply_amps.sh -force
@@ -64,14 +80,17 @@ java -jar alfresco-mmt.jar install /path/to/alfresco-azure-connector-x.x.x.amp /
 ```bash
 # Verify the AMP installation
 java -jar alfresco-mmt.jar list /path/to/alfresco.war
+
+eg: java -jar alfresco-mmt/alfresco-mmt-21.20.jar list webapps/alfresco
+
 ```
 
 <b>Admin Console Verification</b>
 
 - Access [Alfresco Admin Console](http://localhost:8080/alfresco)
 - Navigate to [System Summary](http://localhost:8080/alfresco/s/enterprise/admin/admin-systemsummary)
-- Verify Azure Connector is listed in installed modules
-<br/>![assets/4.png](assets/4.png)
+- Verify Azure Connector is listed in installed modules<br/><br/>
+![assets/4.png](assets/4.png)
 ---
 
 
