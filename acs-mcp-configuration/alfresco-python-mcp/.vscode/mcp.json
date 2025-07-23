@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "sherrymax_alfresco_MCP_HTTP_server": {
+      "type": "sse",
+      "url": "http://localhost:8000/sse"
+    }
+  }
+}
