@@ -15,13 +15,15 @@ This guide shows how to install **Azure BLOB Connector** on **Alfresco**
 
 - Active Azure subscription
     <i>The customer should have their own [Azure account](https://www.portal.azure.com).</i>
+
 - Azure Storage Account configured
     ![assets/1.png](assets/1.png)
     ![assets/2.png](assets/2.png)
-    ![assets/6.png](assets/6.png)
 
 - Azure Blob Storage container created
     ![assets/3.png](assets/3.png)
+    ![assets/6.png](assets/6.png)
+
 - Storage account access keys or connection string
     ![assets/5.png](assets/5.png)
 
